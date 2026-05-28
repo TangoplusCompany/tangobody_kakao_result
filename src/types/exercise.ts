@@ -1,7 +1,4 @@
-export interface IExerciseDetail {
-  exercise_program: IProgram[],
-  risk_part: IRiskPart[],
-}
+
 
 export interface IProgram {
   exercise_ids: string;
@@ -21,6 +18,15 @@ export interface IExercise {
   related_symptom: string;
 }
 
+export interface IExerciseDetail {
+  exercise_program: IProgram[],
+  risk_part: IRiskParts,
+}
+
 export interface IRiskPart {
   risk_part: number[];
+}
+
+export interface IRiskParts {
+  risk_part: IRiskPart
 }

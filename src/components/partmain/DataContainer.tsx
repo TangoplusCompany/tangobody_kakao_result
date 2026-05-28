@@ -1,7 +1,7 @@
-import type {  IReportDetail } from "../types/basic";
-import { PartRawData } from "./PartRawData";
+import type {  IReportDetail } from "../../types/basic";
+import { PartMainData } from "./Data";
 
-export function PartRawDataContainer({data}: {data: IReportDetail}) {
+export function PartMainDataContainer({data}: {data: IReportDetail}) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] rounded-xl border border-sub-200 overflow-hidden bg-white text-sub-800 m-2">
@@ -34,9 +34,9 @@ export function PartRawDataContainer({data}: {data: IReportDetail}) {
           </div>
         </div>
         <div className="grid grid-rows-3 h-full">
-          <PartRawData data={"neck"} rawData={data.detail_data} summaryData={data} />
-          <PartRawData data={"shoulder"} rawData={data.detail_data} summaryData={data} />
-          <PartRawData data={"neck"} rawData={data.detail_data} summaryData={data} />
+          <PartMainData data={"neck"} rawData={data.detail_data} summaryData={data} />
+          <PartMainData data={"shoulder"} rawData={data.detail_data} summaryData={data} />
+          <PartMainData data={"neck"} rawData={data.detail_data} summaryData={data} />
         </div>
 
       </div>
@@ -71,9 +71,9 @@ export function PartRawDataContainer({data}: {data: IReportDetail}) {
         </div>
 
         <div className=" grid grid-rows-3 h-full">
-          <PartRawData data={"hip"} rawData={data.detail_data} summaryData={data} />
-          <PartRawData data={"knee"} rawData={data.detail_data} summaryData={data} />
-          <PartRawData data={"ankle"} rawData={data.detail_data} summaryData={data} />
+          <PartMainData data={"hip"} rawData={data.detail_data} summaryData={data} />
+          <PartMainData data={"knee"} rawData={data.detail_data} summaryData={data} />
+          <PartMainData data={"ankle"} rawData={data.detail_data} summaryData={data} />
         </div>
 
 

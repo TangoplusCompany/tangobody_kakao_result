@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { X, ZoomIn, ZoomOut } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Dialog, DialogContent, DialogTitle } from '../ui/dialog';
+import ic_grid from "../../assets/ic_grid.svg";
+import ic_skeleton from "../../assets/ic_skeleton.svg";
+
 
 interface MeasurementImageDialogProps {
   open: boolean;
@@ -178,7 +181,7 @@ export const MeasurementImageDialog: React.FC<MeasurementImageDialogProps> = ({
               style={{boxShadow: RadialGradientShadow}}
             >
               <img
-                src="/icons/ic_grid.svg"
+                 src={ic_grid}
                 alt="그리드 라디오버튼"
                 className="w-4 h-4"
               />
@@ -192,7 +195,7 @@ export const MeasurementImageDialog: React.FC<MeasurementImageDialogProps> = ({
               style={{boxShadow: RadialGradientShadow}}
             >
               <img
-                src="/icons/ic_skeleton.svg"
+                 src={ic_skeleton}
                 alt="랜드마크 라디오버튼"
                 className="w-4 h-4"
               />

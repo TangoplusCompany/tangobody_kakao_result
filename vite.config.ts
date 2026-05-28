@@ -22,7 +22,6 @@ export default defineConfig({
         target: 'https://gym.tangoplus.co.kr',
         changeOrigin: true,
         secure: false,
-        // 필요하다면 가상 경로(/proxy-data)를 실제 서버 경로(/data/Results)로 바꿔서 찌릅니다.
         rewrite: (path) => path.replace(/^\/proxy-data/, '/data/Results'),
       },
     },

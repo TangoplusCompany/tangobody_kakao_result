@@ -59,7 +59,13 @@ export function useStaticLandmark(
       setLoading(true);
 
       try {
-        const proxiedUrl = `/api/proxy?url=${encodeURIComponent(imageUrl)}`;
+        const urlParts = imageUrl.split("/");
+        const fileName = urlParts[urlParts.length - 1]; // "57-1810-1-1-1770620771.jpg" 만 쏙 추출
+
+        // 💡 추출한 파일명을 로컬 프록시 경로와 깨끗하게 조립합니다.
+        const proxiedUrl = `/proxy-data/${fileName}`;
+
+        // 정돈된 주소로 이미지 로드 실행
         const image = await loadImage(proxiedUrl);
 
         const srcW = image.width;   // 1280
@@ -82,15 +88,25 @@ export function useStaticLandmark(
         ctx.restore(); 
 
         // showLine이 true일 때만 랜드마크 그리기
-        if (showLine) {
+        if (showLine && measureJson && measureJson.pose_landmark) {
           ctx.save();
 
-          // 미러
+          // 미러링 처리
           ctx.translate(dstW, 0);
           ctx.scale(-1, 1);
-          drawMap[step](ctx, measureJson);
+          
+          try {
+            // 💡 맵 함수를 호출하기 전에 한 번 더 예외 체크
+            if (drawMap[step]) {
+              drawMap[step](ctx, measureJson);
+            }
+          } catch (drawError) {
+            console.error("선 그리기 도중 에러 발생 (drawLineStep):", drawError);
+          }
 
           ctx.restore();
+        } else if (showLine) {
+          // 💡 데이터가 없는데 선을 그리라고 요청이 들어온 상황 로그 통제
         }
         
         // ✅ crop to 3:4 (정방향 기준으로 수행)
@@ -141,7 +157,8 @@ export function useStaticLandmark(
     };
 
     draw();
-  }, [imageUrl, loadImage, step, measureJson, cameraOrientation, showLine]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imageUrl, step, cameraOrientation, showLine]);
 
   return { resultUrl, loading };
 }

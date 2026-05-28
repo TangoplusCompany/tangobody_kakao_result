@@ -3,11 +3,14 @@ import type { IPoseLandmark } from "../../types/landmark";
 import { useStaticLandmark } from "../../hooks/landmark/useStaticLandmark";
 import { Button } from "../ui/Button";
 import MeasurementImageDialog from "./ImageDialog";
+import ic_grid from "../../assets/ic_grid.svg";
+import ic_skeleton from "../../assets/ic_skeleton.svg";
 
+export type Step = "first" | "second" | "third" | "fourth" | "fifth" | "sixth";
 interface MeasurementImageProps {
   imageUrl: string;
   measureJson: { pose_landmark: IPoseLandmark[] };
-  step: "first" | "second" | "third" | "fourth" | "fifth" | "sixth";
+  step: Step;
   cameraOrientation: 0 | 1;
   compareSlot?: 0 | 1;
 }
@@ -45,7 +48,7 @@ export const MeasurementImage = ({
       <img
         src={resultUrl} 
         alt="측정 이미지" 
-        className="w-full rounded-2xl shadow-inner cursor-pointer" 
+        className="w-full  shadow-inner cursor-pointer md:rounded-xl" 
         onClick={() => setDialogOpen(true)}
       />
       {showGrid && (
@@ -93,11 +96,11 @@ export const MeasurementImage = ({
           style={{boxShadow: RadialGradientShadow}}
         >
             <img
-              src="/icons/ic_grid.svg"
+              src={ic_grid}
               alt="그리드 라디오버튼"
-              className="w-4 h-4"
+              className="xs:w-2 xs:h-2 w-4 h-4"
             />
-          <span className="hidden sm:inline">{showGrid ? '그리드 끄기' : '그리드 켜기'}</span>
+          <span className="hidden sm:inline text-white">{showGrid ? '그리드 끄기' : '그리드 켜기'}</span>
         </Button>
         <Button
           className="z-5 bg-white/10 backdrop-blur-sm hover:bg-white/20"
@@ -107,11 +110,11 @@ export const MeasurementImage = ({
           style={{boxShadow: RadialGradientShadow}}
         >
           <img
-            src="/icons/ic_skeleton.svg"
+            src={ic_skeleton}
             alt="랜드마크 라디오버튼"
             className="w-4 h-4"
           />
-          <span className="hidden sm:inline">{showLine ? '랜드마크 끄기' : '랜드마크 켜기'}</span>
+          <span className="hidden sm:inline text-white">{showLine ? '랜드마크 끄기' : '랜드마크 켜기'}</span>
         </Button>
       </div>
 

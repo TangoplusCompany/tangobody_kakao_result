@@ -199,7 +199,7 @@ export interface IDynamic  extends IBasicDynamicMat {
 
 
 export interface IStatic {
-  detail_data: rawDataUnit[],
+  detail_data: IRawDataUnit[],
   measure_overlay_height: number;
   measure_overlay_width: number;
   measure_seq: number;
@@ -209,7 +209,7 @@ export interface IStatic {
   measure_server_mat_json_name: string;
 }
 
-export interface rawDataUnit {
+export interface IRawDataUnit {
   data: number;
   landmark: number;
   left_right: number;

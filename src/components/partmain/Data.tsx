@@ -1,14 +1,14 @@
-import type { IBasicCards, IBasicCardUnit, IBasicInfo, IReportDetail } from "../types/basic";
-import { getRiskString } from "../util/getRiskString";
+import type { IBasicCards, IBasicCardUnit, IBasicInfo, IReportDetail } from "../../types/basic";
+import { getRiskString } from "../../util/getRiskString";
 
-interface PartRawDataProps {
+interface PartMainDataProps {
   data: keyof IBasicCards;   // "neck", "shoulder" 등
   rawData: IBasicCards;      // 전체 데이터 객체
   summaryData: IReportDetail;
 }
 
 
-export function PartRawData({ data, rawData, summaryData }: PartRawDataProps) {
+export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) {
   function getRiskBgColor(riskLevel: number): string {
     const colorMap: Record<number, string> = {
       0: "bg-sub-100 text-sub-200", // 정상 혹은 낮은 단계

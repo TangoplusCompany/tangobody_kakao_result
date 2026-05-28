@@ -3,8 +3,7 @@ import body from "../assets/img_body.png";
 import { getRangeCircle, getRiskString } from "../util/getRiskString";
 import { useEffect, useState } from "react";
 import { preprocessTrajectoryImage, removeBlackBackground } from "../util/removeBlackBackground";
-import { PartRawDataContainer } from "./PartRawDataContainer";
-
+import { PartMainDataContainer } from "./partmain/DataContainer";
 
 export default function InfoContainer ({data}: {data: IReportDetail}) {
   const staticUrl = `${data.static_mat_data.measure_server_mat_image_name}`;
@@ -477,7 +476,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
       </div>
 
       {/* 6가지 관절 데이터 */}
-        <PartRawDataContainer data={data} />
+        <PartMainDataContainer data={data} />
 
         <div className="flex rounded-xl border border-sub-200 overflow-hidden bg-white text-[13px] text-sub-800 m-2">
           {/* 왼쪽 측정 이력 */}

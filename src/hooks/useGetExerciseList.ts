@@ -6,10 +6,10 @@ export const useGetExerciseList = () => {
     mutationFn: getExerciseList,
   });
 
-  const basicDetail = mutation.data ? mutation.data : undefined;
+  const exercises = mutation.data ? mutation.data : undefined;
 
   return {
     ...mutation,
-    basicDetail,
+    exercises,
   };
 };
