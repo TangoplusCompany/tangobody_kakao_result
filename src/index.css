@@ -2,23 +2,28 @@
 
 
 @theme {
+  --font-sans: 'SUIT Variable', system-ui, -apple-system, sans-serif;
+
   --color-accent: #3b82f6;
   --color-comp-dark: #7A828A;
-  --red-400: #FF7474;
-  --red-500: #FF766C;
-  --red-600: #FF4A4A;
-  --red-800: #3b82f6;
-  --orange-400: #FFD7A5;
-  --orange-500: #FFA546;
-  --orange-600: #FFA73A;
-  --orange-800: #CC7B1C;
-  --sub-100: #F8F8F8;
-  --sub-150: #EDEDED;
-  --sub-200: #DCDCDC;
-  --sub-300: #BFBFBF;
-  --sub-400: #AEAEAE;
-  --sub-600: #7E7E7E;
-  --sub-800: #454545;
+
+  --color-red-400: #FF7474;
+  --color-red-500: #FF766C;
+  --color-red-600: #FF4A4A;
+  --color-red-800: #953442;
+
+  --color-orange-400: #FFD7A5;
+  --color-orange-500: #FFA546;
+  --color-orange-600: #FFA73A;
+  --color-orange-800: #CC7B1C;
+
+  --color-sub-100: #F8F8F8;
+  --color-sub-150: #EDEDED; /* 👈 이제 bg-sub-150이 정상 작동합니다! */
+  --color-sub-200: #DCDCDC;
+  --color-sub-300: #BFBFBF;
+  --color-sub-400: #AEAEAE;
+  --color-sub-600: #7E7E7E;
+  --color-sub-800: #454545;
 }
 
 
@@ -79,7 +84,6 @@
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -87,7 +91,13 @@
 }
 
 body {
-  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 145%;
+  letter-spacing: 0.18px;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,

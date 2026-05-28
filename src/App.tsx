@@ -1,8 +1,8 @@
-import ResultPage from "./assets/components/ResultPage";
+import ResultPage from "./components/ResultPage";
 
 export default function App() {
   return (
-    <div className="flex min-h-screen justify-center bg-gray-100">
+    <div className="w-full min-w-0 py-4 max-w-300 ">
       <ResultPage  />
     </div>
   );
