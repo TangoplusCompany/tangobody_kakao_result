@@ -182,8 +182,8 @@ export const RawData = (
               </div>
             </div>
 
-            <div className={`md:hidden grid items-center justify-start text-start w-full h-full relative p-2 bg-sub-100 rounded-b-xl border-t border-sub-200`}>
-              <span className="text-[12px] md:text-sm ">분석 설명</span>
+            <div className={`md:hidden grid items-center justify-start text-start w-full h-full relative px-2 py-1 bg-sub-100 rounded-b-xl border-t border-sub-200`}>
+              <span className="text-[12px] md:text-sm">분석 설명</span>
               {data1 && data0.ment_all === data1.ment_all ? (
                 // 두 내용이 같으면 하나만 표시. 색상은 더 심한 단계(위험 > 주의 > 정상) 기준
                 (() => {

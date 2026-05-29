@@ -496,7 +496,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
                         return (
                           <div className="flex flex-col items-center justify-center">
                             <span className="text-sub-600 text-[9px] md:text-xs">{year}</span>
-                            <span className="font-bold text-sub-800 text-[10px] md:text-sm">{month}.{day}</span>
+                            <span className="font-bold text-sub-800 text-[9px] md:text-sm">{month}.{day}</span>
                           </div>
                         );
                       })() : ""}

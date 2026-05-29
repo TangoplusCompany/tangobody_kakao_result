@@ -21,8 +21,8 @@ export default function MainContainer({data}: {data: IReportDetail | undefined})
     );
   }
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex flex-col px-2 gap-2">
+    <div className="flex flex-col w-full ">
+      <div className="flex flex-col px-2 gap-2 ">
         <div className="flex gap-2 items-center">
           <img src={colorLogo} className="w-10 h-10 md:w-14 md:h-14"/>
           <span className="text-lg md:text-2xl font-bold">{data?.result_summary_data.user_name}님 측정 결과</span>

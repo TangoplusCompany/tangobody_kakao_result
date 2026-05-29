@@ -386,10 +386,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       </div>
 
       {/* Controls */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 px-2">
         <button
           type="button"
-          className="px-3 py-2 rounded-xl bg-sub100 hover:bg-sub300 transition"
+          className="px-3 py-2 rounded-xl bg-sub-100 hover:bg-sub-300 transition"
           onClick={handlePlayPause}
         >
           ▶❚❚

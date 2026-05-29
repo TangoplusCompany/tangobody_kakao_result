@@ -116,7 +116,7 @@ export default function DynamicContainer({data}: {data: IReportDetail}) {
         videoClassName={isRotated ? "-rotate-90 w-[75%] h-full object-contain" : "w-full h-full"}
         stageClassName="relative mx-auto w-full h-[300px] sm:h-[400px] md:h-[480px] lg:h-[560px] xl:h-[680px] overflow-hidden"
         containerClassName="flex flex-col gap-4 lg:gap-10"
-      ></VideoPlayer>
+      />
 
       <div className="flex flex-col rounded-xl border border-sub-200 m-2 px-4 ">
         <div className="h-10 py-2 items-center font-bold text-base text-start leading-tight ">

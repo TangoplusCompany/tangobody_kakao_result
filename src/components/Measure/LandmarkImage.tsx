@@ -51,10 +51,10 @@ export const MeasurementImage = ({
           className="absolute inset-0 pointer-events-none rounded-2xl"
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px)
+              linear-gradient(to right, rgba(255, 255, 255, 0.10) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.10) 1px, transparent 1px)
             `,
-            backgroundSize: '20px 20px'
+            backgroundSize: '10px 10px'
           }}
         />
       )}
