@@ -17,6 +17,11 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      '/api': {
+        target: 'https://gym.tangoplus.co.kr',
+        changeOrigin: true,
+        secure: false,
+      },
       // localhost:5173/proxy-data로 들어오는 요청 처리
       '/proxy-data': {
         target: 'https://gym.tangoplus.co.kr',

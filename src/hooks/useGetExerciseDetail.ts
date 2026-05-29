@@ -11,5 +11,6 @@ export const useGetExerciseDetail = () => {
   return {
     ...mutation,
     basicDetail,
+    isPending: mutation.isPending || mutation.isIdle, // isIdle 추가
   };
 };

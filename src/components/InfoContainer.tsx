@@ -97,7 +97,6 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
     ankle_right: { top: "89%", left: "61%" },
   };
 
-  // 💡 2. 렌더링할 부위 리스트 정의 (IBasicInfo의 키값과 매칭)
   const jointsToRender: (keyof IBasicInfo)[] = [
     "risk_neck", "risk_shoulder_left", "risk_shoulder_right",
     "risk_elbow_left", "risk_elbow_right", "risk_wrist_left", "risk_wrist_right",
@@ -428,52 +427,48 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
 
 
             {/* 무릎 */}
-          <div className="flex flex-col items-center ml-1">
-            <div className="flex w-full gap-4 items-center justify-around">
-              <div className="relative w-fit h-fit">
-                {leftKneeSrc !== "" && leftKneeSrc !== null && (
-                  <img
-                    src={leftKneeSrc}
-                    alt="왼쪽 무릎 이미지"
-                    className="w-24 h-24 p-1 rounded-xl border border-sub-200 bg-transparent"
-                    onError={(e) => {
-                      e.currentTarget.src = "";
-                    }}
-                  />
-                )}
-                <div className="absolute top-1/2 left-[40%] w-1/5 h-px bg-sub-300 -translate-y-1/2" />
-                <div className="absolute left-1/2 top-[40%] h-1/5 w-px bg-sub-300 -translate-x-1/2" />
+            <div className="flex flex-col items-center ml-1">
+              <div className="flex w-full gap-4 items-center justify-around">
+                <div className="relative w-fit h-fit">
+                  {leftKneeSrc !== "" && leftKneeSrc !== null && (
+                    <img
+                      src={leftKneeSrc}
+                      alt="왼쪽 무릎 이미지"
+                      className="w-24 h-24 p-1 rounded-xl border border-sub-200 bg-transparent"
+                      onError={(e) => {
+                        e.currentTarget.src = "";
+                      }}
+                    />
+                  )}
+                  <div className="absolute top-1/2 left-[40%] w-1/5 h-px bg-sub-300 -translate-y-1/2" />
+                  <div className="absolute left-1/2 top-[40%] h-1/5 w-px bg-sub-300 -translate-x-1/2" />
+                </div>
+                {/* 오른쪽 무릎 이미지 */}
+                <div className="relative w-fit h-fit">
+                  {rightKneeSrc !== "" && rightKneeSrc !== null && (
+                    <img
+                      src={rightKneeSrc}
+                      alt="오른쪽 무릎 이미지"
+                      className="w-24 h-24 p-1 rounded-xl border border-sub-200 bg-transparent"
+                      onError={(e) => {
+                        e.currentTarget.src = "";
+                      }}
+                    />
+                  )}
+                  {/* <div className="absolute top-1/2 left-[40%] w-1/5 h-[1px] bg-sub-300 -translate-y-1/2" />
+                  <div className="absolute left-1/2 top-[40%] h-1/5 w-[1px] bg-sub-300 -translate-x-1/2" /> */}
+                </div>
               </div>
-              {/* 오른쪽 무릎 이미지 */}
-              <div className="relative w-fit h-fit">
-                {rightKneeSrc !== "" && rightKneeSrc !== null && (
-                  <img
-                    src={rightKneeSrc}
-                    alt="오른쪽 무릎 이미지"
-                    className="w-24 h-24 p-1 rounded-xl border border-sub-200 bg-transparent"
-                    onError={(e) => {
-                      e.currentTarget.src = "";
-                    }}
-                  />
-                )}
-                {/* <div className="absolute top-1/2 left-[40%] w-1/5 h-[1px] bg-sub-300 -translate-y-1/2" />
-                <div className="absolute left-1/2 top-[40%] h-1/5 w-[1px] bg-sub-300 -translate-x-1/2" /> */}
-              </div>
-            </div>
 
-            <div className="flex flex-col text-[11px] md:text-sm leading-tight text-start mt-1 md:mt-2">
-              <span className="font-bold text-sub-800">[무릎 흔들림 분석] <span className="font-bold text-sub-600">{data.dynamic_mat_data.mat_ohs_knee_ment}</span></span>
+              <div className="flex flex-col text-[11px] md:text-sm leading-tight text-start mt-1 md:mt-2">
+                <span className="font-bold text-sub-800">[무릎 흔들림 분석] <span className="font-bold text-sub-600">{data.dynamic_mat_data.mat_ohs_knee_ment}</span></span>
+              </div>
             </div>
           </div>
         </div>
-        </div>
         
-        
-
-
-
-
       </div>
+
 
       {/* 6가지 관절 데이터 */}
         <PartMainDataContainer data={data} />

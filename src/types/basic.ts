@@ -179,7 +179,7 @@ export interface IBack {
 }
 
 export interface ISquart {
-  squart: IDynamic
+  squat: IDynamic
 }
 
 export interface IDynamic  extends IBasicDynamicMat {
@@ -195,6 +195,7 @@ export interface IDynamic  extends IBasicDynamicMat {
   measure_server_json_name: string;
   measure_type: number;
   server_sn: number;
+  detail_data: IRawDataUnit[]
 }
 
 
