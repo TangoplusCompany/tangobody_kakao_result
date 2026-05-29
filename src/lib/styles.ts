@@ -1,0 +1,1 @@
+export const cardStyle = "border border-sub-200 rounded-xl md:rounded-3xl bg-white";

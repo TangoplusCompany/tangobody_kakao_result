@@ -70,6 +70,7 @@ export default function ResultPage() {
           <div className="flex-1 flex flex-col justify-center items-center py-12 px-6">
             <div className="w-full max-w-md flex flex-col justify-center items-center shadow-xl border border-sub-200 rounded-3xl p-6 bg-white">
               <div className="w-full max-w-sm space-y-2">
+                
                 <div className="flex flex-col gap-6 items-center">
                   <img src={fullLogo} className="h-16" alt="Full Logo" />
                   <div className="flex flex-col text-start w-full">

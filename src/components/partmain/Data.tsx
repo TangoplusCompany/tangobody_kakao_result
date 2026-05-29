@@ -82,7 +82,7 @@ export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) 
 
   return (
     <div className="grid grid-cols-[1fr_3fr] border-b border-sub-200 last:border-b-0 w-full h-full">
-      <div className={`bg-sub-100 font-bold p-2 flex items-center justify-center`}>
+      <div className={`bg-white font-bold p-2 flex items-center justify-center border-r border-sub-200`}>
         <div className="flex flex-col text-base md:text-lg">
           {title} 
           <span className={`${bgCondition} text-white text-xs md:text-sm font-bold px-2 py-1 md:py-2 rounded-full shrink-0 mt-1 leading-none`}>

@@ -6,6 +6,8 @@ import { MeasurementImage, type Step } from "./LandmarkImage";
 import { removeBlackBackground } from "../../util/removeBlackBackground";
 import RawDataContainer from "./RawDataContainer";
 import { Shimmer } from "../ui/Shimmer";
+import { cardStyle } from "../../lib/styles";
+import { cn } from "../../lib/utils";
 
 const tabToSeqMap: Record<number, 'front' | 'side' | 'back' > = {
   1: "front",
@@ -177,7 +179,7 @@ export default function StaticContainer ({data, tab}: {data: IReportDetail, tab:
       {/* rawData */}
       <div className="flex flex-col w-full">
         {tab === 1 && (
-          <div className="flex flex-col rounded-xl border border-sub-200  mx-2 my-1 md:m-2 p-2">
+          <div className={cn(cardStyle, "flex flex-col mx-2 my-1 md:m-2 p-2")}>
             <div className="pb-2 items-center text-start font-bold text-base leading-tight ">
               족압 정적 측정
             </div>

@@ -1,6 +1,8 @@
 import type { IProgram } from "../../types/exercise";
 import timer from "../../assets/ic_timer.svg";
 import playCircle from "../../assets/ic_play_circle.svg";
+import { cn } from "../../lib/utils";
+import { cardStyle } from "../../lib/styles";
 
 export default function ExerciseList({ programs, onSelect }: { programs: IProgram; onSelect: (id: number) => void }) {
   return (
@@ -12,10 +14,7 @@ export default function ExerciseList({ programs, onSelect }: { programs: IProgra
       <div className="grid grid-cols-1 gap-4 md:m-0 m-4">
         {programs.exercise_list.map((exercise, idx) => {
           return (
-            <div className="group flex flex-col md:grid md:grid-cols-2 py-4 gap-4 rounded-3xl border border-sub-200 p-4 shadow-lg cursor-pointer 
-              transition-all duration-200 ease-in-out
-              hover:-translate-y-1 hover:shadow-xl
-              active:translate-y-0.5 active:scale-[0.99] active:shadow-lg"
+            <div className={cn(cardStyle, "group flex flex-col md:grid md:grid-cols-2 py-4 gap-4 rounded-3xl  p-4 shadow-lg cursor-pointer transition-all duration-200 ease-in-outhover:-translate-y-1 hover:shadow-xl active:translate-y-0.5 active:scale-[0.99] active:shadow-lg")}
               onClick={() => {onSelect(exercise.exercise_id)}}
               key={idx}>
               <div className="relative w-full md:w-fit h-fit rounded-xl overflow-hidden cursor-pointer">

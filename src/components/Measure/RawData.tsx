@@ -1,5 +1,7 @@
 "use client";
 
+import { cardStyle } from "../../lib/styles";
+import { cn } from "../../lib/utils";
 import type { IRawDataUnit } from "../../types/basic";
 
 export const RawData = (
@@ -80,12 +82,12 @@ export const RawData = (
     return ".";
   };
   return (
-    <div className="w-full table table-fixed min-w-0 rounded-xl border border-sub-200">
+    <div className={cn(cardStyle, "w-full table table-fixed min-w-0 ")}>
       <div className="flex flex-col overflow-x-auto overflow-y-hidden w-full min-w-0 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         <div className="flex flex-col">
           
           
-          <div className="grid grid-cols-[45%_20%_35%] md:grid md:grid-cols-[18%_10%_12%_60%] items-center rounded-t-xl border-b border-sub-200 bg-sub-100  py-2">
+          <div className="grid grid-cols-[45%_20%_35%] md:grid md:grid-cols-[18%_10%_12%_60%] items-center rounded-t-xl border-b border-sub-200 bg-sub-150  py-2">
             <span className="text-sm md:text-base font-bold text-sub-800 dark:text-foreground px-4 whitespace-normal break-keep">{data0.measure_unit}</span>
             <span className={`flex flex-1 justify-center text-[12px] md:text-sm text-sub600 dark:text-muted-foreground`}>{!data1 ? '' : '기준값'}</span>
             <span className="flex justify-center text-[12px] md:text-sm text-sub600 dark:text-muted-foreground">단계표시</span>
@@ -182,7 +184,7 @@ export const RawData = (
               </div>
             </div>
 
-            <div className={`md:hidden grid items-center justify-start text-start w-full h-full relative px-2 py-1 bg-sub-100 rounded-b-xl border-t border-sub-200`}>
+            <div className={`md:hidden grid items-center justify-start text-start w-full h-full relative px-2 py-1 bg-white rounded-b-xl border-t border-sub-200`}>
               <span className="text-[12px] md:text-sm">분석 설명</span>
               {data1 && data0.ment_all === data1.ment_all ? (
                 // 두 내용이 같으면 하나만 표시. 색상은 더 심한 단계(위험 > 주의 > 정상) 기준

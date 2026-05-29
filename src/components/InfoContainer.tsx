@@ -4,6 +4,8 @@ import { getRangeCircle, getRiskString } from "../util/getRiskString";
 import { useEffect, useState } from "react";
 import { preprocessTrajectoryImage, removeBlackBackground } from "../util/removeBlackBackground";
 import { PartMainDataContainer } from "./partmain/DataContainer";
+import { cn } from "../lib/utils";
+import { cardStyle } from "../lib/styles";
 
 export default function InfoContainer ({data}: {data: IReportDetail}) {
   const staticUrl = `${data.static_mat_data.measure_server_mat_image_name}`;
@@ -186,7 +188,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
       <div className="">
         <div className="flex flex-col md:grid md:grid-cols-[1fr_1.5fr_1.5fr] justify-center items-center ">
         
-          <div className="relative w-[calc(100%-16px)] md:w-auto md:flex-1 h-full rounded-xl border border-sub-200 flex flex-col items-center justify-center  mx-2 my-1 md:m-2">
+          <div className={cn(cardStyle, "relative w-[calc(100%-16px)] md:w-auto md:flex-1 h-full  flex flex-col items-center justify-center  mx-2 my-1 md:m-2")}>
             <div className="flex w-full justify-between text-sm md:text-base px-2 absolute top-6 z-10">
               <span className="bg-sub-200/80 px-2 py-0.5 ml-2 md:ml-6 rounded-full">좌측</span>
               <span className="bg-sub-200/80 px-2 py-0.5 mr-2 md:mr-6 rounded-full">우측</span>
@@ -224,7 +226,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
             </div>
           </div>
 
-          <div className="flex flex-col w-[calc(100%-16px)] md:w-auto md:flex-1 h-full border rounded-xl border-sub-200 mx-2 my-1 md:m-2">
+          <div className={cn(cardStyle, "flex flex-col w-[calc(100%-16px)] md:w-auto md:flex-1 h-full mx-2 my-1 md:m-2")}>
             {/* 헤더 */}
             <div className="h-10 print:h-8  py-2 px-4 flex justify-between items-center leading-tight">
               <span className="font-bold print:text-[14px] text-start">상지 측정 요약</span>
@@ -263,7 +265,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
             </div>
           </div>
 
-          <div className="flex flex-col w-[calc(100%-16px)] md:w-auto md:flex-1 h-full border rounded-xl border-sub-200 mx-2 my-1 md:m-2">
+          <div className={cn(cardStyle, "flex flex-col w-[calc(100%-16px)] md:w-auto md:flex-1 h-full mx-2 my-1 md:m-2")}>
             {/* 헤더 */}
             <div className="h-10 print:h-8  py-2 px-4 flex justify-between items-center leading-tight ">
               <span className="font-bold print:text-[14px] text-start">하지 측정 요약</span>
@@ -313,7 +315,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
 
       <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] ">
         
-        <div className="flex flex-col rounded-xl border border-sub-200  mx-2 my-1 md:m-2">
+        <div className={cn(cardStyle, "flex flex-col mx-2 my-1 md:m-2")}>
           <div className="h-10 px-4 py-2 items-center text-start md:text-center font-bold text-base leading-tight ">
             족압 정적 측정
           </div>
@@ -360,7 +362,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
           </div>
         </div>
 
-        <div className="flex flex-col rounded-xl border border-sub-200 m-2">
+        <div className={cn(cardStyle, "flex flex-col rounded-xl m-2")}>
           <div className="h-10 px-4 py-2 items-center text-start md:text-center font-bold text-base print:text-[14px] leading-tight ">
             족압 동적 측정
           </div>
@@ -477,10 +479,10 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
           {/* 왼쪽 측정 이력 */}
           <div className="flex flex-col w-full">
             <div className="grid grid-cols-[15%_85%] items-center border-b border-sub-200">
-              <div className="h-8 print:h-6 font-bold flex items-center justify-center text-sub-800 text-[12px] md:text-base border-r border-sub-200">
+              <div className="h-full font-bold flex items-center justify-center text-sub-800 text-[12px] md:text-base border-r border-sub-200 bg-sub-150">
                 측정 이력
               </div>
-              <div className="grid grid-cols-10 h-8 md:h-12 items-center text-center text-[8px] text-sub-600 bg-sub-100">
+              <div className="grid grid-cols-10 h-8 md:h-12 items-center text-center text-[8px] text-sub-600">
                 {gridSlots.map((_, idx) => {
                   const history = historyList[idx];
                   return (

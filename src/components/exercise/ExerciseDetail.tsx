@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useGetExerciseDetail } from "../../hooks/useGetExerciseDetail";
 import arrowLeft from "../../assets/ic_arrow_left.svg"
+import { cn } from "../../lib/utils";
+import { cardStyle } from "../../lib/styles";
 
 export default function ExerciseDetail({ exerciseId, onBack }: { exerciseId: number; onBack: () => void }) {
   const params = new URLSearchParams(window.location.search);
@@ -20,10 +22,10 @@ export default function ExerciseDetail({ exerciseId, onBack }: { exerciseId: num
   if (isError) return <div className="p-4 text-center text-red-500">{error}</div>;
 
   return (
-    <div className="flex flex-col gap-4 text-sub-800  p-4">
-      <div className="w-fit rounded-xl px-2 py-1 flex gap-2 items-center cursor-pointer hover:bg-sub-100 transition-colors" onClick={onBack}>
-        <img src={arrowLeft} className="w-4 h-4"/>
-        뒤로가기
+    <div className="flex flex-col gap-2 md:gap-4 text-sub-800  p-4">
+      <div className="w-fit rounded-xl px-0 md:px-2 py-1 flex gap-2 items-center cursor-pointer hover:bg-sub-150 transition-colors text-sm md:text-base" onClick={onBack}>
+        <img src={arrowLeft} className="w-2 h-2 md:w-4 md:h-4"/>
+        목록으로
       </div>
 
       <video
@@ -32,7 +34,7 @@ export default function ExerciseDetail({ exerciseId, onBack }: { exerciseId: num
         className="w-full h-full object-cover"
       />
 
-      <div className="flex flex-col gap-4 text-start">
+      <div className={cn(cardStyle, "flex flex-col gap-4 text-start p-2")}>
         <div className="font-bold md:text-xl text-base">
           {exercise.exercise_name}
         </div>
@@ -48,7 +50,7 @@ export default function ExerciseDetail({ exerciseId, onBack }: { exerciseId: num
         <span className="font-medium md:text-base text-sm">{exercise.related_symptom}</span>
 
         <div className="md:text-lg font-bold">운동 순서</div>
-        <span className="font-medium md:text-base text-sm whitespace-pre-line leading-tight">
+        <span className="font-medium md:text-base text-sm whitespace-pre-line leading-tight text-sub-600">
           {exercise.exercise_method}
         </span>
 
@@ -59,7 +61,7 @@ export default function ExerciseDetail({ exerciseId, onBack }: { exerciseId: num
         <span className="font-medium md:text-base text-sm">{exercise.related_joint}</span>
 
         <div className="md:text-lg font-bold">주의 사항</div>
-        <span className="font-medium md:text-base text-sm whitespace-pre-line">{exercise.exercise_caution}</span>
+        <span className="font-medium md:text-base text-sm whitespace-pre-line pb-4 text-sub-600">{exercise.exercise_caution}</span>
 
 
       </div>

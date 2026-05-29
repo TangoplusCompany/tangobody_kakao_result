@@ -6,6 +6,8 @@ import { useGetPartResult } from "../../hooks/useGetPartResult";
 import { useGetDynamicJson } from "../../hooks/landmark/useGetDynamicJson";
 import RawDataContainer from "./RawDataContainer";
 import { Shimmer } from "../ui/Shimmer";
+import { cn } from "../../lib/utils";
+import { cardStyle } from "../../lib/styles";
 
 
 export type Fit = {
@@ -118,7 +120,7 @@ export default function DynamicContainer({data}: {data: IReportDetail}) {
         containerClassName="flex flex-col gap-4 lg:gap-10"
       />
 
-      <div className="flex flex-col rounded-xl border border-sub-200 m-2 px-4 ">
+      <div className={cn(cardStyle, "flex flex-col m-2 px-4 ")}>
         <div className="h-10 py-2 items-center font-bold text-base text-start leading-tight ">
           족압 동적 측정
         </div>

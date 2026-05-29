@@ -9,7 +9,7 @@ export function PartMainDataContainer({data}: {data: IReportDetail}) {
 
         <div className="grid grid-cols-[1fr_3fr] items-center text-center border-b border-sub-200 text-sm h-fit">
           {/* 왼쪽: 상체분석 */}
-          <div className="flex h-8  bg-sub-200 font-bold items-center justify-center text-sub-800 text-sm md:text-base leading-tight ">
+          <div className="flex h-8  bg-sub-150 font-bold items-center justify-center text-sub-800 text-sm md:text-base leading-tight ">
             상체분석
           </div>
 
@@ -44,7 +44,7 @@ export function PartMainDataContainer({data}: {data: IReportDetail}) {
       <div className="flex flex-col">
         <div className="grid grid-cols-[1fr_3fr] items-center text-center border-y md:border-b border-sub-200 text-sm h-fit">
           {/* 오른쪽: 하체분석 */}
-          <div className="flex h-8 bg-sub-200 font-bold items-center justify-center text-sub-800 text-sm md:text-base leading-tight ">
+          <div className="flex h-8 bg-sub-150 font-bold items-center justify-center text-sub-800 text-sm md:text-base leading-tight ">
             하체분석
           </div>
 
