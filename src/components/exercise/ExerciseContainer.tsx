@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useGetExerciseList } from "../../hooks/useGetExerciseList";
 import ExerciseList from "./ExcerciseList";
 import ExerciseDetail from "./ExerciseDetail";
+import { Shimmer } from "../ui/Shimmer";
 
 
 const partMap: Record<number, string> = {
@@ -34,23 +35,38 @@ export default function ExerciseContainer() {
     ? realRiskPartArray.indexOf(selectedPartTab) 
     : 0;
   const currentProgram = exercises?.exercise_program?.[currentPartIndex];
-  if (isPending) return <div className="p-4 text-center">파트 데이터를 불러오는 중...</div>;
+  if (isPending ) return (
+    <div className="flex flex-col p-2 gap-4">
+      <Shimmer className="h-35 md:h-200 rounded-xl m-2"/>
+
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-75 md:h-75 rounded-xl"/>
+      </div>
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-75 md:h-75 rounded-xl"/>
+      </div>
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-75 md:h-75 rounded-xl"/>
+      </div>
+      
+    </div>
+  );
   if (isError) return <div className="p-4 text-center text-red-500">{error?.message}</div>;
   if (selectedExercise !== null) {
     return <ExerciseDetail exerciseId={selectedExercise} onBack={() => setSelectedExercise(null)} />;
   }
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-start px-2 text-sub-800 font-semibold">운동 프로그램 부위 선택</span>
+      <span className="text-start px-4 text-sub-800 font-semibold">운동 프로그램 부위 선택</span>
 
-      <div className="flex flex-wrap gap-2 px-2">
+      <div className="flex flex-wrap gap-2 px-4">
         {realRiskPartArray.map((partIdx) => {
           const isSelected = currentPartTab === partIdx;
           return (
             <span 
               key={partIdx} 
               onClick={() => setSelectedPartTab(partIdx)}
-              className={`px-2.5 py-1 text-xs md:text-base text-sm rounded-full border transition-colors cursor-pointer font-medium
+              className={`px-2.5 py-1 md:text-base text-sm rounded-full border transition-colors cursor-pointer font-medium
                 ${isSelected 
                   ? "bg-accent border-accent text-white" 
                   : "bg-sub100 text-sub600 border-sub-200 hover:border-accent hover:text-accent"

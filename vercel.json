@@ -7,6 +7,10 @@
     {
       "source": "/proxy-data/:path*",
       "destination": "https://gym.tangoplus.co.kr/data/Results/:path*"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://gym.tangoplus.co.kr/api/:path*"
     }
   ]
 }

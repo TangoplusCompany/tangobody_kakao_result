@@ -59,7 +59,7 @@ export default function ExerciseDetail({ exerciseId, onBack }: { exerciseId: num
         <span className="font-medium md:text-base text-sm">{exercise.related_joint}</span>
 
         <div className="md:text-lg font-bold">주의 사항</div>
-        <span className="font-medium md:text-base text-sm">{exercise.exercise_caution}</span>
+        <span className="font-medium md:text-base text-sm whitespace-pre-line">{exercise.exercise_caution}</span>
 
 
       </div>

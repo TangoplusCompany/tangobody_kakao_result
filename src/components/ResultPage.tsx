@@ -54,8 +54,8 @@ export default function ResultPage() {
   if (isValid === undefined) return undefined;
   if (!isValid) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
-        <p className="text-lg font-semibold text-gray-700">올바르지 않은 경로입니다.</p>
+      <div className="flex min-h-screen items-center justify-center bg-sub-100 p-4">
+        <p className="text-xl font-semibold text-red-500">올바르지 않은 경로입니다.</p>
       </div>
     );
   }

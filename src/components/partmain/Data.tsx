@@ -83,9 +83,9 @@ export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) 
   return (
     <div className="grid grid-cols-[1fr_3fr] border-b border-sub-200 last:border-b-0 w-full h-full">
       <div className={`bg-sub-100 font-bold p-2 flex items-center justify-center`}>
-        <div className="flex flex-col text-[12px] md:text-base">
+        <div className="flex flex-col text-base md:text-lg">
           {title} 
-          <span className={`${bgCondition} text-white text-[9px] md:text-xs font-bold px-2 py-0.5 md:py-1 rounded-full shrink-0 mt-1 leading-none`}>
+          <span className={`${bgCondition} text-white text-xs md:text-sm font-bold px-2 py-1 md:py-2 rounded-full shrink-0 mt-1 leading-none`}>
             {riskString} {currentRangeLevel}단계
           </span>
         </div>
@@ -101,7 +101,7 @@ export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) 
           const arrowClass = getArrowColor(riskLevel);
           return (
             <div key={rawKey} className="h-full grid grid-cols-[30%_70%] border-b last:border-b-0 items-center">
-              <span className="text-sub-800 text-[9px] md:text-sm leading-none items-center flex justify-center text-center p-1 print:p-0">
+              <span className="text-sub-800 text-sm md:text-base leading-none items-center flex justify-center text-center p-1 print:p-0">
                 {detailTitle}
               </span>
 

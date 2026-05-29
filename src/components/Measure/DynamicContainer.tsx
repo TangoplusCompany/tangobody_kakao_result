@@ -5,6 +5,7 @@ import { preprocessTrajectoryImage, removeBlackBackground } from "../../util/rem
 import { useGetPartResult } from "../../hooks/useGetPartResult";
 import { useGetDynamicJson } from "../../hooks/landmark/useGetDynamicJson";
 import RawDataContainer from "./RawDataContainer";
+import { Shimmer } from "../ui/Shimmer";
 
 
 export type Fit = {
@@ -22,7 +23,6 @@ export type PoseLandmark = {
 
 export type PoseLandmarks = PoseLandmark[];
 
-// eslint-disable-next-line no-empty-pattern
 export default function DynamicContainer({data}: {data: IReportDetail}) {
   const params = new URLSearchParams(window.location.search);
   const t_r = params.get("t_r") || "";
@@ -81,7 +81,27 @@ export default function DynamicContainer({data}: {data: IReportDetail}) {
     isError: isJsonError,
   } = useGetDynamicJson(dData?.squat.measure_server_json_name);
 
-  if (isPending || isJsonLoading ) return <div className="p-4 text-center">파트 데이터를 불러오는 중...</div>;
+  if (isPending || isJsonLoading) return (
+    <div className="flex flex-col p-2 gap-4">
+      <Shimmer className="h-105 md:h-200 rounded-xl"/>
+
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-40 md:h-50 rounded-xl"/>
+      </div>
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-20 md:h-50 rounded-xl"/>
+      </div>
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-20 md:h-50 rounded-xl"/>
+      </div>
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-20 md:h-50 rounded-xl"/>
+      </div>
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-20 md:h-50 rounded-xl"/>
+      </div>
+    </div>
+  );
   if (isError || isJsonError ) return <div className="p-4 text-center text-red-500">{error?.message}</div>;
   return (
     <div className="">
@@ -98,12 +118,12 @@ export default function DynamicContainer({data}: {data: IReportDetail}) {
         containerClassName="flex flex-col gap-4 lg:gap-10"
       ></VideoPlayer>
 
-      <div className="flex flex-col rounded-xl border border-sub-200 m-2">
-        <div className="h-10 print:h-8 py-2 items-center text-center font-bold text-base print:text-[14px] leading-tight ">
+      <div className="flex flex-col rounded-xl border border-sub-200 m-2 px-4 ">
+        <div className="h-10 py-2 items-center font-bold text-base text-start leading-tight ">
           족압 동적 측정
         </div>
         {/* 동적 족압 이미지 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 p-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 p-2 gap-4">
           <div className="flex flex-col items-center mr-1">
             <div className="flex w-full gap-4 items-center justify-around">
               <div className="relative w-fit h-fit">
@@ -157,9 +177,9 @@ export default function DynamicContainer({data}: {data: IReportDetail}) {
               </div>
             </div>
 
-            <div className="flex flex-col text-[11px] md:text-sm  leading-tight text-start mt-1 md:mt-2">
-              <span className="font-bold text-sub-800">[좌우 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
-              <span className="font-bold text-sub-800">[상하 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
+            <div className="flex flex-col text-sm md:text-base leading-tight text-start mt-1 md:mt-2">
+              <span className="font-bold text-sub-800">[좌우 무게 분석] <span className="font-medium text-sub-600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
+              <span className="font-bold text-sub-800">[상하 무게 분석] <span className="font-medium text-sub-600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
             </div>
           </div>
 
@@ -198,7 +218,7 @@ export default function DynamicContainer({data}: {data: IReportDetail}) {
               </div>
             </div>
 
-            <div className="flex flex-col text-[11px] md:text-sm leading-tight text-start mt-1 md:mt-2">
+            <div className="flex flex-col text-sm md:text-base leading-tight text-start mt-1 md:mt-2">
               <span className="font-bold text-sub-800">[무릎 흔들림 분석] <span className="font-bold text-sub-600">{data.dynamic_mat_data.mat_ohs_knee_ment}</span></span>
             </div>
           </div>

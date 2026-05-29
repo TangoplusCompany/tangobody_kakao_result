@@ -5,6 +5,7 @@ import { Button } from "../ui/Button";
 import MeasurementImageDialog from "./ImageDialog";
 import ic_grid from "../../assets/ic_grid.svg";
 import ic_skeleton from "../../assets/ic_skeleton.svg";
+import { Shimmer } from "../ui/Shimmer";
 
 export type Step = "first" | "second" | "third" | "fourth" | "fifth" | "sixth";
 interface MeasurementImageProps {
@@ -29,14 +30,8 @@ export const MeasurementImage = ({
   const RadialGradientShadow = 'inset 0 0 12px rgba(255, 255, 255, 0.75)'
 
   const loadingPlaceholder = (
-    <div className="w-full h-180 rounded-2xl bg-sub100 animate-pulse flex flex-col items-center justify-center gap-4">
-      <div
-        className="w-12 h-12 rounded-full border-4 border-sub200 border-t-toggleAccent animate-spin"
-        aria-hidden
-      />
-      <p className="text-sub400 dark:text-sub300 text-sm font-medium animate-pulse">
-        로딩중입니다
-      </p>
+    <div className="">
+      <Shimmer className="h-105 md:h-200 rounded-xl"/>
     </div>
   );
 

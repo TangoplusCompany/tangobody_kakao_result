@@ -5,6 +5,7 @@ import type { IBack, IFront, IRawDataUnit, IReportDetail, ISide } from "../../ty
 import { MeasurementImage, type Step } from "./LandmarkImage";
 import { removeBlackBackground } from "../../util/removeBlackBackground";
 import RawDataContainer from "./RawDataContainer";
+import { Shimmer } from "../ui/Shimmer";
 
 const tabToSeqMap: Record<number, 'front' | 'side' | 'back' > = {
   1: "front",
@@ -39,7 +40,7 @@ export default function StaticContainer ({data, tab}: {data: IReportDetail, tab:
         setstaticSrc("");
       });
 
-  }, [tab, t_r, mutate]);
+  }, [tab, t_r, mutate, staticUrl]);
 
   // 2. 💡 현재 탭과 데이터 상태에 맞는 json 파일명 동적 추출 (타입 가드 겸용)
   let leftFileName = "";
@@ -123,7 +124,27 @@ export default function StaticContainer ({data, tab}: {data: IReportDetail, tab:
 
 
   // 에러 및 로딩 인터페이스 처리
-  if (isPending || isLeftJsonLoading || isRightJsonLoading) return <div className="p-4 text-center">파트 데이터를 불러오는 중...</div>;
+  if (isPending || isLeftJsonLoading || isRightJsonLoading) return (
+    <div className="flex flex-col p-2 gap-4">
+      <Shimmer className="h-105 md:h-200 rounded-xl"/>
+
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-40 md:h-50 rounded-xl"/>
+      </div>
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-20 md:h-50 rounded-xl"/>
+      </div>
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-20 md:h-50 rounded-xl"/>
+      </div>
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-20 md:h-50 rounded-xl"/>
+      </div>
+      <div className="p-2 rounded-xl border border-sub-200">
+        <Shimmer className="h-20 md:h-50 rounded-xl"/>
+      </div>
+    </div>
+  );
   if (isError || isLeftJsonError || isRightJsonError) return <div className="p-4 text-center text-red-500">{error?.message}</div>;
   if (!leftFileName || !rightFileName || !leftJson || !rightJson) {
     return <div className="p-4 text-center">이미지 분석 데이터를 구성 중...</div>;
@@ -159,7 +180,7 @@ export default function StaticContainer ({data, tab}: {data: IReportDetail, tab:
       <div className="flex flex-col w-full">
         {tab === 1 && (
           <div className="flex flex-col rounded-xl border border-sub-200  mx-2 my-1 md:m-2 p-2">
-            <div className="pb-2 items-center text-start font-bold text-base print:text-[14px] leading-tight ">
+            <div className="pb-2 items-center text-start font-bold text-base leading-tight ">
               족압 정적 측정
             </div>
             <div className="flex flex-1 justify-around items-center gap-2 md:grid md:grid-cols-2 md:justify-items-stretch">
@@ -200,7 +221,7 @@ export default function StaticContainer ({data, tab}: {data: IReportDetail, tab:
                 </div>
               </div>
 
-              <div className="flex flex-col text-[11px] md:text-sm  leading-tight text-start mt-1 md:mt-2">
+              <div className="flex flex-col text-sm md:text-base  leading-tight text-start mt-1 md:mt-2">
                 <span className="font-bold text-sub-800">[좌우 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
                 <span className="font-bold text-sub-800">[상하 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
               </div>

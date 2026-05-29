@@ -85,8 +85,8 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
 
   const jointPositions: Record<string, { top: string; left: string }> = {
     neck: { top: "15%", left: "50%" },
-    shoulder_left: { top: "28%", left: "32%" },
-    shoulder_right: { top: "28%", left: "68%" },
+    shoulder_left: { top: "23%", left: "32%" },
+    shoulder_right: { top: "23%", left: "68%" },
     elbow_left: { top: "38%", left: "27%" },
     elbow_right: { top: "38%", left: "73%" },
     hip_left: { top: "50%", left: "41%" },
@@ -187,7 +187,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
         <div className="flex flex-col md:grid md:grid-cols-[1fr_1.5fr_1.5fr] justify-center items-center ">
         
           <div className="relative w-[calc(100%-16px)] md:w-auto md:flex-1 h-full rounded-xl border border-sub-200 flex flex-col items-center justify-center  mx-2 my-1 md:m-2">
-            <div className="flex w-full justify-between text-[10px] md:text-sm px-2 absolute top-6 z-10">
+            <div className="flex w-full justify-between text-sm md:text-base px-2 absolute top-6 z-10">
               <span className="bg-sub-200/80 px-2 py-0.5 ml-2 md:ml-6 rounded-full">좌측</span>
               <span className="bg-sub-200/80 px-2 py-0.5 mr-2 md:mr-6 rounded-full">우측</span>
             </div>
@@ -228,7 +228,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
             {/* 헤더 */}
             <div className="h-10 print:h-8  py-2 px-4 flex justify-between items-center leading-tight">
               <span className="font-bold print:text-[14px] text-start">상지 측정 요약</span>
-              <span className={`${bgUpperCondition} ${textUpperCondition} text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-full shrink-0`}>
+              <span className={`${bgUpperCondition} ${textUpperCondition} text-xs md:text-sm font-bold px-2 py-0.5 rounded-full shrink-0`}>
                 {riskUpperString} {data.result_summary_data.risk_upper_range_level}단계
               </span>
             </div>
@@ -244,7 +244,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
 
                     if (trimmedPart.startsWith('[') && trimmedPart.endsWith(']')) {
                       return (
-                        <span key={index} className="font-bold text-[9px] md:text-sm text-sub-800 block mt-3 first:mt-0">
+                        <span key={index} className="font-bold text-sm md:text-base text-sub-800 block mt-3 first:mt-0">
                           {trimmedPart}
                         </span>
                       );
@@ -252,7 +252,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
                     
                     // 본문 내용은 inline-block으로 설정하여 대괄호 바로 다음 줄에 1번만 줄바꿈되어 붙도록 유도
                     return (
-                      <span className="text-sub-600 text-[9px] md:text-sm text-start block mt-0.5" key={index}>
+                      <span className="text-sub-600 text-sm md:text-base text-start block mt-0.5" key={index}>
                         {trimmedPart}
                       </span>
                     );
@@ -267,7 +267,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
             {/* 헤더 */}
             <div className="h-10 print:h-8  py-2 px-4 flex justify-between items-center leading-tight ">
               <span className="font-bold print:text-[14px] text-start">하지 측정 요약</span>
-              <span className={`${bgLowerCondition} ${textLowerCondition} text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-full shrink-0`}>
+              <span className={`${bgLowerCondition} ${textLowerCondition} text-xs md:text-sm font-bold px-2 py-0.5 rounded-full shrink-0`}>
                 {riskLowerString} {data.result_summary_data.risk_lower_range_level}단계
               </span>
             </div>
@@ -291,13 +291,13 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
                 return processedLines.map((line, index) => {
                   if (line.startsWith('[') && line.endsWith(']')) {
                     return (
-                      <span key={index} className="font-bold text-[9px] md:text-sm  text-sub-800 block mt-3 first:mt-0">
+                      <span key={index} className="font-bold text-sm md:text-base  text-sub-800 block mt-3 first:mt-0">
                         {line}
                       </span>
                     );
                   }
                   return (
-                    <span className="text-sub-600 text-[9px] md:text-sm text-start block mt-0.5 whitespace-pre-line" key={index}>
+                    <span className="text-sub-600 text-sm md:text-base text-start block mt-0.5 whitespace-pre-line" key={index}>
                       {line}
                     </span>
                   );
@@ -314,7 +314,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
       <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] ">
         
         <div className="flex flex-col rounded-xl border border-sub-200  mx-2 my-1 md:m-2">
-          <div className="h-10 print:h-8 py-2 items-center text-center font-bold text-base print:text-[14px] leading-tight ">
+          <div className="h-10 px-4 py-2 items-center text-start md:text-center font-bold text-base leading-tight ">
             족압 정적 측정
           </div>
           <div className="flex flex-col flex-1 items-center p-2">
@@ -353,19 +353,19 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
               </span>
             </div>
 
-            <div className="flex flex-col text-[11px] md:text-sm  leading-tight text-start mt-1 md:mt-2">
-              <span className="font-bold text-sub-800">[좌우 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
-              <span className="font-bold text-sub-800">[상하 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
+            <div className="flex flex-col text-sm md:text-base  leading-tight text-start mt-1 md:mt-2">
+              <span className="font-bold text-sub-800">[좌우 무게 분석] <span className="font-medium text-sub-600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
+              <span className="font-bold text-sub-800">[상하 무게 분석] <span className="font-medium text-sub-600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col rounded-xl border border-sub-200 m-2">
-          <div className="h-10 print:h-8 py-2 items-center text-center font-bold text-base print:text-[14px] leading-tight ">
+          <div className="h-10 px-4 py-2 items-center text-start md:text-center font-bold text-base print:text-[14px] leading-tight ">
             족압 동적 측정
           </div>
           {/* 동적 족압 이미지 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 p-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-0 p-2">
             <div className="flex flex-col items-center mr-1">
               <div className="flex w-full gap-4 items-center justify-around">
                 <div className="relative w-fit h-fit">
@@ -419,9 +419,9 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
                 </div>
               </div>
 
-              <div className="flex flex-col text-[11px] md:text-sm  leading-tight text-start mt-1 md:mt-2">
-                <span className="font-bold text-sub-800">[좌우 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
-                <span className="font-bold text-sub-800">[상하 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
+              <div className="flex flex-col text-sm md:text-base  leading-tight text-start mt-1 md:mt-2">
+                <span className="font-bold text-sub-800">[좌우 무게 분석] <span className="font-medium text-sub-600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
+                <span className="font-bold text-sub-800">[상하 무게 분석] <span className="font-medium text-sub-600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
               </div>
             </div>
 
@@ -460,8 +460,8 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
                 </div>
               </div>
 
-              <div className="flex flex-col text-[11px] md:text-sm leading-tight text-start mt-1 md:mt-2">
-                <span className="font-bold text-sub-800">[무릎 흔들림 분석] <span className="font-bold text-sub-600">{data.dynamic_mat_data.mat_ohs_knee_ment}</span></span>
+              <div className="flex flex-col text-sm md:text-base leading-tight text-start mt-1 md:mt-2">
+                <span className="font-bold text-sub-800">[무릎 흔들림 분석] <span className="font-medium text-sub-600">{data.dynamic_mat_data.mat_ohs_knee_ment}</span></span>
               </div>
             </div>
           </div>
