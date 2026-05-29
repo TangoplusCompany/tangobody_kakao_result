@@ -476,7 +476,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
         <div className="flex rounded-xl border border-sub-200 overflow-hidden bg-white text-[13px] text-sub-800 m-2">
           {/* 왼쪽 측정 이력 */}
           <div className="flex flex-col w-full">
-            <div className="grid grid-cols-[1fr_4fr] items-center border-b border-sub-200">
+            <div className="grid grid-cols-[15%_85%] items-center border-b border-sub-200">
               <div className="h-8 print:h-6 font-bold flex items-center justify-center text-sub-800 text-[12px] md:text-base border-r border-sub-200">
                 측정 이력
               </div>
@@ -495,8 +495,8 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
 
                         return (
                           <div className="flex flex-col items-center justify-center">
-                            <span className="text-sub-600 text-[7px] md:text-xs">{year}</span>
-                            <span className="font-bold text-sub-800 text-[8px] md:text-sm">{month}.{day}</span>
+                            <span className="text-sub-600 text-[9px] md:text-xs">{year}</span>
+                            <span className="font-bold text-sub-800 text-[10px] md:text-sm">{month}.{day}</span>
                           </div>
                         );
                       })() : ""}
@@ -506,20 +506,16 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
               </div>
             </div>
 
-            {/* ----------------- 하단 6행: 부위별 데이터 행 ----------------- */}
+            {/* ----------------- 하단 6행: 부위별 데이터 ----------------- */}
             <div className="flex flex-col h-full">
               {bodyParts.map(({ key, label }) => (
-                // 💡 1. 여기에 border-b와 last:border-b-0을 몰아줍니다. 이제 진짜 '발목' 행에서만 선이 지워집니다.
-                <div key={key} className="h-full grid grid-cols-[1fr_4fr] items-center border-b last:border-b-0 border-sub-200">
+                
+                <div key={key} className="h-full grid grid-cols-[15%_85%] items-center border-b last:border-b-0 border-sub-200">
                   
-                  {/* 좌측 부위 명칭 */}
-                  {/* 💡 2. 내부의 border-b와 last:border-b-0은 완전히 제거합니다. */}
+              
                   <div className="flex items-center h-full justify-center text-sub-600 text-[11px] md:text-sm border-r border-sub-200 font-bold">
                     {label}
                   </div>
-                  
-                  {/* 우측 부위별 10개 데이터 그리드 */}
-                  {/* 💡 3. 여기도 마찬가지로 내부의 border-b와 last:border-b-0을 제거합니다. */}
                   <div className="grid grid-cols-10 h-full items-center text-center">
                     {gridSlots.map((_, idx) => {
                       const history = historyList[idx];

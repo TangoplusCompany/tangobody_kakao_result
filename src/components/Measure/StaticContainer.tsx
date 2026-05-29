@@ -124,7 +124,7 @@ export default function StaticContainer ({data, tab}: {data: IReportDetail, tab:
 
 
   // 에러 및 로딩 인터페이스 처리
-  if (isPending || isLeftJsonLoading || isRightJsonLoading) return (
+  if (isPending || isLeftJsonLoading || isRightJsonLoading || !leftFileName || !rightFileName || !leftJson || !rightJson) return (
     <div className="flex flex-col p-2 gap-4">
       <Shimmer className="h-105 md:h-200 rounded-xl"/>
 
@@ -146,9 +146,7 @@ export default function StaticContainer ({data, tab}: {data: IReportDetail, tab:
     </div>
   );
   if (isError || isLeftJsonError || isRightJsonError) return <div className="p-4 text-center text-red-500">{error?.message}</div>;
-  if (!leftFileName || !rightFileName || !leftJson || !rightJson) {
-    return <div className="p-4 text-center">이미지 분석 데이터를 구성 중...</div>;
-  }
+
   return (
     <div className="flex flex-col gap-2">
       <div className="grid grid-cols-2 md:gap-2">

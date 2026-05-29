@@ -100,7 +100,7 @@ export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) 
           const styleClass = getRiskBgColor(riskLevel);
           const arrowClass = getArrowColor(riskLevel);
           return (
-            <div key={rawKey} className="h-full grid grid-cols-[30%_70%] border-b last:border-b-0 items-center">
+            <div key={rawKey} className="h-full grid grid-cols-[30%_70%] border-b last:border-b-0 border-sub-200 items-center">
               <span className="text-sub-800 text-sm md:text-base leading-none items-center flex justify-center text-center p-1 print:p-0">
                 {detailTitle}
               </span>
@@ -127,7 +127,7 @@ export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) 
                       >
                         {/* 현재 riskLevel 위치에만 역삼각형 화살표 표시 */}
                         {riskLevel === idx && (
-                          <span className={`text-[12px] md:text-base  leading-none absolute top-0.5 ${arrowClass}`}>▼</span>
+                          <span className={`text-[12px] md:text-base leading-none absolute top-0.5 ${arrowClass}`}>▼</span>
                         )}
                       </div>
                     );
