@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { useGetExerciseList } from "../../hooks/useGetExerciseList";
 import ExerciseList from "./ExcerciseList";
 import ExerciseDetail from "./ExerciseDetail";
-import { Shimmer } from "../ui/Shimmer";
+import { useGetExerciseList } from "../../../hooks/useGetExerciseList";
+import { Shimmer } from "../../ui/Shimmer";
 
 
 const partMap: Record<number, string> = {
@@ -69,7 +69,7 @@ export default function ExerciseContainer() {
               className={`px-2.5 py-1 md:text-base text-sm rounded-full border transition-colors cursor-pointer font-medium
                 ${isSelected 
                   ? "bg-accent border-accent text-white" 
-                  : "bg-sub100 text-sub600 border-sub-200 hover:border-accent hover:text-accent"
+                  : "bg-white text-sub600 border-sub-200 hover:border-accent hover:text-accent"
                 }
               `}
             >

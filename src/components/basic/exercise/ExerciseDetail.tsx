@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useGetExerciseDetail } from "../../hooks/useGetExerciseDetail";
-import arrowLeft from "../../assets/ic_arrow_left.svg"
-import { cn } from "../../lib/utils";
-import { cardStyle } from "../../lib/styles";
+import arrowLeft from "../../../assets/ic_arrow_left.svg"
+import { useGetExerciseDetail } from "../../../hooks/useGetExerciseDetail";
+import { cardStyle } from "../../../lib/styles";
+import { cn } from "../../../lib/utils";
 
 export default function ExerciseDetail({ exerciseId, onBack }: { exerciseId: number; onBack: () => void }) {
   const params = new URLSearchParams(window.location.search);
@@ -24,7 +24,7 @@ export default function ExerciseDetail({ exerciseId, onBack }: { exerciseId: num
   return (
     <div className="flex flex-col gap-2 md:gap-4 text-sub-800  p-4">
       <div className="w-fit rounded-xl px-0 md:px-2 py-1 flex gap-2 items-center cursor-pointer hover:bg-sub-150 transition-colors text-sm md:text-base" onClick={onBack}>
-        <img src={arrowLeft} className="w-2 h-2 md:w-4 md:h-4"/>
+        <img src={arrowLeft} className="w-2.5 h-2.5 md:w-4 md:h-4"/>
         목록으로
       </div>
 

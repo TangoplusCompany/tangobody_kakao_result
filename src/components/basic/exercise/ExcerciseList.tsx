@@ -1,8 +1,8 @@
-import type { IProgram } from "../../types/exercise";
-import timer from "../../assets/ic_timer.svg";
-import playCircle from "../../assets/ic_play_circle.svg";
-import { cn } from "../../lib/utils";
-import { cardStyle } from "../../lib/styles";
+import timer from "../../../assets/ic_timer.svg";
+import { cardStyle } from "../../../lib/styles";
+import { cn } from "../../../lib/utils";
+import type { IProgram } from "../../../types/exercise";
+import playCircle from "../../../assets/ic_play_circle.svg";
 
 export default function ExerciseList({ programs, onSelect }: { programs: IProgram; onSelect: (id: number) => void }) {
   return (

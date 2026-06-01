@@ -62,7 +62,6 @@ export default function ResultPage() {
 
   return (
     <div className="flex min-h-screen justify-center">
-      {/* 💡 h-full 대신 min-h-screen을 유지하고 내부 정렬은 자식들에게 위임합니다. */}
       <main className="w-full bg-white flex flex-col min-h-[calc(100vh-80px)]">
         
         {/* 1. 로그인 성공 데이터(reportData)가 없으면 로그인 폼을 보여줌 */}

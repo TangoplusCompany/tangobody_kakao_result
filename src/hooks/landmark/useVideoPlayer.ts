@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
-import type { Fit } from "../../components/Measure/DynamicContainer";
+import type { Fit } from "../../components/basic/DynamicContainer";
 import { computeContain, setupHiDPICanvas } from "../../util/canvas";
 import type { IMeasureJson } from "../../types/landmark";
 import { compareCropScale } from "../../components/ui/VideoPlayer";

@@ -69,6 +69,11 @@ export interface IBasicInfo {
   risk_ankle_left: string;
   risk_ankle_right: string;
   risk_result_ment: string;
+
+  has_basic: 0 | 1;
+  has_rom: 0 | 1;
+  has_bia: 0 | 1;
+  measurement_type: string;
 }
 
 export interface IBasicStaticMat {

@@ -1,4 +1,4 @@
-import type {  IReportDetail } from "../../types/basic";
+import type {  IReportDetail } from "../../../types/basic";
 import { PartMainData } from "./Data";
 
 export function PartMainDataContainer({data}: {data: IReportDetail}) {

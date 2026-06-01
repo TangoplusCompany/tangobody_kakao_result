@@ -1,5 +1,5 @@
-import type { IBasicCards, IBasicCardUnit, IBasicInfo, IReportDetail } from "../../types/basic";
-import { getRiskString } from "../../util/getRiskString";
+import type { IBasicCards, IBasicCardUnit, IBasicInfo, IReportDetail } from "../../../types/basic";
+import { getRiskString } from "../../../util/getRiskString";
 
 interface PartMainDataProps {
   data: keyof IBasicCards;   // "neck", "shoulder" 등
