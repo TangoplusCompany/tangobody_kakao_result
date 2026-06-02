@@ -75,7 +75,7 @@ export function RomListItem({ item, onClick }: RomListItemProps) {
   return (
     <div 
       ref={containerRef} 
-      className="flex flex-col px-4 py-2.5 bg-white hover:bg-sub-150 transition-colors border border-sub-200 rounded-xl w-full"
+      className="flex flex-col p-2 md:px-4 md:py-2.5 bg-white hover:bg-sub-150 transition-colors border border-sub-200 rounded-xl w-full"
       onClick={() => onClick(item.sn)}
     >
       {/* 상단 텍스트 라인 */}
@@ -84,9 +84,9 @@ export function RomListItem({ item, onClick }: RomListItemProps) {
           {item.title}
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="text-sm md:text-base font-semibold text-sub-800 text-end min-w-[50px]">
-            {Number(item.value_1_max).toFixed(1)}º
+        <div className="md:flex flex-col items-center gap-3">
+          <div className="text-xs md:text-base font-semibold text-sub-800 text-end min-w-12.5">
+            최대각도: {Number(item.value_1_max).toFixed(1)}º
           </div>
           <div className={`${textCondition0} ${textBgCondition0} border rounded-full text-xs md:text-sm px-2.5 py-0.5 font-medium text-center min-w-16.25`}>
             {levelString}

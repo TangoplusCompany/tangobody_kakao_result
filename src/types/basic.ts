@@ -1,3 +1,8 @@
+export interface IKakaoResponse extends IReportDetail {
+  measure_type: string;
+}
+// kakaoresult에 대응해서 tab 분기 처리 
+
 export interface IReportDetail {
   result_summary_data: IBasicInfo
   result_history_data: IBasicHistory

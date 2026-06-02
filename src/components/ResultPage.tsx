@@ -64,7 +64,6 @@ export default function ResultPage() {
     <div className="flex min-h-screen justify-center">
       <main className="w-full bg-white flex flex-col min-h-[calc(100vh-80px)]">
         
-        {/* 1. 로그인 성공 데이터(reportData)가 없으면 로그인 폼을 보여줌 */}
         {!reportData ? (
           <div className="flex-1 flex flex-col justify-center items-center py-12 px-6">
             <div className="w-full max-w-md flex flex-col justify-center items-center shadow-xl border border-sub-200 rounded-3xl p-6 bg-white">
@@ -110,7 +109,6 @@ export default function ResultPage() {
             </div>
           </div>
         ) : (
-          /* 2. 로그인 성공 시 -> MainContainer는 중앙 정렬의 영향을 받지 않고 최상단부터 자연스럽게 나열됩니다. */
           <MainContainer data={reportData} />
         )}
 

@@ -52,7 +52,10 @@ export default function RomContainer() {
 
   if (isPending) return (
     <div className="flex flex-col p-2 gap-4">
-      <Shimmer className="h-105 md:h-200 rounded-xl"/>
+      <div className="grid grid-cols gap-2">
+        <Shimmer className="h-40 md:h-40 rounded-xl"/>
+        <Shimmer className="h-40 md:h-40 rounded-xl"/>
+      </div>
       <div className="p-2 rounded-xl border border-sub-200"><Shimmer className="h-40 md:h-50 rounded-xl"/></div>
       <div className="p-2 rounded-xl border border-sub-200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
       <div className="p-2 rounded-xl border border-sub-200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
@@ -99,7 +102,7 @@ export default function RomContainer() {
         const isFirstRight = selectedItems[0]?.title.includes("오른");
         const leftItem = isFirstRight ? selectedItems[1] : selectedItems[0];
         const rightItem = isFirstRight ? selectedItems[0] : selectedItems[1];
-
+        
         return (
           <RomDetail 
             left={leftItem}   

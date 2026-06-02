@@ -1,15 +1,24 @@
-import {  useState } from "react";
-import type { IReportDetail } from "../types/basic";
+import { useState } from "react";
+import type { IKakaoResponse } from "../types/basic";
 import colorLogo from "../assets/img_logo_color.svg";
 import { cn } from "../lib/utils";
 import BasicContainer from "./basic/BasicContainer";
 import RomContainer from "./rom/RomContainer";
+import BiaContainer from "./bia/BiaContainer";
 
 
-const mainTabs : string[] = ["간편 검사", "ROM"]; 
-export default function MainContainer({data}: {data: IReportDetail | undefined}) {
-  const [currentMainTab, setCurrentMainTab] = useState(0);
+export default function MainContainer({data}: {data: IKakaoResponse | undefined}) {
   
+  const measureType = data?.measure_type ?? "000";
+  const mainTabs: string[] = [
+    measureType[0] === "1" && "간편 검사",
+    measureType[1] === "1" && "ROM",
+    measureType[2] === "1" && "BIA",
+  ].filter(Boolean) as string[]; // false나 undefined 제거
+  const [currentMainTab, setCurrentMainTab] = useState<string>(() => {
+    return mainTabs[0] ?? "";
+  });
+  const activeTab = mainTabs.includes(currentMainTab) ? currentMainTab : (mainTabs[0] ?? "");
   return (
     <div className="flex flex-col w-full">
       {/* 상단 탭  */}
@@ -22,12 +31,12 @@ export default function MainContainer({data}: {data: IReportDetail | undefined})
       </div>
 
       <div className="flex border-b border-sub-200">
-        {mainTabs.map((tab, index) => {
-          const isActive = currentMainTab === index;
+        {mainTabs.map((tab) => {
+          const isActive = activeTab === tab;
           return (
             <button
               key={tab}
-              onClick={() => setCurrentMainTab(index)}
+              onClick={() => setCurrentMainTab(tab)}
               className={cn(
                 "flex-1 py-2 text-sm md:text-base font-medium transition-all cursor-pointer",
                 isActive
@@ -41,11 +50,9 @@ export default function MainContainer({data}: {data: IReportDetail | undefined})
         })}
       </div>
 
-      {currentMainTab === 0 && <BasicContainer data={data} />}
-      {(currentMainTab === 1 ) && (
-        <RomContainer  />
-      )}
-
+      {activeTab === "간편 검사" && <BasicContainer data={data} />}
+      {activeTab === "ROM" && <RomContainer />}
+      {activeTab === "BIA" && <BiaContainer />}
     </div>
   );
 };
