@@ -1,7 +1,13 @@
 export interface IKakaoResponse extends IReportDetail {
-  measure_type: string;
+  measurement_meta: IMeasureMeta;
 }
 // kakaoresult에 대응해서 tab 분기 처리 
+export interface IMeasureMeta {
+  has_basic: 0 | 1;
+  has_rom: 0 | 1;
+  has_bia: 0 | 1;
+  performed_measurements: string[];
+}
 
 export interface IReportDetail {
   result_summary_data: IBasicInfo
@@ -78,7 +84,6 @@ export interface IBasicInfo {
   has_basic: 0 | 1;
   has_rom: 0 | 1;
   has_bia: 0 | 1;
-  measurement_type: string;
 }
 
 export interface IBasicStaticMat {

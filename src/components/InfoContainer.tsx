@@ -8,11 +8,13 @@ import { cardStyle } from "../lib/styles";
 import { PartMainDataContainer } from "./basic/partmain/DataContainer";
 
 export default function InfoContainer ({data}: {data: IReportDetail}) {
-  const staticUrl = `${data.static_mat_data.measure_server_mat_image_name}`;
-  const dynamicUrl = `${data.dynamic_mat_data.mat_hip_down_image_name}`;
-  const hipDownUrl = `${data.dynamic_mat_data.mat_hip_trajectory_image_name}`;
-  const leftKneeUrl = `${data.dynamic_mat_data.mat_left_knee_trajectory_image_name}`;
-  const rightKneeUrl = `${data.dynamic_mat_data.mat_right_knee_trajectory_image_name}`;
+  const url = import.meta.env.VITE_PUBLIC_FILE_URL;
+  const staticUrl = `${url}/${data.static_mat_data.measure_server_mat_image_name}`;
+  const dynamicUrl = `${url}/${data.dynamic_mat_data.mat_hip_down_image_name}`;
+  const hipDownUrl = `${url}/${data.dynamic_mat_data.mat_hip_trajectory_image_name}`;
+  const leftKneeUrl = `${url}/${data.dynamic_mat_data.mat_left_knee_trajectory_image_name}`;
+  const rightKneeUrl = `${url}/${data.dynamic_mat_data.mat_right_knee_trajectory_image_name}`;
+
   const riskUpperString = getRiskString(data.result_summary_data.risk_upper_risk_level);
   const riskLowerString = getRiskString(data.result_summary_data.risk_lower_risk_level);
   const [staticSrc, setstaticSrc] = useState<string>("");

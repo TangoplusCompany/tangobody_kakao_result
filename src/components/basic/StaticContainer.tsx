@@ -25,7 +25,8 @@ export default function StaticContainer ({data, tab}: {data: IReportDetail, tab:
   const params = new URLSearchParams(window.location.search);
   const t_r = params.get("t_r") || "";
   const [staticSrc, setstaticSrc] = useState<string>("");
-  const staticUrl = `${data.static_mat_data.measure_server_mat_image_name}`;
+  const url = import.meta.env.VITE_PUBLIC_FILE_URL;
+  const staticUrl = `${url}/${data.static_mat_data.measure_server_mat_image_name}`;
   // 1. 파트 데이터 호출 (Mutation)
   const { mutate, data: partData, isPending, isError, error } = useGetPartResult<IFront | ISide | IBack>();
 

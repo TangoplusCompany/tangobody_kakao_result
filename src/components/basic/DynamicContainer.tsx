@@ -32,11 +32,11 @@ export default function DynamicContainer({data}: {data: IReportDetail}) {
   const [hipDownSrc, sethipDownSrc] = useState<string>("");
   const [leftKneeSrc, setleftKneeSrc] = useState<string>("");
   const [rightKneeSrc, setrightKneeSrc] = useState<string>("");
-
-  const matUrl = `${data.dynamic_mat_data.mat_hip_down_image_name}`;
-  const hipUrl = `${data.dynamic_mat_data.mat_hip_trajectory_image_name}`;
-  const kneeLeftUrl = `${data.dynamic_mat_data.mat_left_knee_trajectory_image_name}`;
-  const kneeRightUrl = `${data.dynamic_mat_data.mat_right_knee_trajectory_image_name}`;
+  const url = import.meta.env.VITE_PUBLIC_FILE_URL;
+  const matUrl = `${url}/${data.dynamic_mat_data.mat_hip_down_image_name}`;
+  const hipUrl = `${url}/${data.dynamic_mat_data.mat_hip_trajectory_image_name}`;
+  const kneeLeftUrl = `${url}/${data.dynamic_mat_data.mat_left_knee_trajectory_image_name}`;
+  const kneeRightUrl = `${url}/${data.dynamic_mat_data.mat_right_knee_trajectory_image_name}`;
 
     // 1. 파트 데이터 호출 (Mutation)
   const { mutate, data: dData, isPending, isError, error } = useGetPartResult<ISquart>();
@@ -52,7 +52,7 @@ export default function DynamicContainer({data}: {data: IReportDetail}) {
         .catch(() => {
           setdynamicSrc("");
         });
-        removeBlackBackground(hipUrl)
+        preprocessTrajectoryImage(hipUrl)
         .then((result) => {
           sethipDownSrc(result);
         })

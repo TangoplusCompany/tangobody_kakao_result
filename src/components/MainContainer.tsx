@@ -9,12 +9,13 @@ import BiaContainer from "./bia/BiaContainer";
 
 export default function MainContainer({data}: {data: IKakaoResponse | undefined}) {
   
-  const measureType = data?.measure_type ?? "000";
+  const measureType = data?.measurement_meta;
+  console.log(measureType)
   const mainTabs: string[] = [
-    measureType[0] === "1" && "간편 검사",
-    measureType[1] === "1" && "ROM",
-    measureType[2] === "1" && "BIA",
-  ].filter(Boolean) as string[]; // false나 undefined 제거
+    measureType?.has_basic === 1 && "간편 검사",
+    measureType?.has_rom === 1 && "ROM",
+    measureType?.has_bia === 1 && "BIA",
+  ].filter(Boolean) as string[];
   const [currentMainTab, setCurrentMainTab] = useState<string>(() => {
     return mainTabs[0] ?? "";
   });
