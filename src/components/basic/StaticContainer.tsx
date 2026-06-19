@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useGetJson } from "../../hooks/useGetJson";
 import { useGetPartResult } from "../../hooks/useGetPartResult";
-import type { IBack, IFront, IRawDataUnit, IReportDetail, ISide } from "../../types/basic";
+import type { IBack, IFront, IRawDataUnit, IMeasureBasic, ISide } from "../../types/basic";
 import { MeasurementImage, type Step } from "./LandmarkImage";
 import { removeBlackBackground } from "../../util/removeBlackBackground";
 import RawDataContainer from "./RawDataContainer";
@@ -21,7 +21,7 @@ const partMap: Record<number, Step[]> = {
   3: ["fifth", "sixth",]
 }
 
-export default function StaticContainer ({data, tab}: {data: IReportDetail, tab: 1| 2 | 3}) {
+export default function StaticContainer ({data, tab}: {data: IMeasureBasic, tab: 1| 2 | 3}) {
   const params = new URLSearchParams(window.location.search);
   const t_r = params.get("t_r") || "";
   const [staticSrc, setstaticSrc] = useState<string>("");

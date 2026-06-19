@@ -1,4 +1,4 @@
-import type { IBasicCards, IBasicHistoryUnit, IBasicInfo, IReportDetail } from "../types/basic";
+import type { IBasicHistoryUnit, IMeasureBasic, IMeasureInfo, IPartDetailData } from "../types/basic";
 import body from "../assets/img_body.png";
 import { getRangeCircle, getRiskString } from "../util/getRiskString";
 import { useEffect, useState } from "react";
@@ -7,7 +7,7 @@ import { cn } from "../lib/utils";
 import { cardStyle } from "../lib/styles";
 import { PartMainDataContainer } from "./basic/partmain/DataContainer";
 
-export default function InfoContainer ({data}: {data: IReportDetail}) {
+export default function InfoContainer ({data}: {data: IMeasureBasic}) {
   const url = import.meta.env.VITE_PUBLIC_FILE_URL;
   const staticUrl = `${url}/${data.static_mat_data.measure_server_mat_image_name}`;
   const dynamicUrl = `${url}/${data.dynamic_mat_data.mat_hip_down_image_name}`;
@@ -101,7 +101,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
     ankle_right: { top: "89%", left: "61%" },
   };
 
-  const jointsToRender: (keyof IBasicInfo)[] = [
+  const jointsToRender: (keyof IMeasureInfo)[] = [
     "risk_neck", "risk_shoulder_left", "risk_shoulder_right",
     "risk_elbow_left", "risk_elbow_right", "risk_wrist_left", "risk_wrist_right",
     "risk_hip_left", "risk_hip_right", "risk_knee_left", "risk_knee_right",
@@ -168,7 +168,7 @@ export default function InfoContainer ({data}: {data: IReportDetail}) {
     return colorMap[riskLevel] ?? "text-sub-800";
   }
 
-  const bodyParts: { key: keyof IBasicCards; label: string }[] = [
+  const bodyParts: { key: keyof IPartDetailData; label: string }[] = [
     { key: "neck", label: "목" },
     { key: "shoulder", label: "어깨" },
     { key: "elbow", label: "팔꿈치" },

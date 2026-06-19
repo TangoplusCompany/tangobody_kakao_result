@@ -4,7 +4,7 @@ export interface IRomPair {
 }
 
 
-export interface IRomCard extends IRomRange {
+export interface IMeasureROMItemCardData extends IMeasureROMItemRangeData {
   score: number;
   description: string;
   value_1_min: number;
@@ -13,7 +13,7 @@ export interface IRomCard extends IRomRange {
   value_2_max: number;
 }
 
-export interface IRomRange {
+export interface IMeasureROMItemRangeData {
   normal_bad: number;
   normal_warning: number;
   normal_normal: number;
@@ -28,8 +28,42 @@ export interface IRomGraph {
 export interface IRomHistory {
   history_by_measure_type: Record<string, number>;
 }
-
-export interface IRomDetail extends IRomCard, IRomHistory {
+export interface IMeasureROMItemDetail extends IMeasureROMItemCardData {
+  sn: number;
+  device_sn: number;
+  server_sn: number;
+  user_uuid: string;
+  user_sn: number;
+  user_name: string;
+  measure_seq: number;
+  measure_type: number;
+  reg_date: string;
+  measure_start_time: string;
+  measure_end_time:string;
+  measure_photo_file_name: string;
+  measure_overlay_width: number;
+  measure_overlay_height: number;
+  measure_overlay_scale_factor_x: number;
+  measure_overlay_scale_factor_y: number;
+  measure_server_file_name: string;
+  measure_server_json_name: string;
+  measure_server_mat_json_name: string;
+  measure_server_data_json_name: string;
+  result_index: number;
+  uploaded: string;
+  upload_date: string;
+  uploaded_json: string;
+  uploaded_file: string;
+  uploaded_json_fail: string;
+  uploaded_file_fail: string;
+  used: string;
+  uploaded_mat_json: number;
+  uploaded_rom_json: string;
+  title: string;
+  howto: string;
+  camera_orientation: 0 | 1; 
+}
+export interface IRomDetail extends IMeasureROMItemCardData, IRomHistory {
   sn: number;
   measure_sn: number;
   user_sn: number;

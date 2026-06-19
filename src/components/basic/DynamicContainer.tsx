@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type {  IReportDetail, ISquart } from "../../types/basic";
+import type {  IMeasureBasic, ISquart } from "../../types/basic";
 import VideoPlayer from "../ui/VideoPlayer";
 import { preprocessTrajectoryImage, removeBlackBackground } from "../../util/removeBlackBackground";
 import { useGetPartResult } from "../../hooks/useGetPartResult";
@@ -25,7 +25,7 @@ export type PoseLandmark = {
 
 export type PoseLandmarks = PoseLandmark[];
 
-export default function DynamicContainer({data}: {data: IReportDetail}) {
+export default function DynamicContainer({data}: {data: IMeasureBasic}) {
   const params = new URLSearchParams(window.location.search);
   const t_r = params.get("t_r") || "";
   const [dynamicSrc, setdynamicSrc] = useState<string>("");

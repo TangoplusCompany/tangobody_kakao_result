@@ -1,23 +1,38 @@
-export interface IKakaoResponse extends IReportDetail {
+import type { IBiaData } from "./bia";
+import type { IMeasureROMItemDetail } from "./rom";
+
+export interface IKakaoResponse  {
   measurement_meta: IMeasureMeta;
+  basic_result ?: IMeasureBasic;
+  rom_result?: IMeasureROMItemDetail[]
+  bia_result?: IBiaData
 }
 // kakaoresult에 대응해서 tab 분기 처리 
 export interface IMeasureMeta {
-  has_basic: 0 | 1;
-  has_rom: 0 | 1;
+  user_sn: number | string; // sn
+  device_sn: number | string; // 장치 sn
+  measure_sn: number | string; // t_measure_info_sn
+  user_name: string; // 유저 이름
+  measure_date: string; // 측정일자
+  gender: string;
+  user_uuid: string; // 유저 UUID
+  mobile: string; // 휴대폰 번호
+  camera_orientation: 0 | 1;
+  has_basic : 0 | 1;
+  has_rom : 0 | 1;
   has_bia: 0 | 1;
-  performed_measurements: string[];
 }
 
-export interface IReportDetail {
-  result_summary_data: IBasicInfo
-  result_history_data: IBasicHistory
-  static_mat_data: IBasicStaticMat
-  dynamic_mat_data: IBasicDynamicMat
-  detail_data: IBasicCards
+export interface IMeasureBasic {
+  result_summary_data: IMeasureInfo;
+  static_mat_data: IStaticMat;
+  dynamic_mat_data: IDynamicMat;
+  detail_data: IPartDetailData;
+  result_history_data: IBasicHistory;
 }
 
-export interface IBasicInfo {
+
+export interface IMeasureInfo {
   sn: number;
   measure_date: string;
   user_uuid: string;
@@ -86,14 +101,14 @@ export interface IBasicInfo {
   has_bia: 0 | 1;
 }
 
-export interface IBasicStaticMat {
+export interface IStaticMat {
   mat_static_horizontal_ment: string;
   mat_static_vertical_ment: string;
   measure_server_mat_image_name: string;
   measure_server_mat_json_name: string;
 }
 
-export interface IBasicDynamicMat {
+export interface IDynamicMat {
   mat_hip_down_image_name: string;
   mat_hip_trajectory_image_name: string;
   mat_left_knee_trajectory_image_name: string;
@@ -125,7 +140,7 @@ export interface IBasicHistoryUnit {
   risk_level_shoulder: number;
 }
 
-export interface IBasicCards {
+export interface IPartDetailData {
   neck: IBasicCardNeck;
   shoulder: IBasicCardShoulder;
   elbow: IBasicCardElbow;
@@ -197,7 +212,7 @@ export interface ISquart {
   squat: IDynamic
 }
 
-export interface IDynamic  extends IBasicDynamicMat {
+export interface IDynamic  extends IDynamicMat {
   mat_ohs_bottom_pressure: number;
   mat_ohs_left_bottom: number;
   mat_ohs_left_pressure: number;

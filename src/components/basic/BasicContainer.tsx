@@ -5,13 +5,13 @@ import ExerciseContainer from "./exercise/ExerciseContainer";
 import DynamicContainer from "./DynamicContainer";
 import { Button } from "../ui/Button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import type { IReportDetail } from "../../types/basic";
+import type { IKakaoResponse } from "../../types/basic";
 import { cn } from "../../lib/utils";
 
 const tabs : string[] = ["측정 요약", "정면 측정", "측면 측정", "후면 측정", "동적 측정", "운동 추천"]
 export type TabIndex = 0 | 1 | 2 | 3 | 4 | 5;
 
-export default function BasicContainer({data}: {data: IReportDetail | undefined}) {
+export default function BasicContainer({data}: {data: IKakaoResponse | undefined}) {
   const [currentTab, setCurrentTab] = useState<TabIndex>(0);
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(false);
@@ -88,13 +88,13 @@ export default function BasicContainer({data}: {data: IReportDetail | undefined}
 
 
       <div className="w-full pb-12 md:pb-36 bg-sub-100">
-        {currentTab === 0 && <InfoContainer data={data} />}
+        {currentTab === 0 && <InfoContainer data={data.basic_result!} />}
 
         {(currentTab === 1 || currentTab === 2 || currentTab === 3 ) && (
-          <StaticContainer data={data} tab={currentTab} />
+          <StaticContainer data={data.basic_result!} tab={currentTab} />
         )}
 
-        {currentTab === 4 && <DynamicContainer data={data} />}
+        {currentTab === 4 && <DynamicContainer data={data.basic_result!} />}
         {currentTab === 5 && <ExerciseContainer />}
       </div>
     </div>

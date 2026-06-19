@@ -2,7 +2,7 @@ import axios from "axios";
 import type { IKakaoResponse } from "../types/basic";
 
 export const postGuestLogin = async ({ mobile, encryptedData }: { mobile: string; encryptedData: string }): Promise<IKakaoResponse> => {
-  const { data } = await axios.post(`/admin_api/kakao-results`, {
+  const { data } = await axios.post(`/admin_api/kakao-test`, {
     mobile: mobile,
     t_r: encryptedData
   });

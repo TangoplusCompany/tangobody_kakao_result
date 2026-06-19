@@ -113,10 +113,10 @@ export default function RomDetail ({
 
           <div className="flex flex-col w-full gap-1 mt-2 ">
             <div className="">
-              <div className="flex flex-col border-b border-sub-200 bg-sub-100 dark:bg-muted">
-                <div className="text-base font-semibold bg-sub-150 text-start p-2 rounded-t-xl border-b border-sub-200">{left?.title}</div>
+              <div className="flex flex-col border-b border-sub-200 shadow-xl rounded-t-xl ">
+                <div className="text-base font-semibold bg-white/30 text-start p-2 border-b border-sub-200">{left?.title}</div>
                 
-                <div className="grid grid-cols-[25%_25%_50%] items-center divide-x bg-sub-150 divide-sub-200">
+                <div className="grid grid-cols-[25%_25%_50%] items-center divide-x bg-white/50 divide-sub-200">
                   <div className="h-full flex items-center justify-center py-2 ">최대 각도</div>
                   <div className="h-full flex items-center justify-center py-2 ">단계</div>
                   <div className="h-full flex py-2 pl-2">설명</div>
@@ -130,7 +130,7 @@ export default function RomDetail ({
                 <div className="h-full flex items-center px-2 py-1 text-start">{left?.description}</div>
               </div>
             </div>
-            <div className="flex flex-col rounded-b-xl bg-sub-150 w-full ">
+            <div className="flex flex-col rounded-b-xl bg-white/50 w-full ">
               {rangeComponent}
               <div className="p-2 flex flex-col gap-2">
                 <RomDetailGraph graphType={0} data={romGraphJson0?.values ?? []} maxMinValue={left} />
@@ -156,10 +156,10 @@ export default function RomDetail ({
 
             <div className="flex flex-col w-full gap-2 mt-2">
               <div className="">
-                <div className="flex flex-col border-b border-sub-200 bg-sub-100 dark:bg-muted">
-                <div className="text-base font-semibold bg-sub-150 text-start p-2 rounded-t-xl border-b border-sub-200">{right?.title}</div>
+                <div className="flex flex-col border-b border-sub-200 shadow-xl rounded-t-xl ">
+                <div className="text-base font-semibold bg-white/30 text-start p-2 border-b border-sub-200">{right?.title}</div>
                 
-                <div className="grid grid-cols-[25%_25%_50%] items-center divide-x bg-sub-150 divide-sub-200">
+                <div className="grid grid-cols-[25%_25%_50%] items-center divide-x bg-white/50 divide-sub-200">
                   <div className="h-full flex items-center justify-center py-2 ">최대 각도</div>
                   <div className="h-full flex items-center justify-center py-2 ">단계</div>
                   <div className="h-full flex py-2 pl-2">설명</div>
@@ -173,7 +173,7 @@ export default function RomDetail ({
                   <div className="h-full flex items-center px-2 py-1 text-start">{right?.description}</div>
                 </div>
               </div>
-              <div className="flex flex-col rounded-b-xl bg-sub-150 w-full ">
+              <div className="flex flex-col rounded-b-xl bg-white/50 w-full ">
                 {rangeComponent}
                 <div className="p-2 flex flex-col gap-2">
                   <RomDetailGraph graphType={0} data={romGraphJson1?.values ?? []} maxMinValue={right} />

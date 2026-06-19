@@ -10,7 +10,7 @@ import BiaContainer from "./bia/BiaContainer";
 export default function MainContainer({data}: {data: IKakaoResponse | undefined}) {
   
   const measureType = data?.measurement_meta;
-  console.log(measureType)
+
   const mainTabs: string[] = [
     measureType?.has_basic === 1 && "간편 검사",
     measureType?.has_rom === 1 && "ROM",
@@ -25,8 +25,8 @@ export default function MainContainer({data}: {data: IKakaoResponse | undefined}
       {/* 상단 탭  */}
       <div className="flex justify-between m-2">
         <div className="flex flex-col text-start px-2">
-          <span className="text-base md:text-xl font-bold">{data?.result_summary_data.user_name}님 측정 결과</span>
-          <span className="text-start text-xs *:md:text-lg">측정일: {data?.result_summary_data.measure_date.replace("-", "년 ").replace("-","월 ").slice(0, 12)}일 {data?.result_summary_data.measure_date.slice(11)}</span>  
+          <span className="text-base md:text-xl font-bold">{data?.measurement_meta?.user_name}님 측정 결과</span>
+          <span className="text-start text-xs *:md:text-lg">측정일: {data?.measurement_meta.measure_date.replace("-", "년 ").replace("-","월 ").slice(0, 12)}일 {data?.measurement_meta.measure_date.slice(11)}</span>  
         </div>
         <img src={colorLogo} className="w-6 h-6 md:w-8 md:h-8 p-0.5 md:p-1 "/>
       </div>
