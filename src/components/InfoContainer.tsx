@@ -65,26 +65,26 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
   }, [dynamicSrc, dynamicUrl, hipDownSrc, hipDownUrl, leftKneeSrc, leftKneeUrl, rightKneeSrc, rightKneeUrl, staticUrl]);
 
   const bgUpperCondition = {
-      0: "bg-sub-200",
+      0: "bg-sub200",
       1: "bg-orange-600",
       2: "bg-red-600",
-    }[data.result_summary_data.risk_upper_risk_level] ?? "bg-sub-200";
+    }[data.result_summary_data.risk_upper_risk_level] ?? "bg-sub200";
   const textUpperCondition = {
-    0: "text-sub-800",
+    0: "text-sub800",
     1: "text-white",
     2: "text-white",
-  }[data.result_summary_data.risk_upper_risk_level] ?? "text-sub-800";
+  }[data.result_summary_data.risk_upper_risk_level] ?? "text-sub800";
 
   const bgLowerCondition = {
-      0: "bg-sub-200",
+      0: "bg-sub200",
       1: "bg-orange-600",
       2: "bg-red-600",
-    }[data.result_summary_data.risk_lower_risk_level] ?? "bg-sub-200";
+    }[data.result_summary_data.risk_lower_risk_level] ?? "bg-sub200";
   const textLowerCondition = {
-    0: "text-sub-800",
+    0: "text-sub800",
     1: "text-white",
     2: "text-white",
-  }[data.result_summary_data.risk_lower_risk_level] ?? "text-sub-800";
+  }[data.result_summary_data.risk_lower_risk_level] ?? "text-sub800";
 
 
   const jointPositions: Record<string, { top: string; left: string }> = {
@@ -159,13 +159,13 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
   
   function getBgColor(riskLevel: number): string {
     const colorMap: Record<number, string> = {
-      0: "bg-sub-100 text-sub-200", // 정상 혹은 낮은 단계
+      0: "bg-sub100 text-sub200", // 정상 혹은 낮은 단계
       1: "bg-orange-400 text-orange-800",   // 주의 단계
       2: "bg-red-400 text-red-800",   // 위험 단계
     };
 
-    // 매핑된 값이 없으면 기본값으로 "text-sub-800"을 반환합니다.
-    return colorMap[riskLevel] ?? "text-sub-800";
+    // 매핑된 값이 없으면 기본값으로 "text-sub800"을 반환합니다.
+    return colorMap[riskLevel] ?? "text-sub800";
   }
 
   const bodyParts: { key: keyof IPartDetailData; label: string }[] = [
@@ -192,8 +192,8 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
         
           <div className={cn(cardStyle, "relative w-[calc(100%-16px)] md:w-auto md:flex-1 h-full  flex flex-col items-center justify-center  mx-2 my-1 md:m-2")}>
             <div className="flex w-full justify-between text-sm md:text-base px-2 absolute top-6 z-10">
-              <span className="bg-sub-200/80 px-2 py-0.5 ml-2 md:ml-6 rounded-full">좌측</span>
-              <span className="bg-sub-200/80 px-2 py-0.5 mr-2 md:mr-6 rounded-full">우측</span>
+              <span className="bg-sub200/80 px-2 py-0.5 ml-2 md:ml-6 rounded-full">좌측</span>
+              <span className="bg-sub200/80 px-2 py-0.5 mr-2 md:mr-6 rounded-full">우측</span>
             </div>
 
             <div className="relative mt-6">
@@ -248,7 +248,7 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
 
                     if (trimmedPart.startsWith('[') && trimmedPart.endsWith(']')) {
                       return (
-                        <span key={index} className="font-bold text-sm md:text-base text-sub-800 block mt-3 first:mt-0">
+                        <span key={index} className="font-bold text-sm md:text-base text-sub800 block mt-3 first:mt-0">
                           {trimmedPart}
                         </span>
                       );
@@ -256,7 +256,7 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
                     
                     // 본문 내용은 inline-block으로 설정하여 대괄호 바로 다음 줄에 1번만 줄바꿈되어 붙도록 유도
                     return (
-                      <span className="text-sub-600 text-sm md:text-base text-start block mt-0.5" key={index}>
+                      <span className="text-sub600 text-sm md:text-base text-start block mt-0.5" key={index}>
                         {trimmedPart}
                       </span>
                     );
@@ -295,13 +295,13 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
                 return processedLines.map((line, index) => {
                   if (line.startsWith('[') && line.endsWith(']')) {
                     return (
-                      <span key={index} className="font-bold text-sm md:text-base  text-sub-800 block mt-3 first:mt-0">
+                      <span key={index} className="font-bold text-sm md:text-base  text-sub800 block mt-3 first:mt-0">
                         {line}
                       </span>
                     );
                   }
                   return (
-                    <span className="text-sub-600 text-sm md:text-base text-start block mt-0.5 whitespace-pre-line" key={index}>
+                    <span className="text-sub600 text-sm md:text-base text-start block mt-0.5 whitespace-pre-line" key={index}>
                       {line}
                     </span>
                   );
@@ -327,39 +327,39 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
                 <img
                   src={staticSrc}
                   alt="정적 족압 이미지"
-                  className="w-24 h-24 p-1 rounded-xl border border-sub-200 bg-transparent"
+                  className="w-24 h-24 p-1 rounded-xl border border-sub200 bg-transparent"
                   onError={(e) => {
                     e.currentTarget.src = "";
                   }}
                 />
               )}
-              <div className="absolute top-1/2 left-[40%] w-1/5 h-1 bg-sub-300 -translate-y-1/2" />
-              <div className="absolute left-1/2 top-[40%] h-1/5 w-1 bg-sub-300 -translate-x-1/2" />
+              <div className="absolute top-1/2 left-[40%] w-1/5 h-1 bg-sub300 -translate-y-1/2" />
+              <div className="absolute left-1/2 top-[40%] h-1/5 w-1 bg-sub300 -translate-x-1/2" />
 
               {/* 상단 */}
-              <span className="absolute top-1 left-1/2 -translate-x-1/2 text-sub-800 text-[10px] font-semibold">
+              <span className="absolute top-1 left-1/2 -translate-x-1/2 text-sub800 text-[10px] font-semibold">
                 {Math.round(data.result_summary_data.mat_static_top_pressure)}%
               </span>
 
               {/* 좌측 */}
-              <span className="absolute top-1/2 left-1 -translate-y-1/2 text-sub-800 text-[10px] font-semibold">
+              <span className="absolute top-1/2 left-1 -translate-y-1/2 text-sub800 text-[10px] font-semibold">
                 {Math.round(data.result_summary_data.mat_static_left_pressure)}%
               </span>
 
               {/* 우측 */}
-              <span className="absolute top-1/2 right-1 -translate-y-1/2 text-sub-800 text-[10px] font-semibold">
+              <span className="absolute top-1/2 right-1 -translate-y-1/2 text-sub800 text-[10px] font-semibold">
                 {Math.round(data.result_summary_data.mat_static_right_pressure)}%
               </span>
 
               {/* 하단 */}
-              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-sub-800 text-[10px] font-semibold">
+              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-sub800 text-[10px] font-semibold">
                 {Math.round(data.result_summary_data.mat_static_bottom_pressure)}%
               </span>
             </div>
 
             <div className="flex flex-col text-sm md:text-base  leading-tight text-start mt-1 md:mt-2">
-              <span className="font-bold text-sub-800">[좌우 무게 분석] <span className="font-medium text-sub-600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
-              <span className="font-bold text-sub-800">[상하 무게 분석] <span className="font-medium text-sub-600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
+              <span className="font-bold text-sub800">[좌우 무게 분석] <span className="font-medium text-sub600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
+              <span className="font-bold text-sub800">[상하 무게 분석] <span className="font-medium text-sub600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
             </div>
           </div>
         </div>
@@ -377,32 +377,32 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
                     <img
                       src={dynamicSrc}
                       alt="동적 족압 이미지"
-                      className="w-24 h-24 p-1 rounded-xl border border-sub-200 bg-transparent"
+                      className="w-24 h-24 p-1 rounded-xl border border-sub200 bg-transparent"
                       onError={(e) => {
                         e.currentTarget.src = "";
                       }}
                     />
                   )}
-                  <div className="absolute top-1/2 left-[40%] w-1/5 h-px bg-sub-300 -translate-y-1/2" />
-                  <div className="absolute left-1/2 top-[40%] h-1/5 w-1px bg-sub-300 -translate-x-1/2" />
+                  <div className="absolute top-1/2 left-[40%] w-1/5 h-px bg-sub300 -translate-y-1/2" />
+                  <div className="absolute left-1/2 top-[40%] h-1/5 w-1px bg-sub300 -translate-x-1/2" />
 
                   {/* 상단 */}
-                  <span className="absolute top-1 left-1/2 -translate-x-1/2 text-sub-800 text-[10px] font-semibold">
+                  <span className="absolute top-1 left-1/2 -translate-x-1/2 text-sub800 text-[10px] font-semibold">
                     {Math.round(data.result_summary_data.mat_static_top_pressure)}%
                   </span>
 
                   {/* 좌측 */}
-                  <span className="absolute top-1/2 left-1 -translate-y-1/2 text-sub-800 text-[10px] font-semibold">
+                  <span className="absolute top-1/2 left-1 -translate-y-1/2 text-sub800 text-[10px] font-semibold">
                     {Math.round(data.result_summary_data.mat_static_left_pressure)}%
                   </span>
 
                   {/* 우측 */}
-                  <span className="absolute top-1/2 right-1 -translate-y-1/2 text-sub-800 text-[10px] font-semibold">
+                  <span className="absolute top-1/2 right-1 -translate-y-1/2 text-sub800 text-[10px] font-semibold">
                     {Math.round(data.result_summary_data.mat_static_right_pressure)}%
                   </span>
 
                   {/* 하단 */}
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-sub-800 text-[10px] font-semibold">
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-sub800 text-[10px] font-semibold">
                     {Math.round(data.result_summary_data.mat_static_bottom_pressure)}%
                   </span>
                 </div>
@@ -412,20 +412,20 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
                     <img
                       src={hipDownSrc}
                       alt="힙다운 이미지"
-                      className="w-24 h-24 p-1 rounded-xl border border-sub-200 bg-transparent"
+                      className="w-24 h-24 p-1 rounded-xl border border-sub200 bg-transparent"
                       onError={(e) => {
                         e.currentTarget.src = "";
                       }}
                     />
                   )}
-                  {/* <div className="absolute top-1/2 left-[40%] w-1/5 h-[1px] bg-sub-300 -translate-y-1/2" />
-                  <div className="absolute left-1/2 top-[40%] h-1/5 w-[1px] bg-sub-300 -translate-x-1/2" /> */}
+                  {/* <div className="absolute top-1/2 left-[40%] w-1/5 h-[1px] bg-sub300 -translate-y-1/2" />
+                  <div className="absolute left-1/2 top-[40%] h-1/5 w-[1px] bg-sub300 -translate-x-1/2" /> */}
                 </div>
               </div>
 
               <div className="flex flex-col text-sm md:text-base  leading-tight text-start mt-1 md:mt-2">
-                <span className="font-bold text-sub-800">[좌우 무게 분석] <span className="font-medium text-sub-600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
-                <span className="font-bold text-sub-800">[상하 무게 분석] <span className="font-medium text-sub-600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
+                <span className="font-bold text-sub800">[좌우 무게 분석] <span className="font-medium text-sub600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
+                <span className="font-bold text-sub800">[상하 무게 분석] <span className="font-medium text-sub600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
               </div>
             </div>
 
@@ -438,14 +438,14 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
                     <img
                       src={leftKneeSrc}
                       alt="왼쪽 무릎 이미지"
-                      className="w-24 h-24 p-1 rounded-xl border border-sub-200 bg-transparent"
+                      className="w-24 h-24 p-1 rounded-xl border border-sub200 bg-transparent"
                       onError={(e) => {
                         e.currentTarget.src = "";
                       }}
                     />
                   )}
-                  <div className="absolute top-1/2 left-[40%] w-1/5 h-px bg-sub-300 -translate-y-1/2" />
-                  <div className="absolute left-1/2 top-[40%] h-1/5 w-px bg-sub-300 -translate-x-1/2" />
+                  <div className="absolute top-1/2 left-[40%] w-1/5 h-px bg-sub300 -translate-y-1/2" />
+                  <div className="absolute left-1/2 top-[40%] h-1/5 w-px bg-sub300 -translate-x-1/2" />
                 </div>
                 {/* 오른쪽 무릎 이미지 */}
                 <div className="relative w-fit h-fit">
@@ -453,19 +453,19 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
                     <img
                       src={rightKneeSrc}
                       alt="오른쪽 무릎 이미지"
-                      className="w-24 h-24 p-1 rounded-xl border border-sub-200 bg-transparent"
+                      className="w-24 h-24 p-1 rounded-xl border border-sub200 bg-transparent"
                       onError={(e) => {
                         e.currentTarget.src = "";
                       }}
                     />
                   )}
-                  {/* <div className="absolute top-1/2 left-[40%] w-1/5 h-[1px] bg-sub-300 -translate-y-1/2" />
-                  <div className="absolute left-1/2 top-[40%] h-1/5 w-[1px] bg-sub-300 -translate-x-1/2" /> */}
+                  {/* <div className="absolute top-1/2 left-[40%] w-1/5 h-[1px] bg-sub300 -translate-y-1/2" />
+                  <div className="absolute left-1/2 top-[40%] h-1/5 w-[1px] bg-sub300 -translate-x-1/2" /> */}
                 </div>
               </div>
 
               <div className="flex flex-col text-sm md:text-base leading-tight text-start mt-1 md:mt-2">
-                <span className="font-bold text-sub-800">[무릎 흔들림 분석] <span className="font-medium text-sub-600">{data.dynamic_mat_data.mat_ohs_knee_ment}</span></span>
+                <span className="font-bold text-sub800">[무릎 흔들림 분석] <span className="font-medium text-sub600">{data.dynamic_mat_data.mat_ohs_knee_ment}</span></span>
               </div>
             </div>
           </div>
@@ -477,14 +477,14 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
       {/* 6가지 관절 데이터 */}
         <PartMainDataContainer data={data} />
 
-        <div className="flex rounded-xl border border-sub-200 overflow-hidden bg-white text-[13px] text-sub-800 m-2">
+        <div className="flex rounded-xl border border-sub200 overflow-hidden bg-white text-[13px] text-sub800 m-2">
           {/* 왼쪽 측정 이력 */}
           <div className="flex flex-col w-full">
-            <div className="grid grid-cols-[15%_85%] items-center border-b border-sub-200">
-              <div className="h-full font-bold flex items-center justify-center text-sub-800 text-[12px] md:text-base border-r border-sub-200 bg-sub-150">
+            <div className="grid grid-cols-[15%_85%] items-center border-b border-sub200">
+              <div className="h-full font-bold flex items-center justify-center text-sub800 text-[12px] md:text-base border-r border-sub200 bg-sub150">
                 측정 이력
               </div>
-              <div className="grid grid-cols-10 h-8 md:h-12 items-center text-center text-[8px] text-sub-600">
+              <div className="grid grid-cols-10 h-8 md:h-12 items-center text-center text-[8px] text-sub600">
                 {gridSlots.map((_, idx) => {
                   const history = historyList[idx];
                   return (
@@ -499,8 +499,8 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
 
                         return (
                           <div className="flex flex-col items-center justify-center">
-                            <span className="text-sub-600 text-[9px] md:text-xs">{year}</span>
-                            <span className="font-bold text-sub-800 text-[9px] md:text-sm">{month}.{day}</span>
+                            <span className="text-sub600 text-[9px] md:text-xs">{year}</span>
+                            <span className="font-bold text-sub800 text-[9px] md:text-sm">{month}.{day}</span>
                           </div>
                         );
                       })() : ""}
@@ -514,10 +514,10 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
             <div className="flex flex-col h-full">
               {bodyParts.map(({ key, label }) => (
                 
-                <div key={key} className="h-full grid grid-cols-[15%_85%] items-center border-b last:border-b-0 border-sub-200">
+                <div key={key} className="h-full grid grid-cols-[15%_85%] items-center border-b last:border-b-0 border-sub200">
                   
               
-                  <div className="flex items-center h-full justify-center text-sub-600 text-[11px] md:text-sm border-r border-sub-200 font-bold">
+                  <div className="flex items-center h-full justify-center text-sub600 text-[11px] md:text-sm border-r border-sub200 font-bold">
                     {label}
                   </div>
                   <div className="grid grid-cols-10 h-full items-center text-center">
@@ -534,7 +534,7 @@ export default function InfoContainer ({data}: {data: IMeasureBasic}) {
                       const rangeCircle = getRangeCircle(currentRangeLevel);
                       
                       return (
-                        <div key={idx} className="flex justify-center items-center h-full leading-none pt-0.5 pb-0.5 first:pt-1 first:pb-0.5 last:pt-0.5 last:pb-1 border-r last:border-r-0 border-sub-100">
+                        <div key={idx} className="flex justify-center items-center h-full leading-none pt-0.5 pb-0.5 first:pt-1 first:pb-0.5 last:pt-0.5 last:pb-1 border-r last:border-r-0 border-sub100">
                           {history ? (
                             <div className={`w-full h-full font-bold flex items-center mx-1 rounded-sm text-center justify-center ${bgColor} text-[14px] md:text-base`}>
                               {rangeCircle} 

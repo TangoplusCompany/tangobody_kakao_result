@@ -32,7 +32,7 @@ export default function RomDetail ({
   
   if (left === undefined) {
     return (
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-40 md:h-50 rounded-xl"/>
       </div>
     );
@@ -42,11 +42,11 @@ export default function RomDetail ({
   if (romGraphLoading0 || romLoading0 || romGraphLoading1 || romLoading1) {
     return (
       <div className="flex flex-col p-2 gap-4">
-        <div className="p-2 rounded-xl border border-sub-200"><Shimmer className="h-40 md:h-50 rounded-xl"/></div>
-        <div className="p-2 rounded-xl border border-sub-200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
-        <div className="p-2 rounded-xl border border-sub-200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
-        <div className="p-2 rounded-xl border border-sub-200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
-        <div className="p-2 rounded-xl border border-sub-200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
+        <div className="p-2 rounded-xl border border-sub200"><Shimmer className="h-40 md:h-50 rounded-xl"/></div>
+        <div className="p-2 rounded-xl border border-sub200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
+        <div className="p-2 rounded-xl border border-sub200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
+        <div className="p-2 rounded-xl border border-sub200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
+        <div className="p-2 rounded-xl border border-sub200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
       </div>
     );
   }
@@ -71,7 +71,7 @@ export default function RomDetail ({
   const fullLeftUrl = `${import.meta.env.VITE_PUBLIC_FILE_URL}/${left.measure_server_file_name}`;
   const fullRightUrl = `${import.meta.env.VITE_PUBLIC_FILE_URL}/${right?.measure_server_file_name}`;
   const rangeComponent = (
-    <div className="grid grid-cols-4 w-full rounded-xl bg-sub100 items-center divide-x divide-sub-200 text-xs sm:text-sm">
+    <div className="grid grid-cols-4 w-full rounded-xl bg-sub100 items-center divide-x divide-sub200 text-xs sm:text-sm">
       <div className="flex flex-col gap-1 w-full items-center py-2">
         <span>매우 양호</span>
         <span>{left.normal_normal}º 이상</span>
@@ -93,7 +93,7 @@ export default function RomDetail ({
 
   return (
     <div className="px-4 py-2 w-full h-full flex flex-col gap-2">
-      <div className="w-fit rounded-xl px-0 md:px-2 py-1 flex gap-2 items-center hover:bg-sub-150 transition-colors text-sm md:text-base cursor-pointer" onClick={onBack}>
+      <div className="w-fit rounded-xl px-0 md:px-2 py-1 flex gap-2 items-center hover:bg-sub150 transition-colors text-sm md:text-base cursor-pointer" onClick={onBack}>
         <img src={arrowLeft} className="w-2.5 h-2.5 md:w-4 md:h-4"/>
         목록으로
       </div>
@@ -113,10 +113,10 @@ export default function RomDetail ({
 
           <div className="flex flex-col w-full gap-1 mt-2 ">
             <div className="">
-              <div className="flex flex-col border-b border-sub-200 shadow-xl rounded-t-xl ">
-                <div className="text-base font-semibold bg-white/30 text-start p-2 border-b border-sub-200">{left?.title}</div>
+              <div className="flex flex-col border-b border-sub200 shadow-xl rounded-t-xl ">
+                <div className="text-base font-semibold bg-white/30 text-start p-2 border-b border-sub200">{left?.title}</div>
                 
-                <div className="grid grid-cols-[25%_25%_50%] items-center divide-x bg-white/50 divide-sub-200">
+                <div className="grid grid-cols-[25%_25%_50%] items-center divide-x bg-white/50 divide-sub200">
                   <div className="h-full flex items-center justify-center py-2 ">최대 각도</div>
                   <div className="h-full flex items-center justify-center py-2 ">단계</div>
                   <div className="h-full flex py-2 pl-2">설명</div>
@@ -124,7 +124,7 @@ export default function RomDetail ({
                 
               </div>
 
-              <div className="grid grid-cols-[25%_25%_50%] items-center bg-white dark:border dark:bg-muted divide-x divide-sub-200">
+              <div className="grid grid-cols-[25%_25%_50%] items-center bg-white dark:border dark:bg-muted divide-x divide-sub200">
                 <div className="h-full flex items-center justify-center">{romLeftValue}º</div>
                 <div className="h-full flex items-center justify-center">{romLeftState}</div>
                 <div className="h-full flex items-center px-2 py-1 text-start">{left?.description}</div>
@@ -156,10 +156,10 @@ export default function RomDetail ({
 
             <div className="flex flex-col w-full gap-2 mt-2">
               <div className="">
-                <div className="flex flex-col border-b border-sub-200 shadow-xl rounded-t-xl ">
-                <div className="text-base font-semibold bg-white/30 text-start p-2 border-b border-sub-200">{right?.title}</div>
+                <div className="flex flex-col border-b border-sub200 shadow-xl rounded-t-xl ">
+                <div className="text-base font-semibold bg-white/30 text-start p-2 border-b border-sub200">{right?.title}</div>
                 
-                <div className="grid grid-cols-[25%_25%_50%] items-center divide-x bg-white/50 divide-sub-200">
+                <div className="grid grid-cols-[25%_25%_50%] items-center divide-x bg-white/50 divide-sub200">
                   <div className="h-full flex items-center justify-center py-2 ">최대 각도</div>
                   <div className="h-full flex items-center justify-center py-2 ">단계</div>
                   <div className="h-full flex py-2 pl-2">설명</div>
@@ -167,7 +167,7 @@ export default function RomDetail ({
                 
               </div>
 
-                <div className="grid grid-cols-[25%_25%_50%] items-center bg-white dark:border dark:bg-muted divide-x divide-sub-200">
+                <div className="grid grid-cols-[25%_25%_50%] items-center bg-white dark:border dark:bg-muted divide-x divide-sub200">
                   <div className="h-full flex items-center justify-center">{romRightValue}º</div>
                   <div className="h-full flex items-center justify-center">{romRightState}</div>
                   <div className="h-full flex items-center px-2 py-1 text-start">{right?.description}</div>

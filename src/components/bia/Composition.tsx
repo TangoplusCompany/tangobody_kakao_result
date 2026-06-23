@@ -1,6 +1,6 @@
-import type { SegmentData } from "@/components/ui/VerticalStackedBar";
 import type { IBiaData } from "@/types/bia";
-import VerticalStackedBar from "@/components/ui/VerticalStackedBar";
+import type { SegmentData } from "../ui/VerticalStackedBar";
+import VerticalStackedBar from "../ui/VerticalStackedBar";
 
 interface CompositionCardProps {
   title: string;
@@ -13,17 +13,17 @@ interface CompositionCardProps {
 
 export function CompositionCard({ title, weight, value, low, high, prevValue }: CompositionCardProps) {
   const stateColor = {
-    "체수분": "bg-accent ",
-    "단백질": "bg-orangee-500",
-    "무기질": "bg-blackk ",
-    "체지방": "bg-redd-500"
+    "체수분": "bg-accent",
+    "단백질": "bg-orange-600",
+    "무기질": "bg-comp-dark",
+    "체지방": "bg-red-600"
   }[title];
   
   const textColor = {
-    "체수분": "text-accent ",
-    "단백질": "text-orangee-500",
-    "무기질": "text-blackk ",
-    "체지방": "text-redd-500"
+    "체수분": "text-accent",
+    "단백질": "text-orange-600",
+    "무기질": "text-sub750 ",
+    "체지방": "text-red-600"
   }[title];
 
   const percentage = ((value / weight) * 100).toFixed(1);
@@ -58,35 +58,35 @@ export function CompositionCard({ title, weight, value, low, high, prevValue }: 
   const diffColor = Number(diff) > 0 ? "text-redd" : "text-accent";
 
   return (
-    <div className="flex h-full items-center gap-1 w-full ">
-      <div className={`flex items-center h-full p-2 w-16 text-[12px] leading-tight font-bold text-white rounded-sm justify-center ${stateColor}`}>
+    <div className="flex items-center gap-1 w-full h-full ">
+      <div className={`flex items-center h-full w-20 p-2 text-sm leading-tight font-bold text-white rounded-[4px] justify-center ${stateColor}`}>
         {title}
       </div>
 
       {/* 메인 데이터 영역 */}
-      <div className="flex flex-1 h-full items-center bg-sub-100 rounded-sm px-2 gap-2">
-        <div className="w-12 text-center text-[13px] font-bold text-sub-800">
+      <div className="flex flex-1 h-[34px] items-center bg-sub100 rounded-[4px] px-2 gap-2">
+        <div className="w-12 text-center text-[13px] font-bold text-sub800">
           {percentage}%
         </div>
 
         <div className="relative flex-1 h-full flex items-center">
           {/* 배경 (3등분) */}
           <div className="absolute inset-0 flex">
-            <div className="flex-1 bg-sub-100 rounded-l-md border-r border-white/50" />
-            <div className="flex-1 bg-sub-200 border-r border-white/50" />
-            <div className="flex-1 bg-sub-100 rounded-r-md" />
+            <div className="flex-1 bg-sub100 rounded-l-md border-r border-white/50" />
+            <div className="flex-1 bg-sub200 border-r border-white/50" />
+            <div className="flex-1 bg-sub100 rounded-r-md" />
           </div>
           
           {/* 막대 영역 */}
           <div className="flex flex-col flex-1 gap-1.5 z-10">
             {/* 현재 값 막대 */}
             <div 
-              className={`relative h-2 rounded-r-sm transition-all duration-700 ease-out ${stateColor}`}
+              className={`relative h-2 rounded-r-[4px] transition-all duration-700 ease-out ${stateColor}`}
               style={{ width: `${currentPos}%` }}
             />
             {prevValue !== undefined && (
               <div 
-                className={`relative h-1.5 rounded-r-full transition-all duration-700 ease-out bg-sub-400/60`}
+                className={`relative h-1.5 rounded-r-full transition-all duration-700 ease-out bg-sub400/60`}
                 style={{ width: `${prevPos}%` }}
               />
             )}
@@ -97,7 +97,7 @@ export function CompositionCard({ title, weight, value, low, high, prevValue }: 
             className="absolute right-0 z-20 w-fit"
             style={{ top: '50%', transform: 'translateY(-50%)' }}
           >
-            <div className="bg-white/75 shadow-sm rounded-sm px-1.5 flex items-center justify-center gap-1 border border-sub-200">
+            <div className="bg-white/75 shadow-sm rounded-[4px] px-1.5 flex items-center justify-center gap-1 border border-sub200">
               <span className={`w-1.5 h-1.5 rounded-full ${stateColor}`} />
               <span className={`text-[12px] font-bold ${textColor}`}>{value}</span>
             </div>
@@ -106,7 +106,7 @@ export function CompositionCard({ title, weight, value, low, high, prevValue }: 
       </div>
 
       {/* 증감 표시 영역 */}
-      <div className={`flex h-full w-12 justify-center items-center bg-sub-100 rounded-sm text-[10px] font-medium ${diff !== undefined ? diffColor : 'text-transparent'}`}>
+      <div className={`flex h-[34px] w-12 justify-center items-center bg-sub100 rounded-[4px] text-xs font-medium ${diff !== undefined ? diffColor : 'text-transparent'}`}>
         {diff !== undefined && (
           <>({Number(diff) >= 0 ? '▲' : '▼'} {Math.abs(Number(diff))})</>
         )}
@@ -165,28 +165,27 @@ export default function Composition({data}: {data: IBiaData}) {
   const donutComps : SegmentData[] = [
     {
       label: "체수분",
-      percentage: (data.moisture_content / data.weight) * 100,
+      percentage: Number(((data.moisture_content / data.weight) * 100).toFixed(1)),
       color: "#5B93FF"
     },
     {
       label: "단백질",
-      percentage: (data.protein_mass / data.weight) * 100,
+      percentage: Number(((data.protein_mass / data.weight) * 100).toFixed(1)),
       color: "#FFA546"
     },
     {
       label: "무기질",
-      percentage: (data.amount_of_inorganic_salt / data.weight) * 100,
+      percentage: Number(((data.amount_of_inorganic_salt / data.weight) * 100).toFixed(1)),
       color: "#7A828A"
     },
     {
       label: "체지방",
-      percentage: (data.body_fat_mass / data.weight) * 100,
+      percentage: Number(((data.body_fat_mass / data.weight) * 100).toFixed(1)),
       color: "#FF766C"
     }
-
   ]
   return (
-    <div className="flex flex-col mb-2">
+    <div className="flex flex-col  p-2">
       
       <div className="flex items-center gap-2 ">
         <div className="w-3 h-3 rounded-[3px] bg-accent" />
@@ -197,64 +196,63 @@ export default function Composition({data}: {data: IBiaData}) {
 
       <div className="flex flex-col my-2 h-full w-full gap-2">
         {/* 1. 상단 헤더 영역 (전체 너비를 사용하며 하단 카드들의 바 위치와 정렬) */}
-        <div className="flex w-full items-center text-xs text-gray-500 font-bold">
-          {/* 차트 너비만큼 비워주기 (차트 영역이 차지하는 너비에 맞춰 조정하세요) */}
-          <div className="w-40" /> 
-
-          {/* 카드의 타이틀 + % 수치 너비만큼 비워주기 */}
-          <div className="w-8" /> 
-
-          {/* 표준 영역: 하단 프로그레스 바와 수직으로 일치하게 됨 */}
-          <div className="flex-1 grid grid-cols-3 text-center">
-            <span>표준 이하</span>
-            <span>표준</span>
-            <span>표준 이상</span>
-          </div>
-
-          {/* 변화 영역 */}
-          <div className="w-16 text-right pr-3">
-            <span>변화</span>
-          </div>
-        </div>
+        
 
         {/* 2. 하단 컨텐츠 영역 (차트와 카드 리스트가 같은 높이를 공유) */}
         <div className="flex flex-1 gap-1 items-stretch">
           {/* 도넛 차트 컨테이너 (정중앙 배치) */}
-          <div className="flex items-center mx-4">
-            <VerticalStackedBar data={donutComps} />
+          <div className="flex items-center justify-center px-4 md:px-12 py-2">
+            <VerticalStackedBar  data={donutComps} />
           </div>
 
-          {/* 카드 리스트 컨테이너 (차트 높이에 맞춰 카드 간격이 자동 조절되도록 justify-between 사용 가능) */}
-          <div className="flex flex-col flex-1 gap-1">
-            <div className="flex items-center gap-1 w-full ">
-              {/* 타이틀 박스 */}
-              <div className={`flex items-center justify-center h-fit px-2 py-1 print:py-0 w-16 text-[8px] font-bold text-white rounded-sm bg-sub-400`}>
-                평균 비율
+          <div className="flex flex-col flex-1 w-full h-full">
+            <div className="flex w-full items-center text-xs text-sub800 font-bold">
+              <div className="w-40" /> 
+
+              {/* 표준 영역: 하단 프로그레스 바와 수직으로 일치하게 됨 */}
+              <div className="flex-1 grid grid-cols-3 text-center py-1">
+                <span>표준 이하</span>
+                <span>표준</span>
+                <span>표준 이상</span>
               </div>
 
-              {/* 메인 데이터 영역 */}
-              <div className="flex h-fit flex-1 text-[8px] text-sub-600 pl-6 items-center bg-sub-100 rounded-sm px-2 py-1 print:py-0 gap-1">
-                 체수분 : 55~65% / 단백질 : 15~18% / 무기질 : 5~6% / 체지방 :10~20%
+              {/* 변화 영역 */}
+              <div className="w-16 text-right pr-3">
+                <span>변화</span>
               </div>
             </div>
-            {mainComps.map((comp) => (
-              <CompositionCard
-                key={comp.title}
-                title={comp.title}
-                weight={data.weight} 
-                value={comp.value}
-                low={comp.low}
-                high={comp.high}
-                prevValue={comp.prevValue}
-              />
-            ))}
+            {/* 카드 리스트 컨테이너 (차트 높이에 맞춰 카드 간격이 자동 조절되도록 justify-between 사용 가능) */}
+            <div className="flex flex-col flex-1 gap-1">
+              <div className="flex items-center gap-1 w-full ">
+                {/* 타이틀 박스 */}
+                <div className={`flex items-center w-20 justify-center h-fit px-2 py-1 text-sm font-bold text-white rounded-[4px] bg-sub400`}>
+                  평균 비율
+                </div>
+
+                {/* 메인 데이터 영역 */}
+                <div className="flex h-fit flex-1 text-xs text-sub600 pl-6 items-center bg-sub100 rounded-sm px-2 py-1 gap-1">
+                  체수분 : 55~65% / 단백질 : 15~18% / 무기질 : 5~6% / 체지방 :10~20%
+                </div>
+              </div>
+              {mainComps.map((comp) => (
+                <CompositionCard
+                  key={comp.title}
+                  title={comp.title}
+                  weight={data.weight} 
+                  value={comp.value}
+                  low={comp.low}
+                  high={comp.high}
+                  prevValue={comp.prevValue}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="flex gap-2 h-12 px-4 bg-sub-100 border border-sub-200 rounded-xs items-center ">
-          <span className="font-bold text-sub-800 text-xs text-center">{title}</span>
-          <span className="text-sub-800 text-[10px] leading-none">{description}</span>
+      <div className="flex gap-2 px-4 py-2  bg-sub100 border border-sub200 rounded-sm items-center ">
+          <span className="font-bold text-sub800 text-xs md:text-sm text-center">{title}</span>
+          <span className="text-sub800 text-[12px] md:text-xs leading-none">{description}</span>
       </div>
     </div>
   );

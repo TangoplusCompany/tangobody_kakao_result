@@ -56,17 +56,17 @@ export default function RomContainer() {
         <Shimmer className="h-40 md:h-40 rounded-xl"/>
         <Shimmer className="h-40 md:h-40 rounded-xl"/>
       </div>
-      <div className="p-2 rounded-xl border border-sub-200"><Shimmer className="h-40 md:h-50 rounded-xl"/></div>
-      <div className="p-2 rounded-xl border border-sub-200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
-      <div className="p-2 rounded-xl border border-sub-200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
+      <div className="p-2 rounded-xl border border-sub200"><Shimmer className="h-40 md:h-50 rounded-xl"/></div>
+      <div className="p-2 rounded-xl border border-sub200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
+      <div className="p-2 rounded-xl border border-sub200"><Shimmer className="h-20 md:h-50 rounded-xl"/></div>
     </div>
   );
   if (isError) return <div className="p-4 text-center text-red-500">{isError}</div>;
 
   
   return (
-    <div className="flex flex-col bg-sub-100 gap-4 pb-8 md:pb-16">
-      {!selectedRomPair && (<div className="font-bold text-base text-sub-800 text-start px-4 py-2">관절가동범위 검사 목록</div>)}
+    <div className="flex flex-col bg-sub100 gap-4 pb-8 md:pb-16">
+      {!selectedRomPair && (<div className="font-bold text-base text-sub800 text-start px-4 py-2">관절가동범위 검사 목록</div>)}
       {!selectedRomPair && sortedGroupedData.map(([jointName, items]) => {
         const pairedItems = transformToRomPairs(items);
 
@@ -74,13 +74,13 @@ export default function RomContainer() {
           <div key={jointName} className="flex flex-col overflow-hidden ">
             
             {/* 관절 이름 (헤더) */}
-            <div className="text-start text-lg md:text-xl font-bold text-sub-700 mx-4 py-2 border-b border-sub-400">
+            <div className="text-start text-lg md:text-xl font-bold text-sub-700 mx-4 py-2 border-b border-sub400">
               {jointName}
             </div>
             
             {/* 내부 아이템 리스트: md 이상일 때 좌우 2열 배치 */}
             {/* 💡 grid grid-cols-1 md:grid-cols-2 구조를 주어 반응형 레이아웃을 잡습니다. */}
-            <div className="grid grid-cols-1 md:grid-cols-2 md:divide-x md:divide-sub-200 gap-2 mx-4 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:divide-x md:divide-sub200 gap-2 mx-4 mt-4">
               {pairedItems.map((pair) => {
                 const subItems = [pair.left, pair.right].filter(Boolean) as IRomDetail[];
 

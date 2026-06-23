@@ -1,81 +1,111 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import img_body from "@/assets/img_body.png"
+import type { IBiaData } from "@/types/bia";
+import type { SVGProps } from "react";
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer } from "recharts";
-import type { IBiaData } from "../../types/bia";
 
+interface PentagonChartDataItem {
+  subject: string; 
+  value: number; 
+  lastValue: number; 
+  weight: number;
+  percent: string;
+  status: string;
+}
 
+interface RechartsTickProps extends SVGProps<SVGTextElement> {
+  x?: number;
+  y?: number;
+  payload?: {
+    value: string;
+    coordinate: number;
+    index: number;
+  };
+}
 
-export function PentagonChart({ data, isMuscle }: { data: any[]; isMuscle: boolean }) {
-
+export function PentagonChart({
+  data,
+  isMuscle,
+}: {
+  data: PentagonChartDataItem[];
+  isMuscle: boolean;
+}) {
   
-  const CustomAngleAxis = ({ payload, x, y }: any) => {
-    const item = data.find((d) => d.subject === payload.value);
-    if (!item) return null;
+  const CustomAngleAxis = (props: RechartsTickProps) => {
+    const { payload, x, y } = props;
     
+    if (!payload || x === undefined || y === undefined) return <g />;
+
+    const item = data.find((d) => d.subject === payload.value);
+    if (!item) return <g />;
+
     return (
-      /* g 태그의 위치를 꼭짓점(x, y)으로 고정하고 내부 요소들을 중앙 정렬합니다. */
-      <g transform={`translate(${x},${y})`} style={{ overflow: 'visible' }}>
-        
-        {/* 1. Subject (제목): 중앙 정렬, 살짝 위로 배정 */}
+      <g transform={`translate(${x},${y})`} style={{ overflow: "visible" }}>
+        {/* 1. Subject (제목) */}
         <text
           textAnchor="middle"
           fill="#333"
-          fontSize="9"
+          fontSize="14"
           fontWeight="bold"
-          dy="-12" 
+          dy="-12"
         >
           {item.subject}
         </text>
 
-        <text
-          textAnchor="middle"
-          fill="#666"
-          dy="1" 
-        >
-          <tspan fontSize="9">{item.weight}kg</tspan>
-          <tspan fontSize="7" fill="#999" >{` (${item.percent})`}</tspan>
+        <text textAnchor="middle" fill="#666" dy="1">
+          <tspan fontSize="14">{item.weight}kg</tspan>
+          <tspan fontSize="12" fill="#999">{` (${item.percent})`}</tspan>
         </text>
 
-        {/* 3. Status Badge (상태): 중앙 정렬을 위해 x값을 너비의 절반만큼 왼쪽으로 이동 */}
+        {/* 3. Status Badge (상태) */}
         <foreignObject
-          x="-20" // width(40)의 절반만큼 왼쪽으로 이동하여 중앙 맞춤
-          y="6"   // 상세 정보 아래에 위치
-          width="40"
-          height="14"
-          style={{ overflow: 'visible' }}
+          // 💡 [수정] width가 64이므로, 중앙 정렬을 위해 x는 절반인 -32로 이동합니다.
+          x="-32"
+          y="6"
+          width="64"
+          height="18" // py-[2px]와 text-xs 공간을 고려해 높이도 살짝 늘려줍니다.
+          style={{ overflow: "visible" }}
         >
-          <div className={`
-            text-[7px] text-white text-center rounded-xs 
-            py-0.5 leading-none flex items-center justify-center min-w-10
-            ${item.status === '표준이상' ? 'bg-accent' : 'bg-sub-400'}
-          `}>
+          <div
+            className={`
+              text-xs text-white text-center rounded-[2px] 
+              py-[2px] leading-none flex items-center justify-center min-w-[64px]
+              ${item.status === "표준이상" ? "bg-accent/30" : "bg-sub400/30"}
+            `}
+          >
             {item.status}
           </div>
         </foreignObject>
       </g>
     );
   };
-  const maxValue = isMuscle ? 150 : 300; // 지방일 경우 300~350 설정
-  return (
-    <div className='relative flex-1 w-full min-h-0 flex justify-center items-center'>
 
-      <img 
+  const maxValue = isMuscle ? 150 : 300;
+
+  return (
+    // 1. relative 컨테이너 유지 (차트가 이 위에 얹어짐)
+    <div className="relative flex-1 w-full min-h-0 flex justify-center items-center">
+      
+      {/* 2. absolute를 제거하고 h-64 부여 -> 이제 이 이미지가 부모의 높이를 확보합니다 */}
+      <img
         src={img_body} 
-        className="absolute w-28 h-auto pointer-events-none" 
-        alt="body-bg" 
+        className="w-auto h-64 pointer-events-none" 
+        alt="body-bg"
       />
-      <div className="w-full h-full z-10">
+      
+      {/* 3. 차트 영역을 absolute로 변경하여 이미지 위에 덮어씌웁니다 */}
+      <div className="absolute inset-0 z-10 w-full h-full">
         <ResponsiveContainer width="100%" height="100%">
           <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data}>
             <PolarGrid gridType="polygon" stroke="#DBDBDB" />
-
-            {/* 최대값을 300으로 고정 (수치와 선은 숨김 처리) */}
-            <PolarRadiusAxis domain={[0, maxValue]} tick={false} axisLine={false} />
-
+            <PolarRadiusAxis
+              domain={[0, maxValue]}
+              tick={false}
+              axisLine={false}
+            />
             <Radar
               name="근육량"
               dataKey="lastValue"
-              stroke="#7E7E7E" 
+              stroke="#7E7E7E"
               fill="#C1C1C1"
               fillOpacity={0.25}
               strokeDasharray="4 4"
@@ -83,20 +113,20 @@ export function PentagonChart({ data, isMuscle }: { data: any[]; isMuscle: boole
             <Radar
               name="근육량"
               dataKey="value"
-              stroke="#5B93FF" 
+              stroke="#5B93FF"
               fill="#5B93FF"
               fillOpacity={0.25}
             />
             <PolarAngleAxis
               dataKey="subject"
-              tick={(props) => <CustomAngleAxis {...props} />}
+              tick={CustomAngleAxis}
             />
           </RadarChart>
         </ResponsiveContainer>
       </div>
     </div>
   );
-};
+}
 
 export default function BodyModel({data} : {data: IBiaData}) {
 
@@ -198,7 +228,7 @@ export default function BodyModel({data} : {data: IBiaData}) {
 
 
   return (
-    <div className='grid grid-cols-2 gap-1 w-full h-full'>
+    <div className='grid grid-cols-2 gap-1 w-full h-full p-2'>
       <div className='flex flex-col gap-1 w-full h-full'>
         <div className='flex justify-between '>
           <div className='flex gap-1 pl-1 pt-1 items-center'>
@@ -208,8 +238,6 @@ export default function BodyModel({data} : {data: IBiaData}) {
         </div>
         
         <PentagonChart data={muscleData} isMuscle={true} />
-
-
       </div>
 
       <div className='flex flex-col gap-1 w-full h-full'>
@@ -219,8 +247,6 @@ export default function BodyModel({data} : {data: IBiaData}) {
             <span className='text-accent font-bold text-sm'>지방 분포</span>
           </div>
         </div>
-
-
         <PentagonChart data={fatData} isMuscle={false} />
       </div>
 

@@ -39,13 +39,13 @@ export default function ExerciseContainer() {
     <div className="flex flex-col p-2 gap-4">
       <Shimmer className="h-35 md:h-200 rounded-xl m-2"/>
 
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-75 md:h-75 rounded-xl"/>
       </div>
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-75 md:h-75 rounded-xl"/>
       </div>
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-75 md:h-75 rounded-xl"/>
       </div>
       
@@ -57,7 +57,7 @@ export default function ExerciseContainer() {
   }
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-start px-4 text-sub-800 font-semibold">운동 프로그램 부위 선택</span>
+      <span className="text-start px-4 text-sub800 font-semibold">운동 프로그램 부위 선택</span>
 
       <div className="flex flex-wrap gap-2 px-4">
         {realRiskPartArray.map((partIdx) => {
@@ -69,7 +69,7 @@ export default function ExerciseContainer() {
               className={`px-2.5 py-1 md:text-base text-sm rounded-full border transition-colors cursor-pointer font-medium
                 ${isSelected 
                   ? "bg-accent border-accent text-white" 
-                  : "bg-white text-sub600 border-sub-200 hover:border-accent hover:text-accent"
+                  : "bg-white text-sub600 border-sub200 hover:border-accent hover:text-accent"
                 }
               `}
             >

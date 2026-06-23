@@ -43,10 +43,10 @@ export default function VerticalStackedBar({
             `}
           >
             {/* 커스텀 툴팁 박스 */}
-            <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 z-10 hidden group-hover:block bg-white/50 text-sub-800 text-xs rounded py-1 px-2 whitespace-nowrap shadow-md pointer-events-none">
+            <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 z-10 hidden group-hover:block bg-white/50 text-sub800 text-xs rounded py-1 px-2 whitespace-nowrap shadow-md pointer-events-none">
               {segment.label}: {segment.percentage.toFixed(1)}%
               {/* 말풍선 화살표 */}
-              <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-sub-800" />
+              <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-sub800" />
             </div>
           </div>
         );

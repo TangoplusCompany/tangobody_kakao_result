@@ -44,7 +44,7 @@ export const RomDetailGraph = ({
   return (
     <div className="flex flex-col gap-1 rounded-xl p-4 bg-white w-full shadow-sm border border-gray-100">
       <div className="flex justify-between items-start">
-        <span className="text-lg font-semibold text-sub-800">
+        <span className="text-lg font-semibold text-sub800">
           {graphType === 0 ? '각도 변화' : '각속도 변화'}
         </span>
 
@@ -92,6 +92,7 @@ export const RomDetailGraph = ({
                 cursor={false}
                 content={
                   <ChartTooltipContent
+                    className="bg-white! text-black! border border-gray-200 shadow-md"
                     labelFormatter={(value) => `프레임 ${value}`}
                   />
                 }

@@ -131,19 +131,19 @@ export default function StaticContainer ({data, tab}: {data: IMeasureBasic, tab:
     <div className="flex flex-col p-2 gap-4">
       <Shimmer className="h-105 md:h-200 rounded-xl"/>
 
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-40 md:h-50 rounded-xl"/>
       </div>
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-20 md:h-50 rounded-xl"/>
       </div>
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-20 md:h-50 rounded-xl"/>
       </div>
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-20 md:h-50 rounded-xl"/>
       </div>
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-20 md:h-50 rounded-xl"/>
       </div>
     </div>
@@ -191,40 +191,40 @@ export default function StaticContainer ({data, tab}: {data: IMeasureBasic, tab:
                     <img
                       src={staticSrc}
                       alt="정적 족압 이미지"
-                      className="w-24 h-24 md:w-32 md:h-32 p-1 rounded-xl border border-sub-200 bg-transparent justify-center "
+                      className="w-24 h-24 md:w-32 md:h-32 p-1 rounded-xl border border-sub200 bg-transparent justify-center "
                       onError={(e) => {
                         e.currentTarget.src = "";
                       }}
                     />
                   )}
-                  <div className="absolute top-1/2 left-[40%] w-1/5 h-1 bg-sub-300 -translate-y-1/2" />
-                  <div className="absolute left-1/2 top-[40%] h-1/5 w-1 bg-sub-300 -translate-x-1/2" />
+                  <div className="absolute top-1/2 left-[40%] w-1/5 h-1 bg-sub300 -translate-y-1/2" />
+                  <div className="absolute left-1/2 top-[40%] h-1/5 w-1 bg-sub300 -translate-x-1/2" />
 
                   {/* 상단 */}
-                  <span className="absolute top-1 left-1/2 -translate-x-1/2 text-sub-800 text-[10px] md:text-sm font-semibold">
+                  <span className="absolute top-1 left-1/2 -translate-x-1/2 text-sub800 text-[10px] md:text-sm font-semibold">
                     {Math.round(data.result_summary_data.mat_static_top_pressure)}%
                   </span>
 
                   {/* 좌측 */}
-                  <span className="absolute top-1/2 left-1 -translate-y-1/2 text-sub-800 text-[10px] md:text-sm font-semibold">
+                  <span className="absolute top-1/2 left-1 -translate-y-1/2 text-sub800 text-[10px] md:text-sm font-semibold">
                     {Math.round(data.result_summary_data.mat_static_left_pressure)}%
                   </span>
 
                   {/* 우측 */}
-                  <span className="absolute top-1/2 right-1 -translate-y-1/2 text-sub-800 text-[10px] md:text-sm font-semibold">
+                  <span className="absolute top-1/2 right-1 -translate-y-1/2 text-sub800 text-[10px] md:text-sm font-semibold">
                     {Math.round(data.result_summary_data.mat_static_right_pressure)}%
                   </span>
 
                   {/* 하단 */}
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-sub-800 text-[10px] md:text-sm font-semibold">
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-sub800 text-[10px] md:text-sm font-semibold">
                     {Math.round(data.result_summary_data.mat_static_bottom_pressure)}%
                   </span>
                 </div>
               </div>
 
               <div className="flex flex-col text-sm md:text-base  leading-tight text-start mt-1 md:mt-2">
-                <span className="font-bold text-sub-800">[좌우 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
-                <span className="font-bold text-sub-800">[상하 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
+                <span className="font-bold text-sub800">[좌우 무게 분석] <span className="font-bold text-sub600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
+                <span className="font-bold text-sub800">[상하 무게 분석] <span className="font-bold text-sub600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
               </div>
             </div>
 

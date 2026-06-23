@@ -41,14 +41,14 @@ export default function BasicContainer({data}: {data: IKakaoResponse | undefined
 
   if (!data) {
     return (
-      <div className="flex w-full justify-center py-12 text-sub-400">
+      <div className="flex w-full justify-center py-12 text-sub400">
         데이터를 불러올 수 없습니다.
       </div>
     );
   }
   return (
     <div>
-      <div className="relative w-full  bg-sub-100">
+      <div className="relative w-full  bg-sub100">
         {showLeft && (
           <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-none border-none rounded-full p-1">
             <ChevronLeft className="w-4 h-4" />
@@ -76,7 +76,7 @@ export default function BasicContainer({data}: {data: IKakaoResponse | undefined
                   "flex-none py-4 rounded-full font-medium text-sm md:text-base transition-all tracking-tight cursor-pointer",
                   isActive
                     ? "bg-accent text-white shadow-sm"
-                    : "bg-white text-sub-600 hover:bg-sub-150/50 shadow-xs"
+                    : "bg-white text-sub600 hover:bg-sub150/50 shadow-xs"
                 )}
               >
                 {tab}
@@ -87,7 +87,7 @@ export default function BasicContainer({data}: {data: IKakaoResponse | undefined
       </div>
 
 
-      <div className="w-full pb-12 md:pb-36 bg-sub-100">
+      <div className="w-full pb-12 md:pb-36 bg-sub100">
         {currentTab === 0 && <InfoContainer data={data.basic_result!} />}
 
         {(currentTab === 1 || currentTab === 2 || currentTab === 3 ) && (

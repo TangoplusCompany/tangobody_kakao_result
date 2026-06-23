@@ -13,8 +13,8 @@ export default function MainContainer({data}: {data: IKakaoResponse | undefined}
 
   const mainTabs: string[] = [
     measureType?.has_basic === 1 && "간편 검사",
-    measureType?.has_rom === 1 && "ROM",
-    measureType?.has_bia === 1 && "BIA",
+    measureType?.has_rom === 1 && "ROM 검사",
+    measureType?.has_bia === 1 && "체성분 검사",
   ].filter(Boolean) as string[];
   const [currentMainTab, setCurrentMainTab] = useState<string>(() => {
     return mainTabs[0] ?? "";
@@ -31,7 +31,7 @@ export default function MainContainer({data}: {data: IKakaoResponse | undefined}
         <img src={colorLogo} className="w-6 h-6 md:w-8 md:h-8 p-0.5 md:p-1 "/>
       </div>
 
-      <div className="flex border-b border-sub-200">
+      <div className="flex border-b border-sub200">
         {mainTabs.map((tab) => {
           const isActive = activeTab === tab;
           return (
@@ -42,7 +42,7 @@ export default function MainContainer({data}: {data: IKakaoResponse | undefined}
                 "flex-1 py-2 text-sm md:text-base font-medium transition-all cursor-pointer",
                 isActive
                   ? "border-b-2 border-accent text-accent"
-                  : "text-sub-400 hover:text-sub-600"
+                  : "text-sub400 hover:text-sub600"
               )}
             >
               {tab}
@@ -52,8 +52,8 @@ export default function MainContainer({data}: {data: IKakaoResponse | undefined}
       </div>
 
       {activeTab === "간편 검사" && <BasicContainer data={data} />}
-      {activeTab === "ROM" && <RomContainer />}
-      {activeTab === "BIA" && <BiaContainer />}
+      {activeTab === "ROM 검사" && <RomContainer />}
+      {activeTab === "체성분 검사" && <BiaContainer />}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import type { IBodyBenchmark } from '../../types/bia';
+import type { IBodyBenchmark } from "@/types/bia";
 import bt1 from '@/assets/bt_1.png';
 import bt2 from '@/assets/bt_2.png';
 import bt3 from '@/assets/bt_3.png';
@@ -24,20 +24,20 @@ interface MetricListProps {
 
 function MetricList({ title, titleValue, items }: MetricListProps) {
   return (
-    <div className="flex flex-col w-full gap-1">
+    <div className="flex flex-col w-full gap-1 py-2">
       {/* 상단 메인 타이틀 (빨간색 강조) */}
-      <div className="text-redd-600 text-sm font-bold text-start">
+      <div className="text-red-600 text-sm font-bold text-start">
         {title}: {titleValue}
       </div>
 
       {/* 구분선 */}
-      <div className="relative h-0.5 rounded-full bg-sub-800 shrink-0 mr-2" />
+      <div className="relative h-0.5 rounded-full bg-sub800 shrink-0 mr-2" />
 
       {/* 리스트 영역 */}
-      <div className="flex flex-col text-[12px] text-black leading-[1.75]">
+      <div className="flex flex-col text-sm text-black leading-[1.75]">
         {items.map((item, index) => (
           <div key={index} className="flex justify-between items-center ">
-            <span className="font-medium text-sub-600">{item.label}</span>
+            <span className="font-medium text-sub600">{item.label}</span>
             <span className="font-bold">
               {item.value}
               {item.unit && <span className="ml-0.5 font-normal">{item.unit}</span>}
@@ -50,7 +50,7 @@ function MetricList({ title, titleValue, items }: MetricListProps) {
 }
 
 export default function BodyBenchMark({data}: {data: IBodyBenchmark}) {
-  const radius = 60;
+  const radius = 80;
   const strokeWidth = 12;
   const normalizedRadius = radius - strokeWidth / 2;
   const circumference = normalizedRadius * 2 * Math.PI;
@@ -131,10 +131,10 @@ export default function BodyBenchMark({data}: {data: IBodyBenchmark}) {
         
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="flex items-baseline">
-            <span className="text-5xl font-bebas font-bold text-gray-600 leading-none">
+            <span className="text-5xl font-bebas font-semibold text-sub800 leading-none">
               {data.body_score}
             </span>
-            <span className="text-lg font-bold text-gray-500 ml-1">점</span>
+            <span className="text-lg font-bold text-sub600 ml-1">점</span>
           </div>
         </div>
       </div>
@@ -145,14 +145,14 @@ export default function BodyBenchMark({data}: {data: IBodyBenchmark}) {
           <img 
             src={bodyTypeImg}
             alt='건강지표이미지'
-            className='rounded-2xl print:rounded-xl bg-sub-100 w-14 h-14 my-auto border-2 border-sub-200/60'
+            className='rounded-2xl print:rounded-xl bg-sub100 w-20 h-20 my-auto border-2 border-sub200/60'
           >
           </img>
-          <div className='flex flex-col gap-0.5'>
-            <div className='text-[12px] font-bold text-black'>
+          <div className='flex flex-col gap-0.5 text-start'>
+            <div className='text-base font-bold text-black'>
               {bodyType}
             </div>
-            <div className='text-[10px] leading-[1.3] break-keep text-black'>
+            <div className='text-xs leading-[1.3] break-keep text-black'>
               {data.result_body_type_description}
             </div>
           </div>

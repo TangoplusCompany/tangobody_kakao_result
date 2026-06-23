@@ -8,8 +8,8 @@ export default function ExerciseList({ programs, onSelect }: { programs: IProgra
   return (
     <div className="flex flex-col">
       <div className="flex flex-col text-start m-4">
-        <span className="font-bold md:text-xl text-base text-sub-800">{programs.exercise_program_title}</span>
-        <span className="text-sub-800 md:text-lg text-sm">{programs.exercise_program_description}</span>
+        <span className="font-bold md:text-xl text-base text-sub800">{programs.exercise_program_title}</span>
+        <span className="text-sub800 md:text-lg text-sm">{programs.exercise_program_description}</span>
       </div>
       <div className="grid grid-cols-1 gap-4 md:m-0 m-4">
         {programs.exercise_list.map((exercise, idx) => {
@@ -33,7 +33,7 @@ export default function ExerciseList({ programs, onSelect }: { programs: IProgra
                   />
                 </div>
 
-                <span className="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-full md:text-base text-sm bg-sub-800/90 text-white px-2.5 py-1 backdrop-blur-sm shadow-md pointer-events-none">
+                <span className="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-full md:text-base text-sm bg-sub800/90 text-white px-2.5 py-1 backdrop-blur-sm shadow-md pointer-events-none">
                   <img src={timer} className="w-4 h-4" alt="타이머" />
                   {Math.floor(exercise.duration / 60)}분 {exercise.duration % 60}초
                 </span>
@@ -41,9 +41,9 @@ export default function ExerciseList({ programs, onSelect }: { programs: IProgra
               </div>
               
               <div className="flex flex-col text-start gap-2 md:gap-4">
-                <span className="text-base md:text-xl text-sub-800 font-bold">{exercise.exercise_name}</span>
+                <span className="text-base md:text-xl text-sub800 font-bold">{exercise.exercise_name}</span>
                 
-                <span className="text-sm md:text-lg text-sub-800">{exercise.related_symptom}</span>
+                <span className="text-sm md:text-lg text-sub800">{exercise.related_symptom}</span>
               </div>
               
             </div>

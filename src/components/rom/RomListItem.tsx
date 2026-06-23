@@ -40,15 +40,15 @@ export function RomListItem({ item, onClick }: RomListItemProps) {
   const textCondition0 = {
     "매우 양호": "text-accent",
     "정상": "text-accent",
-    "주의": "text-orange-800",
-    "위험": "text-red-800",
-  }[levelString] ?? "text-sub-600";
+    "주의": "text-orange-600",
+    "위험": "text-red-600",
+  }[levelString] ?? "text-sub600";
 
   const textBgCondition0 = {
     "매우 양호": "border-accent",
     "정상": "border-accent",
-    "주의": "bg-orange-600",
-    "위험": "bg-red-600",
+    "주의": "border-orange-600",
+    "위험": "border-red-600",
   }[levelString] ?? "bg-white";
 
   const chartData = useMemo(() => {
@@ -75,17 +75,17 @@ export function RomListItem({ item, onClick }: RomListItemProps) {
   return (
     <div 
       ref={containerRef} 
-      className="flex flex-col p-2 md:px-4 md:py-2.5 bg-white hover:bg-sub-100 cursor-pointer transition-colors border border-sub-200 rounded-xl w-full"
+      className="flex flex-col p-2 md:px-4 md:py-2.5 bg-white hover:bg-sub100 cursor-pointer transition-colors border border-sub200 rounded-xl w-full"
       onClick={() => onClick(item.sn)}
     >
       {/* 상단 텍스트 라인 */}
       <div className="flex items-center justify-between">
-        <div className="text-base text-sub-800 font-medium truncate ">
+        <div className="text-base text-sub800 font-medium truncate ">
           {item.title}
         </div>
 
         <div className="md:flex flex-col items-center ">
-          <div className="text-xs md:text-base font-semibold text-sub-800 text-end min-w-12.5">
+          <div className="text-xs md:text-base font-semibold text-sub800 text-end min-w-12.5">
             최대각도: {Number(item.value_1_max).toFixed(1)}º
           </div>
           <div className={`${textCondition0} ${textBgCondition0} border rounded-full text-xs md:text-sm px-2.5 py-0.5 font-medium text-center min-w-16.25`}>
@@ -129,8 +129,8 @@ export function RomListItem({ item, onClick }: RomListItemProps) {
                   if (!value || value === 0) return null;
                   
                   return (
-                    <div className="rounded-lg border bg-white px-3 py-2 shadow-sm text-xs md:text-sm border-sub-400">
-                      <p className="font-semibold text-sub-600">최대각도: {Number(value).toFixed(1)}º</p>
+                    <div className="rounded-lg border bg-white px-3 py-2 shadow-sm text-xs md:text-sm border-sub400">
+                      <p className="font-semibold text-sub600">최대각도: {Number(value).toFixed(1)}º</p>
                     </div>
                   );
                 }}
@@ -141,7 +141,7 @@ export function RomListItem({ item, onClick }: RomListItemProps) {
       </div>
       <div className="flex items-center justify-between ">
         {seriesKeys.map((key, i) => (
-          <span key={`${key}-${i}`} className="flex-1 text-center text-xs md:text-sm text-sub-600">
+          <span key={`${key}-${i}`} className="flex-1 text-center text-xs md:text-sm text-sub600">
             {key === " " ? " " : key.slice(0, 11).replaceAll("-", ".")}
           </span>
         ))}

@@ -1,50 +1,50 @@
-import type { IBasicCards, IBasicCardUnit, IBasicInfo, IReportDetail } from "../../../types/basic";
+import type {  IBasicCardUnit, IPartDetailData, IMeasureBasic, IMeasureInfo } from "../../../types/basic";
 import { getRiskString } from "../../../util/getRiskString";
 
 interface PartMainDataProps {
-  data: keyof IBasicCards;   // "neck", "shoulder" 등
-  rawData: IBasicCards;      // 전체 데이터 객체
-  summaryData: IReportDetail;
+  data: keyof IPartDetailData;   // "neck", "shoulder" 등
+  rawData: IPartDetailData;      // 전체 데이터 객체
+  summaryData: IMeasureBasic;
 }
 
 
 export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) {
   function getRiskBgColor(riskLevel: number): string {
     const colorMap: Record<number, string> = {
-      0: "bg-sub-100 text-sub-200", // 정상 혹은 낮은 단계
+      0: "bg-sub100 text-sub200", // 정상 혹은 낮은 단계
       1: "bg-orange-600 text-orange-600",   // 주의 단계
       2: "bg-red-600 text-red-600",   // 위험 단계
     };
 
-    // 매핑된 값이 없으면 기본값으로 "text-sub-800"을 반환합니다.
-    return colorMap[riskLevel] ?? "bg-sub-100 text-sub-200";
+    // 매핑된 값이 없으면 기본값으로 "text-sub800"을 반환합니다.
+    return colorMap[riskLevel] ?? "bg-sub100 text-sub200";
   }
 
   function getArrowColor(riskLevel: number): string {
     const colorMap: Record<number, string> = {
-      0: "text-sub-200", // 정상 혹은 낮은 단계
+      0: "text-sub200", // 정상 혹은 낮은 단계
       1: "text-orange-800",   // 주의 단계
       2: "text-red-800",   // 위험 단계
     };
 
-    // 매핑된 값이 없으면 기본값으로 "text-sub-800"을 반환합니다.
-    return colorMap[riskLevel] ?? "text-sub-800";
+    // 매핑된 값이 없으면 기본값으로 "text-sub800"을 반환합니다.
+    return colorMap[riskLevel] ?? "text-sub800";
   }
-
-  const riskKey = `risk_level_${data}` as keyof IBasicInfo;
-  const rangeKey = `range_level_${data}` as keyof IBasicInfo;
+  
+  const riskKey = `risk_level_${data}` as keyof IMeasureInfo;
+  const rangeKey = `range_level_${data}` as keyof IMeasureInfo;
   const currentRiskLevel = summaryData.result_summary_data[riskKey] as number;
   const currentRangeLevel = summaryData.result_summary_data[rangeKey] as number;
   const bgCondition = {
-    0: "bg-sub-600",
+    0: "bg-sub600",
     1: "bg-orange-600",
     2: "bg-red-600",
-  }[currentRiskLevel] ?? "bg-sub-200";
+  }[currentRiskLevel] ?? "bg-sub200";
     const riskString = getRiskString(riskKey);
 
 
 
-  const titleMap: Record<keyof IBasicCards, string> = {
+  const titleMap: Record<keyof IPartDetailData, string> = {
     neck: "목",
     shoulder: "어깨",
     elbow: "팔꿈치",
@@ -81,8 +81,8 @@ export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) 
   const detailKeys = Object.keys(targetSection);
 
   return (
-    <div className="grid grid-cols-[1fr_3fr] border-b border-sub-200 last:border-b-0 w-full h-full">
-      <div className={`bg-white font-bold p-2 flex items-center justify-center border-r border-sub-200`}>
+    <div className="grid grid-cols-[1fr_3fr] border-b border-sub200 last:border-b-0 w-full h-full">
+      <div className={`bg-white font-bold p-2 flex items-center justify-center border-r border-sub200`}>
         <div className="flex flex-col text-base md:text-lg">
           {title} 
           <span className={`${bgCondition} text-white text-xs md:text-sm font-bold px-2 py-1 md:py-2 rounded-full shrink-0 mt-1 leading-none`}>
@@ -100,8 +100,8 @@ export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) 
           const styleClass = getRiskBgColor(riskLevel);
           const arrowClass = getArrowColor(riskLevel);
           return (
-            <div key={rawKey} className="h-full grid grid-cols-[30%_70%] border-b last:border-b-0 border-sub-200 items-center">
-              <span className="text-sub-800 text-sm md:text-base leading-none items-center flex justify-center text-center p-1 print:p-0">
+            <div key={rawKey} className="h-full grid grid-cols-[30%_70%] border-b last:border-b-0 border-sub200 items-center">
+              <span className="text-sub800 text-sm md:text-base leading-none items-center flex justify-center text-center p-1 print:p-0">
                 {detailTitle}
               </span>
 
@@ -110,15 +110,15 @@ export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) 
                 <div className="grid grid-cols-3">
                   {[0, 1, 2].map((idx) => {
                     const defaultBgMap: Record<number, string> = {
-                      0: "bg-sub-100",
-                      1: "bg-sub-150",
-                      2: "bg-sub-200",
+                      0: "bg-sub100",
+                      1: "bg-sub150",
+                      2: "bg-sub200",
                     };
 
                     // 현재 인덱스가 riskLevel과 같으면 활성화 색상, 다르면 지정된 기본 배경색 사용
                     const currentBg = riskLevel === idx 
                       ? styleClass.split(" ")[0] 
-                      : (defaultBgMap[idx] ?? "bg-sub-600");
+                      : (defaultBgMap[idx] ?? "bg-sub600");
 
                     return (
                       <div
