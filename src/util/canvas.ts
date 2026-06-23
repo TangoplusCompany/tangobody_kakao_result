@@ -1,4 +1,4 @@
-import type { PoseLandmarks } from "../components/Measure/DynamicContainer";
+import type { PoseLandmarks } from "../components/basic/DynamicContainer";
 
 export function computeContain(stageW: number, stageH: number, dataW: number, dataH: number) {
   const scale = Math.min(stageW / dataW, stageH / dataH);

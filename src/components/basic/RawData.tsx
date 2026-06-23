@@ -1,5 +1,7 @@
 "use client";
 
+import { cardStyle } from "../../lib/styles";
+import { cn } from "../../lib/utils";
 import type { IRawDataUnit } from "../../types/basic";
 
 export const RawData = (
@@ -53,23 +55,23 @@ export const RawData = (
   }[data1.risk_level] ?? "정상") : null;
 
   const textCondition0 = {
-    정상: "text-sub-600 ",
-    주의: "text-orange-800 ",
-    위험: "text-red-800",
+    정상: "text-sub600 ",
+    주의: "text-white ",
+    위험: "text-white",
   }[levelString0] ?? "bg-primary-foreground";
   const textBgCondition0 = {
-    정상: "bg-sub-600 dark:bg-gray-600",
+    정상: "bg-sub600 dark:bg-gray-600",
     주의: "bg-orange-600",
     위험: "bg-red-600",
   }[levelString0] ?? "bg-primary-foreground";
 
   const textCondition1 = {
-    정상: "text-sub-600 dark:text-muted-foreground",
-    주의: "text-orange-800 dark:text-warning-foreground",
-    위험: "bg-red-800",
+    정상: "text-sub600 dark:text-muted-foreground",
+    주의: "text-white dark:text-warning-foreground",
+    위험: "bg-white",
   }[levelString1 ?? "정상"] ?? "bg-primary-foreground";
   const textBgCondition1 = {
-    정상: "bg-sub-600",
+    정상: "bg-sub600",
     주의: "bg-orange-600",
     위험: "bg-red-600",
   }[levelString1 ?? "정상"] ?? "bg-primary-foreground";
@@ -80,13 +82,13 @@ export const RawData = (
     return ".";
   };
   return (
-    <div className="w-full table table-fixed min-w-0 rounded-xl border border-sub-200">
+    <div className={cn(cardStyle, "w-full table table-fixed min-w-0 ")}>
       <div className="flex flex-col overflow-x-auto overflow-y-hidden w-full min-w-0 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         <div className="flex flex-col">
           
           
-          <div className="grid grid-cols-[45%_20%_35%] md:grid md:grid-cols-[18%_10%_12%_60%] items-center rounded-t-xl border-b border-sub-200 bg-sub-100  py-2">
-            <span className="text-sm md:text-base font-bold text-sub-800 dark:text-foreground px-4 whitespace-normal break-keep">{data0.measure_unit}</span>
+          <div className="grid grid-cols-[45%_20%_35%] md:grid md:grid-cols-[18%_10%_12%_60%] items-center rounded-t-xl border-b border-sub200 bg-sub150  py-2">
+            <span className="text-sm md:text-base font-bold text-sub800 dark:text-foreground px-4 whitespace-normal break-keep">{data0.measure_unit}</span>
             <span className={`flex flex-1 justify-center text-[12px] md:text-sm text-sub600 dark:text-muted-foreground`}>{!data1 ? '' : '기준값'}</span>
             <span className="flex justify-center text-[12px] md:text-sm text-sub600 dark:text-muted-foreground">단계표시</span>
             <span className="hidden md:block text-[12px] md:text-sm text-sub600 dark:text-muted-foreground px-4">분석설명</span>
@@ -94,11 +96,11 @@ export const RawData = (
 
           <div className="flex flex-col">
             {/* 왼쪽(상단) */}
-            <div className={`grid grid-cols-[45%_20%_35%] md:grid md:grid-cols-[18%_10%_12%_60%] items-center h-full divide-x divide-sub-200 last:divide-none`}>
-              <div className={`grid items-center h-full divide-y divide-sub-200 last:divide-y-0 border-r border-sub-200`}>
+            <div className={`grid grid-cols-[45%_20%_35%] md:grid md:grid-cols-[18%_10%_12%_60%] items-center h-full divide-x divide-sub200 last:divide-none`}>
+              <div className={`grid items-center h-full divide-y divide-sub200 last:divide-y-0 border-r border-sub200`}>
                 <div className="flex justify-center">
                   {data1 && leftRightString0 !== "" && (
-                    <span className="flex text-xs items-center justify-center text-sub-600 px-2 py-1 rounded-full bg-sub-100 my-1 md:my-2 whitespace-normal break-keep">
+                    <span className="flex text-xs items-center justify-center text-sub600 px-2 py-1 rounded-full bg-sub100 my-1 md:my-2 whitespace-normal break-keep">
                       {leftRightString0}
                     </span>
                   )}
@@ -109,7 +111,7 @@ export const RawData = (
                 </div>
                 {data1 && (
                   <div className="flex justify-center">
-                    <span className={`flex text-xs items-center justify-center text-sub-0600 px-2 py-1 rounded-full bg-sub-100 my-1 md:my-2 whitespace-normal break-keep`}>
+                    <span className={`flex text-xs items-center justify-center text-sub-0600 px-2 py-1 rounded-full bg-sub100 my-1 md:my-2 whitespace-normal break-keep`}>
                       {leftRightString1}
                     </span>
                     <span className={`flex items-center text-base md:text-xl leading-none mx-2 whitespace-normal break-keep`}>
@@ -119,7 +121,7 @@ export const RawData = (
                 )}
               </div>
               
-              <div className={`flex items-center justify-center w-full h-full border-r border-sub-200`}>
+              <div className={`flex items-center justify-center w-full h-full border-r border-sub200`}>
                 <span className={`flex text-sm font-medium leading-none`}>
                   {getStandard(data0.measure_unit)}
                 </span>
@@ -127,7 +129,7 @@ export const RawData = (
 
 
 
-              <div className={`grid items-center h-full relative border-r border-sub-200 p-1`}>
+              <div className={`grid items-center h-full relative border-r border-sub200 p-1`}>
                 <span className={`
                   inline-flex items-center justify-center mx-auto
                   px-2 py-1 ${textBgCondition0} text-white
@@ -155,7 +157,7 @@ export const RawData = (
                   (() => {
                     const worseLevel = (data0.risk_level === "2" || data1?.risk_level === "2") ? "위험"
                       : (data0.risk_level === "1" || data1?.risk_level === "1") ? "주의" : "정상";
-                    const sameTextCondition = { 정상: "text-sub-600", 주의: "text-orange-800", 위험: "text-red-800" }[worseLevel] ?? "text-sub-600";
+                    const sameTextCondition = { 정상: "text-sub600", 주의: "text-orange-800", 위험: "text-red-800" }[worseLevel] ?? "text-sub600";
                     return (
                       <div className={`text-sm ${sameTextCondition} place-self-center whitespace-normal break-keep`}>
                         {data0.ment_all}
@@ -182,14 +184,14 @@ export const RawData = (
               </div>
             </div>
 
-            <div className={`md:hidden grid items-center justify-start text-start w-full h-full relative px-2 py-1 bg-sub-100 rounded-b-xl border-t border-sub-200`}>
+            <div className={`md:hidden grid items-center justify-start text-start w-full h-full relative px-2 py-1 bg-white rounded-b-xl border-t border-sub200`}>
               <span className="text-[12px] md:text-sm">분석 설명</span>
               {data1 && data0.ment_all === data1.ment_all ? (
                 // 두 내용이 같으면 하나만 표시. 색상은 더 심한 단계(위험 > 주의 > 정상) 기준
                 (() => {
                   const worseLevel = (data0.risk_level === "2" || data1?.risk_level === "2") ? "위험"
                     : (data0.risk_level === "1" || data1?.risk_level === "1") ? "주의" : "정상";
-                  const sameTextCondition = { 정상: "text-sub-600", 주의: "text-orange-800", 위험: "text-red-800" }[worseLevel] ?? "text-sub-600";
+                  const sameTextCondition = { 정상: "text-sub600", 주의: "text-white", 위험: "text-white" }[worseLevel] ?? "text-sub600";
                   return (
                     <div className={`text-sm ${sameTextCondition} place-self-center whitespace-normal break-keep`}>
                       {data0.ment_all}

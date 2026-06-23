@@ -1,68 +1,59 @@
 import { useState } from "react";
-import type { IReportDetail } from "../types/basic";
+import type { IKakaoResponse } from "../types/basic";
 import colorLogo from "../assets/img_logo_color.svg";
-import { Button } from "./ui/Button";
 import { cn } from "../lib/utils";
-import InfoContainer from "./InfoContainer";
-import StaticContainer from "./Measure/StaticContainer";
-import DynamicContainer from "./Measure/DynamicContainer";
-import ExerciseContainer from "./exercise/ExerciseContainer";
+import BasicContainer from "./basic/BasicContainer";
+import RomContainer from "./rom/RomContainer";
+import BiaContainer from "./bia/BiaContainer";
 
-const tabs : string[] = ["측정 요약", "정면 측정", "측면 측정", "후면 측정", "동적 측정", "운동 추천"]
-export type TabIndex = 0 | 1 | 2 | 3 | 4 | 5;
 
-export default function MainContainer({data}: {data: IReportDetail | undefined}) {
-  const [currentTab, setCurrentTab] = useState<TabIndex>(0);
-  if (!data) {
-    return (
-      <div className="flex w-full justify-center py-12 text-sub-400">
-        데이터를 불러올 수 없습니다.
-      </div>
-    );
-  }
+export default function MainContainer({data}: {data: IKakaoResponse | undefined}) {
+  
+  const measureType = data?.measurement_meta;
+
+  const mainTabs: string[] = [
+    measureType?.has_basic === 1 && "간편 검사",
+    measureType?.has_rom === 1 && "ROM 검사",
+    measureType?.has_bia === 1 && "체성분 검사",
+  ].filter(Boolean) as string[];
+  const [currentMainTab, setCurrentMainTab] = useState<string>(() => {
+    return mainTabs[0] ?? "";
+  });
+  const activeTab = mainTabs.includes(currentMainTab) ? currentMainTab : (mainTabs[0] ?? "");
   return (
-    <div className="flex flex-col w-full ">
-      <div className="flex flex-col px-2 gap-2 ">
-        <div className="flex gap-2 items-center">
-          <img src={colorLogo} className="w-10 h-10 md:w-14 md:h-14"/>
-          <span className="text-lg md:text-2xl font-bold">{data?.result_summary_data.user_name}님 측정 결과</span>
+    <div className="flex flex-col w-full">
+      {/* 상단 탭  */}
+      <div className="flex justify-between m-2">
+        <div className="flex flex-col text-start px-2">
+          <span className="text-base md:text-xl font-bold">{data?.measurement_meta?.user_name}님 측정 결과</span>
+          <span className="text-start text-xs *:md:text-lg">측정일: {data?.measurement_meta.measure_date.replace("-", "년 ").replace("-","월 ").slice(0, 12)}일 {data?.measurement_meta.measure_date.slice(11)}</span>  
         </div>
-        <span className="text-start text-sm *:md:text-lg">측정일: {data?.result_summary_data.measure_date.replace("-", "년 ").replace("-","월 ").slice(0, 12)}일 {data?.result_summary_data.measure_date.slice(11)}</span> 
+        <img src={colorLogo} className="w-6 h-6 md:w-8 md:h-8 p-0.5 md:p-1 "/>
       </div>
 
-      <div className="w-full grid grid-cols-3 md:grid-cols-6 gap-0.5 md:gap-1 p-2 rounded-t-2xl md:rountded-t-lg border-t-2 border-sub-150 mt-2">
-        {tabs.map((tab, index) => {
-          const isActive = currentTab === index;
+      <div className="flex border-b border-sub200">
+        {mainTabs.map((tab) => {
+          const isActive = activeTab === tab;
           return (
-            <Button
+            <button
               key={tab}
-              type="button"
-              // 활성화 상태에 따라 디자인 스위칭
-              variant={isActive ? "default" : "ghost"}
-              onClick={() => setCurrentTab(index as TabIndex)}
+              onClick={() => setCurrentMainTab(tab)}
               className={cn(
-                "w-full py-4 rounded-lg md:rounded-xl font-medium text-sm md:text-lg transition-all tracking-tight cursor-pointer",
-                isActive 
-                  ? "bg-accent text-white shadow-sm" // 선택된 탭 (Accent 컬러 사용)
-                  : "text-sub-600 hover:bg-sub-150/50" // 선택 안 된 탭
+                "flex-1 py-2 text-sm md:text-base font-medium transition-all cursor-pointer",
+                isActive
+                  ? "border-b-2 border-accent text-accent"
+                  : "text-sub400 hover:text-sub600"
               )}
             >
               {tab}
-            </Button>
+            </button>
           );
         })}
       </div>
 
-      <div className="w-full pt-2 mb-36">
-        {currentTab === 0 && <InfoContainer data={data} />}
-
-        {(currentTab === 1 || currentTab === 2 || currentTab === 3 ) && (
-          <StaticContainer data={data} tab={currentTab} />
-        )}
-
-        {currentTab === 4 && <DynamicContainer data={data} />}
-        {currentTab === 5 && <ExerciseContainer />}
-      </div>
+      {activeTab === "간편 검사" && <BasicContainer data={data} />}
+      {activeTab === "ROM 검사" && <RomContainer />}
+      {activeTab === "체성분 검사" && <BiaContainer />}
     </div>
   );
 };

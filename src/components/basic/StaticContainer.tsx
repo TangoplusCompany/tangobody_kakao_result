@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useGetJson } from "../../hooks/useGetJson";
 import { useGetPartResult } from "../../hooks/useGetPartResult";
-import type { IBack, IFront, IRawDataUnit, IReportDetail, ISide } from "../../types/basic";
+import type { IBack, IFront, IRawDataUnit, IMeasureBasic, ISide } from "../../types/basic";
 import { MeasurementImage, type Step } from "./LandmarkImage";
 import { removeBlackBackground } from "../../util/removeBlackBackground";
 import RawDataContainer from "./RawDataContainer";
 import { Shimmer } from "../ui/Shimmer";
+import { cardStyle } from "../../lib/styles";
+import { cn } from "../../lib/utils";
 
 const tabToSeqMap: Record<number, 'front' | 'side' | 'back' > = {
   1: "front",
@@ -19,11 +21,12 @@ const partMap: Record<number, Step[]> = {
   3: ["fifth", "sixth",]
 }
 
-export default function StaticContainer ({data, tab}: {data: IReportDetail, tab: 1| 2 | 3}) {
+export default function StaticContainer ({data, tab}: {data: IMeasureBasic, tab: 1| 2 | 3}) {
   const params = new URLSearchParams(window.location.search);
   const t_r = params.get("t_r") || "";
   const [staticSrc, setstaticSrc] = useState<string>("");
-  const staticUrl = `${data.static_mat_data.measure_server_mat_image_name}`;
+  const url = import.meta.env.VITE_PUBLIC_FILE_URL;
+  const staticUrl = `${url}/${data.static_mat_data.measure_server_mat_image_name}`;
   // 1. 파트 데이터 호출 (Mutation)
   const { mutate, data: partData, isPending, isError, error } = useGetPartResult<IFront | ISide | IBack>();
 
@@ -128,19 +131,19 @@ export default function StaticContainer ({data, tab}: {data: IReportDetail, tab:
     <div className="flex flex-col p-2 gap-4">
       <Shimmer className="h-105 md:h-200 rounded-xl"/>
 
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-40 md:h-50 rounded-xl"/>
       </div>
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-20 md:h-50 rounded-xl"/>
       </div>
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-20 md:h-50 rounded-xl"/>
       </div>
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-20 md:h-50 rounded-xl"/>
       </div>
-      <div className="p-2 rounded-xl border border-sub-200">
+      <div className="p-2 rounded-xl border border-sub200">
         <Shimmer className="h-20 md:h-50 rounded-xl"/>
       </div>
     </div>
@@ -177,7 +180,7 @@ export default function StaticContainer ({data, tab}: {data: IReportDetail, tab:
       {/* rawData */}
       <div className="flex flex-col w-full">
         {tab === 1 && (
-          <div className="flex flex-col rounded-xl border border-sub-200  mx-2 my-1 md:m-2 p-2">
+          <div className={cn(cardStyle, "flex flex-col mx-2 my-1 md:m-2 p-2")}>
             <div className="pb-2 items-center text-start font-bold text-base leading-tight ">
               족압 정적 측정
             </div>
@@ -188,40 +191,40 @@ export default function StaticContainer ({data, tab}: {data: IReportDetail, tab:
                     <img
                       src={staticSrc}
                       alt="정적 족압 이미지"
-                      className="w-24 h-24 md:w-32 md:h-32 p-1 rounded-xl border border-sub-200 bg-transparent justify-center "
+                      className="w-24 h-24 md:w-32 md:h-32 p-1 rounded-xl border border-sub200 bg-transparent justify-center "
                       onError={(e) => {
                         e.currentTarget.src = "";
                       }}
                     />
                   )}
-                  <div className="absolute top-1/2 left-[40%] w-1/5 h-1 bg-sub-300 -translate-y-1/2" />
-                  <div className="absolute left-1/2 top-[40%] h-1/5 w-1 bg-sub-300 -translate-x-1/2" />
+                  <div className="absolute top-1/2 left-[40%] w-1/5 h-1 bg-sub300 -translate-y-1/2" />
+                  <div className="absolute left-1/2 top-[40%] h-1/5 w-1 bg-sub300 -translate-x-1/2" />
 
                   {/* 상단 */}
-                  <span className="absolute top-1 left-1/2 -translate-x-1/2 text-sub-800 text-[10px] md:text-sm font-semibold">
+                  <span className="absolute top-1 left-1/2 -translate-x-1/2 text-sub800 text-[10px] md:text-sm font-semibold">
                     {Math.round(data.result_summary_data.mat_static_top_pressure)}%
                   </span>
 
                   {/* 좌측 */}
-                  <span className="absolute top-1/2 left-1 -translate-y-1/2 text-sub-800 text-[10px] md:text-sm font-semibold">
+                  <span className="absolute top-1/2 left-1 -translate-y-1/2 text-sub800 text-[10px] md:text-sm font-semibold">
                     {Math.round(data.result_summary_data.mat_static_left_pressure)}%
                   </span>
 
                   {/* 우측 */}
-                  <span className="absolute top-1/2 right-1 -translate-y-1/2 text-sub-800 text-[10px] md:text-sm font-semibold">
+                  <span className="absolute top-1/2 right-1 -translate-y-1/2 text-sub800 text-[10px] md:text-sm font-semibold">
                     {Math.round(data.result_summary_data.mat_static_right_pressure)}%
                   </span>
 
                   {/* 하단 */}
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-sub-800 text-[10px] md:text-sm font-semibold">
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-sub800 text-[10px] md:text-sm font-semibold">
                     {Math.round(data.result_summary_data.mat_static_bottom_pressure)}%
                   </span>
                 </div>
               </div>
 
               <div className="flex flex-col text-sm md:text-base  leading-tight text-start mt-1 md:mt-2">
-                <span className="font-bold text-sub-800">[좌우 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
-                <span className="font-bold text-sub-800">[상하 무게 분석] <span className="font-bold text-sub-600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
+                <span className="font-bold text-sub800">[좌우 무게 분석] <span className="font-bold text-sub600">{data.static_mat_data.mat_static_horizontal_ment}</span></span>
+                <span className="font-bold text-sub800">[상하 무게 분석] <span className="font-bold text-sub600">{data.static_mat_data.mat_static_vertical_ment}</span></span>
               </div>
             </div>
 

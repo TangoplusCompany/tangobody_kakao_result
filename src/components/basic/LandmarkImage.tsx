@@ -60,7 +60,7 @@ export const MeasurementImage = ({
       )}
       {compareSlot !== undefined && (
         <div className="absolute top-0 left-0 -translate-x-1/2 z-5 mx-8 my-4">
-          <p className="px-1 py-1 rounded-full text-3xl text-white bg-white/10 backdrop-blur-sm">
+          <p className="px-1 py-1 rounded-full text-xl  md:text-3xl text-white bg-white/10 backdrop-blur-sm">
             {compareSlot === 0 ? '①' : '②'}
           </p>
         </div>
@@ -68,7 +68,7 @@ export const MeasurementImage = ({
 
       {step === "third" && (
         <div className="absolute top-0 left-1/2 -translate-x-1/2 z-5 mt-4">
-          <p className="px-3 py-1 rounded-full text-white bg-white/10 backdrop-blur-sm whitespace-nowrap w-fit">
+          <p className="px-3 py-1 rounded-full text-xs md:text-base text-white bg-white/10 backdrop-blur-sm whitespace-nowrap w-fit">
             왼쪽
           </p>
         </div>
@@ -76,7 +76,7 @@ export const MeasurementImage = ({
       
       {step === "fourth" && (
         <div className="absolute top-0 left-1/2 -translate-x-1/2 z-5 mt-4">
-          <p className="px-3 py-1 rounded-full text-white bg-white/10 backdrop-blur-sm whitespace-nowrap w-fit">
+          <p className="px-3 py-1 rounded-full text-xs  md:text-base text-white bg-white/10 backdrop-blur-sm whitespace-nowrap w-fit">
             오른쪽
           </p>
         </div>

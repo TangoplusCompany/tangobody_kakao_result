@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import path from "path"
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
@@ -8,6 +9,11 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"), // 💡 @를 src 폴더로 매핑
+    },
+  },
   // 👇 로컬 개발 서버용 프록시(Proxy) 설정 추가
   server: {
     proxy: {

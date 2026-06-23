@@ -54,7 +54,7 @@ export default function ResultPage() {
   if (isValid === undefined) return undefined;
   if (!isValid) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-sub-100 p-4">
+      <div className="flex min-h-screen items-center justify-center bg-sub100 p-4">
         <p className="text-xl font-semibold text-red-500">올바르지 않은 경로입니다.</p>
       </div>
     );
@@ -62,18 +62,17 @@ export default function ResultPage() {
 
   return (
     <div className="flex min-h-screen justify-center">
-      {/* 💡 h-full 대신 min-h-screen을 유지하고 내부 정렬은 자식들에게 위임합니다. */}
       <main className="w-full bg-white flex flex-col min-h-[calc(100vh-80px)]">
         
-        {/* 1. 로그인 성공 데이터(reportData)가 없으면 로그인 폼을 보여줌 */}
         {!reportData ? (
           <div className="flex-1 flex flex-col justify-center items-center py-12 px-6">
-            <div className="w-full max-w-md flex flex-col justify-center items-center shadow-xl border border-sub-200 rounded-3xl p-6 bg-white">
+            <div className="w-full max-w-md flex flex-col justify-center items-center shadow-xl border border-sub200 rounded-3xl p-6 bg-white">
               <div className="w-full max-w-sm space-y-2">
+                
                 <div className="flex flex-col gap-6 items-center">
                   <img src={fullLogo} className="h-16" alt="Full Logo" />
                   <div className="flex flex-col text-start w-full">
-                    <p className="text-xl font-bold text-sub-800 mt-2">탱고바디 사용자 조회</p>
+                    <p className="text-xl font-bold text-sub800 mt-2">탱고바디 사용자 조회</p>
                     <p className="text-base text-sub-500 mt-1">기기에서 등록했던 전화번호를 입력해주세요</p>
                   </div>
                 </div>
@@ -94,7 +93,7 @@ export default function ResultPage() {
                     disabled={isPending || !mobile.trim()}
                     className={cn(
                       "w-full bg-accent text-white py-3 px-4 rounded-xl font-medium text-base transition-all active:scale-[0.98]",
-                      "disabled:bg-sub-150 disabled:text-sub-400 cursor-pointer disabled:pointer-events-none"
+                      "disabled:bg-sub150 disabled:text-sub400 cursor-pointer disabled:pointer-events-none"
                     )}
                   >
                     {isPending ? "로그인 중..." : "결과 확인하기"}
@@ -110,7 +109,6 @@ export default function ResultPage() {
             </div>
           </div>
         ) : (
-          /* 2. 로그인 성공 시 -> MainContainer는 중앙 정렬의 영향을 받지 않고 최상단부터 자연스럽게 나열됩니다. */
           <MainContainer data={reportData} />
         )}
 
