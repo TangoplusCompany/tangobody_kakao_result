@@ -3,6 +3,7 @@ import arrowLeft from "../../../assets/ic_arrow_left.svg"
 import { useGetExerciseDetail } from "../../../hooks/useGetExerciseDetail";
 import { cardStyle } from "../../../lib/styles";
 import { cn } from "../../../lib/utils";
+import { Shimmer } from "@/components/ui/Shimmer";
 
 export default function ExerciseDetail({ exerciseId, onBack }: { exerciseId: number; onBack: () => void }) {
   const params = new URLSearchParams(window.location.search);
@@ -18,7 +19,14 @@ export default function ExerciseDetail({ exerciseId, onBack }: { exerciseId: num
     }
   }, [t_r, mutate, exerciseId]);
 
-  if (isPending || !exercise) return <div className="p-4 text-center">파트 데이터를 불러오는 중...</div>;
+  if (isPending || !exercise) return (
+    <div className="flex flex-col gap-2 p-2">
+      <Shimmer className="flex w-full mt-8 h-64 sm:h-128"/>
+      <Shimmer className="flex w-full h-32"/>
+      <Shimmer className="flex w-full h-32"/>
+
+    </div>
+  )
   if (isError) return <div className="p-4 text-center text-red-500">{error}</div>;
 
   return (

@@ -50,14 +50,14 @@ const transformToTrend = (
 };
 
 // 2. 개별 데이터 셀 컴포넌트
-const DataCell = ({ value, diff, status, unit, up }: { value: string, diff: string, status: string, unit: string, up: boolean }) => {
+const DataCell = ({ idx, value, diff, status, unit, up }: { idx: number, value: string, diff: string, status: string, unit: string, up: boolean }) => {
   const colorClass = 
     status === 'red' ? ' text-red-600' : 
     status === 'blue' ? ' text-accent' :
     ' text-sub600 bg-white';
 
   return (
-    <div className={`flex flex-col items-center justify-center rounded-sm py-1 px-1 w-full min-w-[40px] h-[48px] leading-none border border-sub200 ${colorClass}`}>
+    <div className={`flex flex-col items-center justify-center rounded-sm py-1 px-1 w-full min-w-[40px] h-[48px] leading-none border border-sub200 ${idx >= 5 ? 'hidden md:block' : ''} ${colorClass}`}>
       <span className="text-xs md:text-sm font-bold leading-tight">{value}{unit}</span>
       <div className="flex items-center gap-0.5 text-[12px] md:text-xs mt-1">
         <span>{up ? '▲' : '▼'}</span>
@@ -97,10 +97,10 @@ export default function TrendGraph({data}: {data:IBiaData}) {
           
           {/* 상단 날짜 헤더 구역 */}
           {/* gap-2에서 아래 데이터 행과 맞추기 위해 gap-0.5로 통일하고 w-full 부여 */}
-          <div className="grid grid-cols-[50px_repeat(7,1fr)] md:grid-cols-[80px_repeat(7,1fr)] gap-0.5 mb-1 w-full">
+          <div className="grid grid-cols-[50px_repeat(5,1fr)] md:grid-cols-[80px_repeat(7,1fr)] gap-0.5 mb-1 w-full">
             <div /> 
             {Array.from({ length: 7 }).map((_, i) => (
-              <div key={i} className="text-center text-[10px] leading-tight md:text-sm text-gray-400 font-medium min-h-[12px] truncate">
+              <div key={i} className={`text-center text-[10px] leading-tight md:text-sm text-gray-400 font-medium min-h-[12px] truncate ${i >= 5 ? 'hidden md:block' : ''}`}>
                 {dates[i] ? (() => {
                   const [datePart, timePart] = dates[i].split(" "); 
                   const formattedDate = datePart.replace(/-/g, "."); 
@@ -121,7 +121,7 @@ export default function TrendGraph({data}: {data:IBiaData}) {
           {/* 데이터 행 구역 */}
           <div className="flex flex-col w-full gap-0.5">
             {CATEGORIES.map((cat) => (
-              <div key={cat.id} className="grid grid-cols-[50px_repeat(7,1fr)] md:grid-cols-[80px_repeat(7,1fr)] gap-0.5 items-center w-full">
+              <div key={cat.id} className="grid grid-cols-[50px_repeat(5,1fr)] md:grid-cols-[80px_repeat(7,1fr)] gap-0.5 items-center w-full">
                 
                 {/* 카테고리 이름 영역 */}
                 <div className="flex flex-col items-center justify-center bg-gray-100 rounded-sm h-[48px] text-center leading-tight">
@@ -135,7 +135,7 @@ export default function TrendGraph({data}: {data:IBiaData}) {
 
                   return data ? (
                     // DataCell 내부에도 h-full과 w-full이 잘 먹히는지 확인 필요합니다.
-                    <DataCell key={i} {...data} unit={cat.unit} />
+                    <DataCell key={i} idx={i} {...data} unit={cat.unit} />
                   ) : (
                     // 빈 셀의 높이를 카테고리 높이(h-[28px])와 맞춰주기 위해 h-[28px] 추가
                     <div key={i} className="border-2 border-sub200 rounded-sm h-[48px] w-full opacity-40" />
