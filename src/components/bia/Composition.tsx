@@ -59,12 +59,12 @@ export function CompositionCard({ title, weight, value, low, high, prevValue }: 
 
   return (
     <div className="flex items-center gap-1 w-full h-full ">
-      <div className={`flex items-center h-full w-20 p-2 text-sm leading-tight font-bold text-white rounded-[4px] justify-center ${stateColor}`}>
+      <div className={`flex items-center h-auto self-stretch w-12 sm:w-20 text-[12px] sm:text-sm leading-tight font-bold text-white rounded-[4px] justify-center ${stateColor}`}>
         {title}
       </div>
 
       {/* 메인 데이터 영역 */}
-      <div className="flex flex-1 h-[34px] items-center bg-sub100 rounded-[4px] px-2 gap-2">
+      <div className="flex flex-1 h-[34px] items-center bg-sub100 rounded-[4px] px-2 gap-0.5 sm:gap-2">
         <div className="w-12 text-center text-[13px] font-bold text-sub800">
           {percentage}%
         </div>
@@ -201,13 +201,13 @@ export default function Composition({data}: {data: IBiaData}) {
         {/* 2. 하단 컨텐츠 영역 (차트와 카드 리스트가 같은 높이를 공유) */}
         <div className="flex flex-1 gap-1 items-stretch">
           {/* 도넛 차트 컨테이너 (정중앙 배치) */}
-          <div className="flex items-center justify-center px-4 md:px-12 py-2">
+          <div className="flex items-center justify-center px-2 md:px-12 ">
             <VerticalStackedBar  data={donutComps} />
           </div>
 
           <div className="flex flex-col flex-1 w-full h-full">
             <div className="flex w-full items-center text-xs text-sub800 font-bold">
-              <div className="w-40" /> 
+              <div className="w-28 sm:w-40" /> 
 
               {/* 표준 영역: 하단 프로그레스 바와 수직으로 일치하게 됨 */}
               <div className="flex-1 grid grid-cols-3 text-center py-1">
@@ -225,12 +225,12 @@ export default function Composition({data}: {data: IBiaData}) {
             <div className="flex flex-col flex-1 gap-1">
               <div className="flex items-center gap-1 w-full ">
                 {/* 타이틀 박스 */}
-                <div className={`flex items-center w-20 justify-center h-fit px-2 py-1 text-sm font-bold text-white rounded-[4px] bg-sub400`}>
+                <div className={`flex items-center h-auto self-stretch w-12 sm:w-20 text-[12px] sm:text-sm leading-tight font-bold text-white rounded-[4px] justify-center bg-sub400`}>
                   평균 비율
                 </div>
 
                 {/* 메인 데이터 영역 */}
-                <div className="flex h-fit flex-1 text-xs text-sub600 pl-6 items-center bg-sub100 rounded-sm px-2 py-1 gap-1">
+                <div className="flex h-fit flex-1 text-xs text-sub600 pl-2 sm:pl-6 items-center bg-sub100 rounded-sm px-2 py-1 gap-1">
                   체수분 : 55~65% / 단백질 : 15~18% / 무기질 : 5~6% / 체지방 :10~20%
                 </div>
               </div>
