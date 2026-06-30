@@ -59,7 +59,6 @@ export default function ResultPage() {
       </div>
     );
   }
-
   return (
     <div className="flex min-h-screen justify-center">
       <main className="w-full bg-white flex flex-col min-h-[calc(100vh-80px)]">
@@ -102,7 +101,9 @@ export default function ResultPage() {
 
                 {isError && (
                   <p className="text-sm text-red-500 text-center font-medium pt-2">
-                    {error?.message || "로그인에 실패했습니다. 번호를 확인해주세요."}
+                    {error?.message.includes("401")
+                      ? "올바르지 않은 전화번호입니다. 확인 후 다시 시도해주세요" 
+                      : "로그인에 실패했습니다. 번호를 확인해주세요."}
                   </p>
                 )}
               </div>

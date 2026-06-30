@@ -65,7 +65,7 @@ export default function RomContainer() {
 
   
   return (
-    <div className="flex flex-col bg-sub100 gap-4 pb-8 md:pb-16">
+    <div className="flex flex-col bg-sub100/50  min-h-[1280px] gap-4 pb-8 md:pb-16">
       {!selectedRomPair && (<div className="font-bold text-base text-sub800 text-start px-4 py-2">관절가동범위 검사 목록</div>)}
       {!selectedRomPair && sortedGroupedData.map(([jointName, items]) => {
         const pairedItems = transformToRomPairs(items);
