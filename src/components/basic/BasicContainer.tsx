@@ -48,7 +48,7 @@ export default function BasicContainer({data}: {data: IKakaoResponse | undefined
   }
   return (
     <div>
-      <div className="relative w-full  bg-sub100">
+      <div className="relative w-full  bg-sub100/50">
         {showLeft && (
           <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-none border-none rounded-full p-1">
             <ChevronLeft className="w-4 h-4" />
