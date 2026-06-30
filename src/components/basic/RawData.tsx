@@ -16,7 +16,7 @@ export const RawData = (
   const data0 = isArrayData ? data[0] : data;
   const data1 = isArrayData && data.length === 2 ? data[1] : undefined;
   
-  // data0용 변수들
+
   const formattedData0 = (data0.measure_unit?.includes("거리") ? Math.abs(data0.data) : data0.data).toFixed(1);
   const unit0 = data0.measure_unit?.includes("족압") 
     ? "%" 
@@ -34,7 +34,7 @@ export const RawData = (
     2: "위험"
   }[data0.risk_level] ?? "정상";
 
-  // data1용 변수들 (존재할 경우에만)
+
   const formattedData1 = data1?.measure_unit?.includes("거리") 
   ? Math.abs(data1.data).toFixed(1) 
   : data1?.data?.toFixed(1) ?? null;

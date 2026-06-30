@@ -40,9 +40,8 @@ export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) 
     1: "bg-orange-600",
     2: "bg-red-600",
   }[currentRiskLevel] ?? "bg-sub200";
-    const riskString = getRiskString(riskKey);
-
-
+  
+  const riskString = getRiskString(currentRiskLevel); // TODO 여기 riskLevel로 계속 고쳐야함
 
   const titleMap: Record<keyof IPartDetailData, string> = {
     neck: "목",
