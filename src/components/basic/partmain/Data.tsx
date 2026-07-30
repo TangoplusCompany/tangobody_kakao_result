@@ -94,8 +94,8 @@ export function PartMainData({ data, rawData, summaryData }: PartMainDataProps) 
         {detailKeys.map((rawKey) => {
           const detailTitle = detailTitleMap[rawKey] || rawKey;
           const unitData = targetSection[rawKey as keyof typeof targetSection] as IBasicCardUnit;
-          const riskLevel = unitData.risk_level;
-          const rangeLevel = unitData.range_level;
+          const riskLevel = unitData?.risk_level ?? 0;
+          const rangeLevel = unitData?.range_level ?? 0;
           const styleClass = getRiskBgColor(riskLevel);
           const arrowClass = getArrowColor(riskLevel);
           return (
