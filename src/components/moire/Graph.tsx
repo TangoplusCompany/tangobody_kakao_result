@@ -2,6 +2,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
 import { useId, useMemo } from "react";
 import type { IMoireGraphTitle } from "./Container";
 import { ChartContainer } from "../ui/chart";
+import { removeOutliersIQR } from "@/util/graph";
 
 export interface IMoireGraphProps {
   title: IMoireGraphTitle;
@@ -23,29 +24,31 @@ export default function MoireGraph({ graphData }: { graphData: IMoireGraphProps 
   const uniqueId = useId().replace(/:/g, "");
 
   // 1차원 숫자 배열을 Recharts용 데이터로 변환
-  const chartData = (graphData.indexData || []).map((zValue, x) => ({ x, zValue }));
+  const cleanedDepthArray = useMemo(
+    () => removeOutliersIQR(graphData.indexData, 1.5),
+    [graphData.indexData]
+  );
+
+  const chartData = (cleanedDepthArray || []).map((zValue, x) => ({ x, zValue }));
 
   const total = chartData.length;
   const minX = 0;
   const maxX = total > 0 ? total - 1 : 100;
   const midX = (minX + maxX) / 2;
 
-  // X축 5등분 틱 계산
   const xTicks = [minX, (minX + midX) / 2, midX, (midX + maxX) / 2, maxX];
 
   const { yMin, yMax, yTicks } = useMemo(() => {
-    const data = graphData.indexData || [];
+    const data = cleanedDepthArray || [];
     if (data.length === 0) {
       return { yMin: 2.0, yMax: 2.5, yTicks: [2.0, 2.25, 2.5] };
     }
 
-    // 1. 오직 indexData(DepthArray) 수치로만 최댓값/최솟값을 추출합니다.
     const minVal = Math.min(...data);
     const maxVal = Math.max(...data);
 
-    // 2. 수치 변화폭에 맞춰 상하 20% 여유(Padding)를 줍니다.
     const diff = maxVal - minVal;
-    const padding = diff > 0 ? diff * 0.2 : 0.01; 
+    const padding = diff > 0 ? diff * 0.2 : 0.01;
 
     const computedMin = Number((minVal - padding).toFixed(2));
     const computedMax = Number((maxVal + padding).toFixed(2));
@@ -56,7 +59,7 @@ export default function MoireGraph({ graphData }: { graphData: IMoireGraphProps 
       yMax: computedMax,
       yTicks: [computedMin, computedMid, computedMax],
     };
-  }, [graphData.indexData]);
+  }, [cleanedDepthArray]);
 
   const renderCustomDot = (props: CustomDotProps): React.ReactElement<SVGElement> => {
     const { cx, cy, index } = props;
