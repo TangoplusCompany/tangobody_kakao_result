@@ -143,8 +143,8 @@ export default function GaitParameter({ data }: GaitContainerProps) {
       threshold0: 0.5,
       threshold1: 0.75,
       unit: "m",
-      leftValue: `${(iData?.avgLeftStepLength ?? 0.65).toFixed(1)} %`,
-      rightValue: `${(iData?.avgRightStepLength ?? 0.65).toFixed(1)} %`,
+      leftValue: `${(iData?.avgLeftStepLength ?? 0.65).toFixed(1)} m`,
+      rightValue: `${(iData?.avgRightStepLength ?? 0.65).toFixed(1)} m`,
     },
     {
       title: "평균 활보장(Stride Length)",
@@ -153,8 +153,8 @@ export default function GaitParameter({ data }: GaitContainerProps) {
       threshold0: 1.0,
       threshold1: 1.5,
       unit: "m",
-      leftValue: `${(iData?.avgLeftStepLength ?? 0.7).toFixed(1)} m`,
-      rightValue: `${(iData?.avgRightStepLength ?? 0.5).toFixed(1)} m`,
+      leftValue: `${(iData?.avgLeftStrideLength ?? 0.7).toFixed(1)} m`,
+      rightValue: `${(iData?.avgRightStrideLength ?? 0.5).toFixed(1)} m`,
     },
     {
       title: "케이던스(Cadence)",

@@ -221,7 +221,7 @@ export default function GaitFall({ data }: GaitContainerProps) {
   const fallItems: FallItemData[] = [
     {
       title: "발끝 들림 높이",
-      value: iData?.averageToeClearance ?? 1.1,
+      value: (iData?.averageToeClearance ?? 0.011) * 100,
       unit: "cm",
       gaugeType: "high", // 3단계: 위험 -> 주의 -> 정상
       threshold0: 1.0,
@@ -240,20 +240,18 @@ export default function GaitFall({ data }: GaitContainerProps) {
       value: iData?.overallGaitSpeed ?? 1.4,
       unit: "m/s",
       gaugeType: "high", // 5단계: 위험 -> 주의 -> 정상 -> 주의 -> 위험
-      threshold0: 10,
-      threshold1: 20,
-      threshold2: 30,
-      threshold3: 40,
+      threshold0: 0.5,
+      threshold1: 1,
     },
     {
       title: "보폭 너비",
       value: iData?.averageStepWidth ?? 16.3,
       unit: "cm",
       gaugeType: "center", // 5단계: 위험 -> 주의 -> 정상 -> 주의 -> 위험
-      threshold0: 5,
-      threshold1: 8,
-      threshold2: 15,
-      threshold3: 25,
+      threshold0: 0.5,
+      threshold1: 0.75,
+      threshold2: 0.75,
+      threshold3: 0.5,
     },
   ];
 
