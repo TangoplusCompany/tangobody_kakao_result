@@ -28,11 +28,25 @@ export default function MainContainer({data}: {data: IKakaoResponse | undefined}
     <div className="flex flex-col w-full">
       {/* 상단 탭  */}
       <div className="flex justify-between m-2">
-        <div className="flex flex-col text-start px-2">
-          <span className="text-base md:text-xl font-bold">{data?.measurement_meta?.user_name}님 측정 결과</span>
-          <span className="text-start text-xs *:md:text-lg">측정일: {data?.measurement_meta.measure_date.replace("-", "년 ").replace("-","월 ").slice(0, 12)}일 {data?.measurement_meta.measure_date.slice(11)}</span>  
+        <div className="flex gap-1 items-center">
+          <img src={colorLogo} className="w-6 h-6 md:w-8 md:h-8  md:p-1 "/>
+          <div className="flex flex-col text-start px-2">
+            <span className="text-base md:text-xl font-bold">{data?.measurement_meta?.user_name}님 측정 결과</span>
+            <span className="text-start text-xs *:md:text-lg">측정일: {data?.measurement_meta.measure_date.replace("-", "년 ").replace("-","월 ").slice(0, 12)}일 {data?.measurement_meta.measure_date.slice(11)}</span>  
+          </div>
         </div>
-        <img src={colorLogo} className="w-6 h-6 md:w-8 md:h-8 p-0.5 md:p-1 "/>
+        
+        <div className="flex gap-2 items-center">
+          <a 
+            href="https://my.tangobody.co.kr/result-page/login" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold text-mainBlue-300 hover:text-mainBlue-300/80"
+          >
+            개인 기록으로 이동
+          </a>
+          
+        </div>
       </div>
 
       <div className="flex border-b border-sub200">
