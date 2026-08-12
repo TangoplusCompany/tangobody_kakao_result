@@ -84,14 +84,14 @@ export default function ResultPage() {
                     onChange={handleMobileChange} 
                     maxLength={13} 
                     disabled={isPending}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-base transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mainBlue-300 focus:border-transparent text-base transition-all"
                   />
 
                   <button
                     type="submit"
                     disabled={isPending || !mobile.trim()}
                     className={cn(
-                      "w-full bg-accent text-white py-3 px-4 rounded-xl font-medium text-base transition-all active:scale-[0.98]",
+                      "w-full bg-mainBlue-300 text-white py-3 px-4 rounded-xl font-medium text-base transition-all active:scale-[0.98]",
                       "disabled:bg-sub150 disabled:text-sub400 cursor-pointer disabled:pointer-events-none"
                     )}
                   >

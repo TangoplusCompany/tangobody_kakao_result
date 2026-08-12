@@ -94,7 +94,7 @@ export default function BodyBenchMark({data}: {data: IBodyBenchmark}) {
   }[data.body_type]
   return (
     <div className='flex flex-col'>
-      <div className='flex w-fit bg-accent rounded-br-xl rounded-tl-xl text-base text-white font-semibold px-2 py-1'>
+      <div className='flex w-fit bg-mainBlue-300 rounded-br-xl rounded-tl-xl text-base text-white font-semibold px-2 py-1'>
         주요건강 지표
       </div>
 

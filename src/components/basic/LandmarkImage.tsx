@@ -22,11 +22,21 @@ export const MeasurementImage = ({
   cameraOrientation,
   compareSlot,
 }: MeasurementImageProps) => {
+
+  const fileBaseUrl = import.meta.env.VITE_PUBLIC_FILE_URL ?? "";
+
+  // 이미 완전한 URL(http/https)이면 그대로 쓰고, 아니면 fileBaseUrl을 붙인다
+  const rgbUrl = imageUrl
+    ? /^https?:\/\//.test(imageUrl)
+      ? imageUrl
+      : `${fileBaseUrl.replace(/\/$/, "")}/${imageUrl.replace(/^\//, "")}`
+    : "";
+
   const [dialogOpen, setDialogOpen] = useState(false);
   const [showGrid, setShowGrid] = useState(true);
   const [showLine, setShowLine] = useState(true);
 
-  const { resultUrl, loading } = useStaticLandmark(imageUrl, measureJson, step, cameraOrientation, showLine);
+  const { resultUrl, loading } = useStaticLandmark(rgbUrl, cameraOrientation, showLine, step, measureJson, );
   const RadialGradientShadow = 'inset 0 0 12px rgba(255, 255, 255, 0.75)'
 
   const loadingPlaceholder = (
@@ -43,7 +53,7 @@ export const MeasurementImage = ({
       <img
         src={resultUrl} 
         alt="측정 이미지" 
-        className="w-full  shadow-inner cursor-pointer md:rounded-xl" 
+        className="w-full  shadow-inner cursor-pointer rounded-xl" 
         onClick={() => setDialogOpen(true)}
       />
       {showGrid && (

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import InfoContainer from "../InfoContainer";
 import StaticContainer from "./StaticContainer";
-import ExerciseContainer from "./exercise/ExerciseContainer";
+import ExerciseContainer from "./exercise/Container";
 import DynamicContainer from "./DynamicContainer";
 import { Button } from "../ui/Button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -75,7 +75,7 @@ export default function BasicContainer({data}: {data: IKakaoResponse | undefined
                 className={cn(
                   "flex-none py-4 rounded-full font-medium text-sm md:text-base transition-all tracking-tight cursor-pointer",
                   isActive
-                    ? "bg-accent text-white shadow-sm"
+                    ? "bg-mainBlue-300 text-white shadow-sm"
                     : "bg-white text-sub600 hover:bg-sub150/50 shadow-xs"
                 )}
               >

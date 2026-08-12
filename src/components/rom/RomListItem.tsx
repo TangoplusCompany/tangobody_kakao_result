@@ -38,15 +38,15 @@ export function RomListItem({ item, onClick }: RomListItemProps) {
   }[item.score] ?? "정상";
 
   const textCondition0 = {
-    "매우 양호": "text-accent",
-    "정상": "text-accent",
+    "매우 양호": "text-mainBlue-300",
+    "정상": "text-mainBlue-300",
     "주의": "text-orange-600",
     "위험": "text-red-600",
   }[levelString] ?? "text-sub600";
 
   const textBgCondition0 = {
-    "매우 양호": "border-accent",
-    "정상": "border-accent",
+    "매우 양호": "border-mainBlue-300",
+    "정상": "border-mainBlue-300",
     "주의": "border-orange-600",
     "위험": "border-red-600",
   }[levelString] ?? "bg-white";

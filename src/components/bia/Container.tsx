@@ -29,7 +29,7 @@ export default function BiaContainer() {
     );
   }
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2 mb-12">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2 mb-12 px-1">
       <div className="md:col-span-2 md:col-start-1 md:row-start-1"> <Composition data={data}/> </div>
       <div className="md:col-start-3 md:row-start-1 md:row-span-2"> <BodyBenchMark data={data}/> </div>
       <div className="md:col-span-2 md:col-start-1 md:row-start-2"> <MainAnalysis data={data} prevMuscleMassIndex={data?.most_previous_data.skeletal_muscle_mass_index}/> </div>

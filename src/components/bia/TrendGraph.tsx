@@ -53,7 +53,7 @@ const transformToTrend = (
 const DataCell = ({ idx, value, diff, status, unit, up }: { idx: number, value: string, diff: string, status: string, unit: string, up: boolean }) => {
   const colorClass = 
     status === 'red' ? ' text-red-600' : 
-    status === 'blue' ? ' text-accent' :
+    status === 'blue' ? ' text-mainBlue-300' :
     ' text-sub600 bg-white';
 
   return (
@@ -82,8 +82,8 @@ export default function TrendGraph({data}: {data:IBiaData}) {
     <div className="flex flex-col w-full bg-white p-2">
       <div className="flex justify-between items-center ">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-accent rounded-[4px]" />
-          <span className="text-sm font-bold text-accent">측정 이력</span>
+          <div className="w-3 h-3 bg-mainBlue-300 rounded-[4px]" />
+          <span className="text-sm font-bold text-mainBlue-300">측정 이력</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-2 h-2 bg-sub600 rounded-[2px]" />

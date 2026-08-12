@@ -5,8 +5,15 @@
 @theme {
   --font-sans: 'SUIT Variable', system-ui, -apple-system, sans-serif;
   --font-bebas: 'Bebas Neue', sans-serif;
-  --color-accent: #3b82f6;
   --color-comp-dark: #7A828A;
+  --color-mainBlue-600: #2563EB;
+  --color-mainBlue-300: #5B93FF;
+  --color-mainBlue-100: #F1F5F9;
+
+   --color-mainBlue-100: #F1F5F9;
+
+
+  --color-mainGreen-600: #49D68F;
 
   --color-red-400: #FF7474;
   --color-red-500: #FF766C;
@@ -34,9 +41,9 @@
   --bg: #fff;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
+  --mainBlue-300: #aa3bff;
+  --mainBlue-300-bg: rgba(170, 59, 255, 0.1);
+  --mainBlue-300-border: rgba(170, 59, 255, 0.5);
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
@@ -67,9 +74,9 @@
     --bg: #16171d;
     --border: #2e303a;
     --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
+    --mainBlue-300: #c084fc;
+    --mainBlue-300-bg: rgba(192, 132, 252, 0.15);
+    --mainBlue-300-border: rgba(192, 132, 252, 0.5);
     --social-bg: rgba(47, 48, 58, 0.5);
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;

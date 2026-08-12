@@ -68,8 +68,8 @@ export default function ExerciseContainer() {
               onClick={() => setSelectedPartTab(partIdx)}
               className={`px-2.5 py-1 md:text-base text-sm rounded-full border transition-colors cursor-pointer font-medium
                 ${isSelected 
-                  ? "bg-accent border-accent text-white" 
-                  : "bg-white text-sub600 border-sub200 hover:border-accent hover:text-accent"
+                  ? "bg-mainBlue-300 border-mainBlue-300 text-white" 
+                  : "bg-white text-sub600 border-sub200 hover:border-mainBlue-300 hover:text-mainBlue-300"
                 }
               `}
             >

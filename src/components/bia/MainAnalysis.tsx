@@ -42,7 +42,7 @@ export function AnalysisHorizonCard({ title, value, low, high }: AnalysisHorizon
   
 
   // const stateColor = {
-  //   0: "bg-accent",
+  //   0: "bg-mainBlue-300",
   //   1: "bg-sub300 ",
   //   2: "bg-redd"
   // }[statePos];
@@ -229,8 +229,8 @@ const muscleMassIndex = (() => {
       <div className="flex flex-col gap-4 w-full h-full justify-between">
         <div className="flex flex-col flex-1  bg-sub100 border border-sub200 rounded-[2px] pt-1 pb-8 px-2">
             <div className="flex items-center gap-2 ">
-              <div className="w-3 h-3 rounded-[3px] bg-accent" />
-              <div className="text-accent font-bold text-sm">
+              <div className="w-3 h-3 rounded-[3px] bg-mainBlue-300" />
+              <div className="text-mainBlue-300 font-bold text-sm">
                 근감소 수치
               </div>
             </div>
@@ -259,7 +259,7 @@ const muscleMassIndex = (() => {
                   
                   {/* 현재 수치 포인트 */}
                   <div 
-                    className="absolute w-3.5 h-3.5 bg-accent rounded-full border-2 border-white shadow-sm"
+                    className="absolute w-3.5 h-3.5 bg-mainBlue-300 rounded-full border-2 border-white shadow-sm"
                     style={{ 
                       left: (muscleMassIndex === 1 ? "50%" : muscleMassIndex === 2 ? "90%" : "10%"), 
                       transform: "translate(-50%, 0)"

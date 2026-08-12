@@ -69,7 +69,7 @@ export function PentagonChart({
             className={`
               text-xs text-white text-center rounded-[2px] 
               py-[2px] leading-none flex items-center justify-center min-w-[64px]
-              ${item.status === "표준이상" ? "bg-accent/30" : "bg-sub400/30"}
+              ${item.status === "표준이상" ? "bg-mainBlue-300/30" : "bg-sub400/30"}
             `}
           >
             {item.status}
@@ -232,8 +232,8 @@ export default function BodyModel({data} : {data: IBiaData}) {
       <div className='flex flex-col gap-1 w-full h-full'>
         <div className='flex justify-between '>
           <div className='flex gap-1 pl-1 pt-1 items-center'>
-            <div className='w-3 h-3 rounded-[3px] bg-accent' />
-            <span className='text-accent font-bold text-sm'>근육 분포</span>
+            <div className='w-3 h-3 rounded-[3px] bg-mainBlue-300' />
+            <span className='text-mainBlue-300 font-bold text-sm'>근육 분포</span>
           </div>
         </div>
         
@@ -243,8 +243,8 @@ export default function BodyModel({data} : {data: IBiaData}) {
       <div className='flex flex-col gap-1 w-full h-full'>
         <div className='flex justify-between '>
           <div className='flex gap-1 pl-1 pt-1 items-center'>
-            <div className='w-3 h-3 rounded-[3px] bg-accent' />
-            <span className='text-accent font-bold text-sm'>지방 분포</span>
+            <div className='w-3 h-3 rounded-[3px] bg-mainBlue-300' />
+            <span className='text-mainBlue-300 font-bold text-sm'>지방 분포</span>
           </div>
         </div>
         <PentagonChart data={fatData} isMuscle={false} />

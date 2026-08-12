@@ -1,14 +1,7 @@
+import type { Fit } from "@/components/basic/DynamicContainer";
+import { computeContain, setupHiDPICanvas } from "@/util/canvas";
+import { isNearEnd, isNearStart } from "@/util/drawSkeleton";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-
-import type { Fit } from "../../components/basic/DynamicContainer";
-import { computeContain, setupHiDPICanvas } from "../../util/canvas";
-import type { IMeasureJson } from "../../types/landmark";
-import { compareCropScale } from "../../components/ui/VideoPlayer";
-
-
-export const isNearStart = (v: HTMLVideoElement, eps = 0.05) => v.currentTime <= eps;
-export const isNearEnd = (v: HTMLVideoElement, eps = 0.08) => v.duration > 0 && v.currentTime >= v.duration - eps;
-
 
 const DATA_W = 720;
 const DATA_H = 1280;
@@ -18,8 +11,8 @@ export interface UseVideoPlayerProps {
   videoSrc: string | undefined;
   isRotated: boolean;
   isCompare: boolean;
-  measureJson: IMeasureJson[] | undefined;
   onFrameChange?: (frame: number) => void;
+  cropScale?: number;
 }
 
 export interface UseVideoPlayerReturn {
@@ -56,8 +49,8 @@ export const useVideoPlayer = ({
   videoSrc,
   isRotated,
   isCompare,
-  measureJson: _measureJson, // eslint-disable-line @typescript-eslint/no-unused-vars
   onFrameChange,
+  cropScale,
 }: UseVideoPlayerProps): UseVideoPlayerReturn => {
   const stageRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -263,7 +256,7 @@ export const useVideoPlayer = ({
           dpr,
         });
         if (isCompare && !isRotated) {
-          setCanvasTransform(`scaleX(-${compareCropScale}) scaleY(${compareCropScale})`);
+          setCanvasTransform(`scaleX(-${cropScale}) scaleY(${cropScale})`);
         } else {
           setCanvasTransform(`scaleX(-1) scaleY(1)`);
         }
@@ -298,7 +291,7 @@ export const useVideoPlayer = ({
       ro.disconnect();
       video?.removeEventListener("loadedmetadata", update);
     };
-  }, [isRotated, videoSrc, isCompare]);
+  }, [isRotated, videoSrc, isCompare, cropScale]);
 
 
   const toScreen = useMemo(() => {

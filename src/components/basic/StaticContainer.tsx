@@ -149,26 +149,22 @@ export default function StaticContainer ({data, tab}: {data: IMeasureBasic, tab:
     </div>
   );
   if (isError || isLeftJsonError || isRightJsonError) return <div className="p-4 text-center text-red-500">{error?.message}</div>;
-
   return (
-    <div className="flex flex-col gap-2">
-      <div className="grid grid-cols-2 md:gap-2">
+    <div className="flex flex-col gap-2 px-1">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         <div className={`flex flex-col gap-4 lg:gap-10`}>
           <MeasurementImage
             imageUrl={
-              import.meta.env.VITE_PUBLIC_FILE_URL +
               leftFileName
             }
             measureJson={leftJson!}
             step={partMap[tab][0]}
             cameraOrientation={cameraOrientation}
           />
-          
         </div>
         <div className={`flex flex-col gap-4 lg:gap-10`}>
           <MeasurementImage
             imageUrl={
-              import.meta.env.VITE_PUBLIC_FILE_URL +
               rightFileName
             }
             measureJson={rightJson!}
