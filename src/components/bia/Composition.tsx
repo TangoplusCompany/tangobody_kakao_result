@@ -13,14 +13,14 @@ interface CompositionCardProps {
 
 export function CompositionCard({ title, weight, value, low, high, prevValue }: CompositionCardProps) {
   const stateColor = {
-    "체수분": "bg-accent",
+    "체수분": "bg-mainBlue-300",
     "단백질": "bg-orange-600",
     "무기질": "bg-comp-dark",
     "체지방": "bg-red-600"
   }[title];
   
   const textColor = {
-    "체수분": "text-accent",
+    "체수분": "text-mainBlue-300",
     "단백질": "text-orange-600",
     "무기질": "text-sub750 ",
     "체지방": "text-red-600"
@@ -55,7 +55,7 @@ export function CompositionCard({ title, weight, value, low, high, prevValue }: 
   
   // 증감 계산
   const diff = prevValue !== undefined ? (value - prevValue).toFixed(1) : undefined;
-  const diffColor = Number(diff) > 0 ? "text-redd" : "text-accent";
+  const diffColor = Number(diff) > 0 ? "text-redd" : "text-mainBlue-300";
 
   return (
     <div className="flex items-center gap-1 w-full h-full ">
@@ -188,8 +188,8 @@ export default function Composition({data}: {data: IBiaData}) {
     <div className="flex flex-col  p-2">
       
       <div className="flex items-center gap-2 ">
-        <div className="w-3 h-3 rounded-[3px] bg-accent" />
-        <div className="text-accent text-sm font-bold ">
+        <div className="w-3 h-3 rounded-[3px] bg-mainBlue-300" />
+        <div className="text-mainBlue-300 text-sm font-bold ">
           체성분 & 체수분 밸런스
         </div>
       </div>

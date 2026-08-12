@@ -56,7 +56,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     videoSrc,
     isRotated,
     isCompare,
-    measureJson,
     onFrameChange,
   });
 

@@ -1,9 +1,9 @@
 // hooks/usePoseCroppedImage.ts
 "use client";
 
+import type { IPoseLandmark } from "@/types/landmark";
+import { drawLineStepFifth, drawLineStepFirst, drawLineStepFourth, drawLineStepSecond, drawLineStepSixth, drawLineStepThird } from "@/util/drawLineStep";
 import { useState, useEffect } from "react";
-import type { IPoseLandmark } from "../../types/landmark";
-import { drawLineStepFifth, drawLineStepFirst, drawLineStepFourth, drawLineStepSecond, drawLineStepSixth, drawLineStepThird } from "../../util/drawLineStep";
 import { useLoadImage } from "./useLoadImage";
 
 
@@ -40,10 +40,10 @@ const drawMap: Record<
  */
 export function useStaticLandmark(
   imageUrl: string,
-  measureJson: { pose_landmark: IPoseLandmark[] },
-  step: "first" | "second" | "third" | "fourth" | "fifth" | "sixth",
   cameraOrientation: 0 | 1,
-  showLine: boolean = true, // 기본값 true
+  showLine: boolean = true, 
+  step?: "first" | "second" | "third" | "fourth" | "fifth" | "sixth",
+  measureJson ?: { pose_landmark: IPoseLandmark[] },
 ): {
   resultUrl: string | null;
   loading: boolean;
@@ -59,14 +59,7 @@ export function useStaticLandmark(
       setLoading(true);
 
       try {
-        const urlParts = imageUrl.split("/");
-        const fileName = urlParts[urlParts.length - 1]; // "57-1810-1-1-1770620771.jpg" 만 쏙 추출
-
-        // 💡 추출한 파일명을 로컬 프록시 경로와 깨끗하게 조립합니다.
-        const proxiedUrl = `/proxy-data/${fileName}`;
-
-        // 정돈된 주소로 이미지 로드 실행
-        const image = await loadImage(proxiedUrl);
+        const image = await loadImage(imageUrl);
 
         const srcW = image.width;   // 1280
         const srcH = image.height;  // 720
@@ -88,25 +81,15 @@ export function useStaticLandmark(
         ctx.restore(); 
 
         // showLine이 true일 때만 랜드마크 그리기
-        if (showLine && measureJson && measureJson.pose_landmark) {
+        if (showLine && measureJson&& step) {
           ctx.save();
 
-          // 미러링 처리
+          // 미러
           ctx.translate(dstW, 0);
           ctx.scale(-1, 1);
-          
-          try {
-            // 💡 맵 함수를 호출하기 전에 한 번 더 예외 체크
-            if (drawMap[step]) {
-              drawMap[step](ctx, measureJson);
-            }
-          } catch (drawError) {
-            console.error("선 그리기 도중 에러 발생 (drawLineStep):", drawError);
-          }
+          drawMap[step](ctx, measureJson);
 
           ctx.restore();
-        } else if (showLine) {
-          // 💡 데이터가 없는데 선을 그리라고 요청이 들어온 상황 로그 통제
         }
         
         // ✅ crop to 3:4 (정방향 기준으로 수행)
@@ -157,8 +140,7 @@ export function useStaticLandmark(
     };
 
     draw();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imageUrl, step, cameraOrientation, showLine]);
+  }, [imageUrl, loadImage, step, measureJson, cameraOrientation, showLine]);
 
   return { resultUrl, loading };
 }

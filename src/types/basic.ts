@@ -1,13 +1,18 @@
 import type { IBiaData } from "./bia";
+import type { IMeasureGaitDetail } from "./gait";
+import type { IMoireDetail } from "./moire";
 import type { IMeasureROMItemDetail } from "./rom";
 
 export interface IKakaoResponse  {
   measurement_meta: IMeasureMeta;
   basic_result ?: IMeasureBasic;
-  rom_result?: IMeasureROMItemDetail[]
-  bia_result?: IBiaData
+  rom_result?: IMeasureROMItemDetail[];
+  bia_result?: IBiaData;
+  gait_result?: IMeasureGaitDetail;
+  moire_result?: IMoireDetail;
 }
-// kakaoresult에 대응해서 tab 분기 처리 
+
+
 export interface IMeasureMeta {
   user_sn: number | string; // sn
   device_sn: number | string; // 장치 sn
@@ -21,6 +26,8 @@ export interface IMeasureMeta {
   has_basic : 0 | 1;
   has_rom : 0 | 1;
   has_bia: 0 | 1;
+  has_gait: 0 | 1;
+  has_moire: 0 | 1;
 }
 
 export interface IMeasureBasic {

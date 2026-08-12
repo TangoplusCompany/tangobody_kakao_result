@@ -16,9 +16,9 @@ export default function BodyTypeChart({data}: {data: IBiaData}) {
   return (
     <div className="flex flex-col px-2 w-full h-full pb-8 md:pb-2">
       {/* 1. 타이틀 영역 */}
-      <div className="flex gap-2 items-center mb-2 text-accent font-bold">
-        <div className="w-3 h-3 rounded-[3px] bg-accent" />
-        <div className="text-accent font-bold text-sm">
+      <div className="flex gap-2 items-center mb-2 text-mainBlue-300 font-bold">
+        <div className="w-3 h-3 rounded-[3px] bg-mainBlue-300" />
+        <div className="text-mainBlue-300 font-bold text-sm">
           바디 타입 세부 분석
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function BodyTypeChart({data}: {data: IBiaData}) {
 
           {/* --- 내 위치 마커 --- */}
           <div
-            className="absolute w-3.5 h-3.5 bg-accent/75 rounded-full transform -translate-x-1/2 -translate-y-1/2"
+            className="absolute w-3.5 h-3.5 bg-mainBlue-300/75 rounded-full transform -translate-x-1/2 -translate-y-1/2"
             style={{ left: myDotPosition.left, top: myDotPosition.bottom }}
           />
         </div>

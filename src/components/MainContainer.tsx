@@ -2,9 +2,11 @@ import { useState } from "react";
 import type { IKakaoResponse } from "../types/basic";
 import colorLogo from "../assets/img_logo_color.svg";
 import { cn } from "../lib/utils";
-import BasicContainer from "./basic/BasicContainer";
-import RomContainer from "./rom/RomContainer";
-import BiaContainer from "./bia/BiaContainer";
+import BasicContainer from "./basic/Container";
+import RomContainer from "./rom/Container";
+import BiaContainer from "./bia/Container";
+import GaitContainer from "./gait/Container";
+import MoireContainer from "./moire/Container";
 
 
 export default function MainContainer({data}: {data: IKakaoResponse | undefined}) {
@@ -15,6 +17,8 @@ export default function MainContainer({data}: {data: IKakaoResponse | undefined}
     measureType?.has_basic === 1 && "간편 검사",
     measureType?.has_rom === 1 && "ROM 검사",
     measureType?.has_bia === 1 && "체성분 검사",
+    measureType?.has_gait === 1 && "보행 분석 검사",
+    measureType?.has_moire === 1 && "모아레 검사",
   ].filter(Boolean) as string[];
   const [currentMainTab, setCurrentMainTab] = useState<string>(() => {
     return mainTabs[0] ?? "";
@@ -41,7 +45,7 @@ export default function MainContainer({data}: {data: IKakaoResponse | undefined}
               className={cn(
                 "flex-1 py-2 text-sm md:text-base font-medium transition-all cursor-pointer",
                 isActive
-                  ? "border-b-2 border-accent text-accent"
+                  ? "border-b-2 border-mainBlue-300 text-mainBlue-300"
                   : "text-sub400 hover:text-sub600"
               )}
             >
@@ -54,6 +58,8 @@ export default function MainContainer({data}: {data: IKakaoResponse | undefined}
       {activeTab === "간편 검사" && <BasicContainer data={data} />}
       {activeTab === "ROM 검사" && <RomContainer />}
       {activeTab === "체성분 검사" && <BiaContainer />}
+      {(activeTab === "보행 분석 검사" && data?.gait_result) && <GaitContainer data={data.gait_result}/>}
+      {(activeTab === "모아레 검사" && data?.moire_result) && <MoireContainer data={data.moire_result}/>}
     </div>
   );
 };

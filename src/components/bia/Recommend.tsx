@@ -18,7 +18,7 @@ export function RecommendCard ({type, title, description} : {type: string, title
       <div className="flex flex-col gap-1 w-full">
         <div className="flex w-full justify-between items-center">
           <span className="text-sm font-bold text-blackk ">{title}</span>
-          <div className="px-2 py-1 rounded-[4px] bg-accent text-xs text-white">{type}</div>
+          <div className="px-2 py-1 rounded-[4px] bg-mainBlue-300 text-xs text-white">{type}</div>
         </div>
 
         <div className="text-xs text-start leading-tight text-sub600">
@@ -54,9 +54,9 @@ export default function Recommend({data}: {data: IRecommend}) {
   return (
     <div className="flex flex-col gap-2 px-2 py-2 w-full h-full">
       {/* 1. 타이틀 영역 (작성하신 부분) */}
-      <div className="flex gap-2 items-center text-accent font-bold">
-        <div className="w-3 h-3 rounded-[3px] bg-accent" />
-        <div className="text-accent font-bold text-sm ">
+      <div className="flex gap-2 items-center text-mainBlue-300 font-bold">
+        <div className="w-3 h-3 rounded-[3px] bg-mainBlue-300" />
+        <div className="text-mainBlue-300 font-bold text-sm ">
           체중조절/처방
         </div>
       </div>
