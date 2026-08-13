@@ -92,35 +92,37 @@ export async function preprocessTrajectoryImage(originalUrl: string): Promise<st
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const data = imageData.data;
 
-      // 목표 변환 색상 정의 (RGB)
-      // 변경 후 빨강: #FF4A4A (255, 74, 74)
-      // 변경 후 파랑: #5B93FF (91, 147, 255)
       const targetRed = { r: 255, g: 74, b: 74 };
       const targetBlue = { r: 91, g: 147, b: 255 };
 
       for (let i = 0; i < data.length; i += 4) {
-        const r = data[i];     
-        const g = data[i + 1]; 
-        const b = data[i + 2]; 
-        const a = data[i + 3]; 
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+        const a = data[i + 3];
 
         if (a === 0) continue;
 
-        // 1. 배경 제거 (030303 주변부 투명화)
-        if (r <= 10 && g <= 10 && b <= 10) {
-          data[i + 3] = 0; 
+        const maxVal = Math.max(r, g, b);
+        const minVal = Math.min(r, g, b);
+        const colorDiff = maxVal - minVal;
+
+        // 1. 무채색(검은 배경, 회색 십자선) 및 너무 어두운 픽셀 제거
+        if (colorDiff < 15 || maxVal < 30) {
+          data[i + 3] = 0;
           continue;
         }
 
-        // 2. 선 색상 전처리 (빨간색 계열 vs 파란색 계열 판정)
-        // R 값이 B 값보다 확실히 크면 빨간색 계열로 판단
-        if (r > b && r > 50) {
+        // 2. 궤적 선 픽셀: 불투명화 및 색상 치환
+        data[i + 3] = 255;
+
+        if (r > b && r > g) {
+          // 빨간색 계열
           data[i] = targetRed.r;
           data[i + 1] = targetRed.g;
           data[i + 2] = targetRed.b;
-        } 
-        // B 또는 G 값이 R 값보다 확실히 크면 파란색(청록색) 계열로 판단
-        else if (b > r || g > r) {
+        } else {
+          // 파란색/청록색 계열
           data[i] = targetBlue.r;
           data[i + 1] = targetBlue.g;
           data[i + 2] = targetBlue.b;
