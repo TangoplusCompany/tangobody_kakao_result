@@ -118,8 +118,8 @@ export default function MoireContainer ({ data }: IMoireContainerProps) {
  
 
       <div className='gap-1 pl-1 pt-1 items-center hidden md:flex'>
-        <div className='w-3 h-3 rounded-[3px] bg-accent' />
-        <span className='text-accent font-bold text-sm'>전후면 등고선</span>
+        <div className='w-3 h-3 rounded-[3px] bg-mainBlue-300' />
+        <span className='text-mainBlue-300 font-bold text-sm'>전/후면 등고선</span>
       </div>
 
 
