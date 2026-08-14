@@ -103,7 +103,7 @@ export default function MoireGraph({ graphData }: { graphData: IMoireGraphProps 
         <span className="text-xs font-semibold text-sub-700">{graphData.title}</span>
       </div>
 
-      <div className="grid grid-cols-[75%_25%] md:grid-cols-[70%_30%] gap-1">
+      <div className="grid grid-cols-[70%_30%] md:grid-cols-[70%_30%] gap-1">
         <ChartContainer config={{}} className="aspect-auto h-32 w-full">
           <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <defs>
@@ -153,11 +153,11 @@ export default function MoireGraph({ graphData }: { graphData: IMoireGraphProps 
           </AreaChart>
         </ChartContainer>
 
-        <div className="flex flex-col gap-0.5 py-2">
+        <div className="flex flex-col gap-0.5 py-2 items-center">
           <span className="text-xs sm:text-sm font-semibold text-sub700">
             {subTitle} {Math.abs(graphData.leftValue - graphData.rightValue).toFixed(1)} {graphData.unit}
           </span>
-          <div className="flex gap-2 text-xs sm:text-sm font-semibold">
+          <div className="flex gap-1 text-xs sm:text-sm font-semibold">
             <span className="text-mainBlue-300">L {(graphData.leftValue / 100).toFixed(2)} {graphData.unit.replace("c", "")}</span>
             <span className="text-mainGreen-600">R {(graphData.rightValue / 100).toFixed(2)} {graphData.unit.replace("c", "")}</span>
           </div>
