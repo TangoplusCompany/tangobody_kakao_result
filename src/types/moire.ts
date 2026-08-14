@@ -1,6 +1,6 @@
 export interface IMoireDetail {
-  front : IMoireSeq
-  back : IMoireSeq
+  front ?: IMoireSeq
+  back ?: IMoireSeq
 }
 export interface IMoireSeq {
   sn : number;

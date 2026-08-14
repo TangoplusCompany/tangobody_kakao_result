@@ -125,10 +125,10 @@ export default function MoireImage({ imageData }: { imageData: IMoireImageProps 
     leftBottomPressure: matJson.left_bottom_weight_pct,
     rightTopPressure: matJson.right_top_weight_pct,
     rightBottomPressure: matJson.right_bottom_weight_pct,
-    leftPressure: matJson.left_weight_pct,
-    rightPressure: matJson.right_weight_pct,
-    topPressure: matJson.fore_weight_pct,
-    bottomPressure: matJson.heel_weight_pct,
+    leftPressure: Math.round(matJson.left_weight_pct),
+    rightPressure: Math.round(matJson.right_weight_pct),
+    topPressure: Math.round(matJson.fore_weight_pct),
+    bottomPressure: Math.round(matJson.heel_weight_pct),
   };
 
   return (
