@@ -153,14 +153,13 @@ export default function MoireGraph({ graphData }: { graphData: IMoireGraphProps 
           </AreaChart>
         </ChartContainer>
 
-        <div className="flex flex-col gap-0.5 py-2 items-center">
-          <span className="text-xs font-semibold text-sub800">
-            {subTitle} 
+        <div className="flex flex-col gap-0.5 py-2">
+          <span className="text-xs sm:text-sm font-semibold text-sub700">
+            {subTitle} {Math.abs(graphData.leftValue - graphData.rightValue).toFixed(1)} {graphData.unit}
           </span>
-          <span className="text-xs font-semibold text-sub800">{Math.abs(graphData.leftValue - graphData.rightValue).toFixed(2)} {graphData.unit}</span>
-          <div className="flex gap-2 text-xs">
-            <span className="text-mainBlue-300">L {graphData.leftValue.toFixed(1)} {graphData.unit}</span>
-            <span className="text-green-600">R {graphData.rightValue.toFixed(1)} {graphData.unit}</span>
+          <div className="flex gap-2 text-xs sm:text-sm font-semibold">
+            <span className="text-mainBlue-300">L {(graphData.leftValue / 100).toFixed(2)} {graphData.unit.replace("c", "")}</span>
+            <span className="text-mainGreen-600">R {(graphData.rightValue / 100).toFixed(2)} {graphData.unit.replace("c", "")}</span>
           </div>
         </div>
       </div>

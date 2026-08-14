@@ -50,22 +50,22 @@ const FootStatic = ({
 
         {/* 상단 */}
         <span className="absolute top-1 left-1/2 -translate-x-1/2 text-sub200 text-sm print:text-xs font-semibold">
-          {matStatics.topPressure}%
+          {matStatics.topPressure.toFixed(0)}%
         </span>
 
         {/* 좌측 */}
         <span className="absolute top-1/2 left-1 -translate-y-1/2 text-sub200 text-sm print:text-xs font-semibold">
-          {matStatics.leftPressure}%
+          {matStatics.leftPressure.toFixed(0)}%
         </span>
 
         {/* 우측 */}
         <span className="absolute top-1/2 right-1 -translate-y-1/2 text-sub200 text-sm print:text-xs font-semibold">
-          {matStatics.rightPressure}%
+          {matStatics.rightPressure.toFixed(0)}%
         </span>
 
         {/* 하단 */}
         <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-sub200 text-sm print:text-xs font-semibold">
-          {matStatics.bottomPressure}%
+          {matStatics.bottomPressure.toFixed(0)}%
         </span>
       </div>
     );
